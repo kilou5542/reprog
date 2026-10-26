@@ -1,11 +1,11 @@
 # Audi A2 1.4 BBY — Marelli 4MV 036906034CA (E85)
 
-ROM à utiliser : **`roms/a2_ori_e85_v5_regul_conso.bin`** (v5 + régulateur + conso). Secours : `roms/a2_ori_e85_v5.bin`. L'historique des versions est dans [CHANGELOG.md](CHANGELOG.md).
+ROM de travail : **`roms/a2_ori_e85_v5.bin`** (base de toutes les prochaines modifications). L'historique des versions est dans [CHANGELOG.md](CHANGELOG.md).
 
 ## Contenu
 | Dossier | Contenu |
 |---|---|
-| `roms/` | ROM actuelles (v5, v5 + régulateur + conso ; v7c / v10c en alternative) |
+| `roms/` | ROM de travail (v5) ; v7c / v10c en alternative non retenue |
 | `roms/historique/` | toutes les versions intermédiaires |
 | `roms/originales/` | origine CA (`audiori`), ta ROM modifiée « audiEGRoff… », Golf 4 DR, BackupAudiSemiOK, projet WinOLS |
 | `tunerpro/` | définition TunerPro `A2_4MV_036906034CA_E85.xdf` |
@@ -31,6 +31,8 @@ python3 scripts/marelli4mv.py ma_rom_ok.bin        # vérification
 Il faut Python 3. Le désassemblage demande en plus le module `capstone`.
 
 ## TunerPro
+Sur la v5, la catégorie « Patchs (v8-v10) » du XDF ne veut rien dire (zone vide, 0xFFFF) : ne pas y toucher.
+
 Ouvrir `tunerpro/A2_4MV_036906034CA_E85.xdf`, puis le `.bin`. Les tables sont rangées par catégories :
 carburant, lambda, allumage, papillon, couple, ralenti / démarrage, régime maxi, trims, coupure,
 régulateur, boîte, patchs. Les axes sont lus dans le fichier.

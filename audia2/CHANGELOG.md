@@ -11,12 +11,12 @@ Chaque version a un checksum correct.
 
 La base CA est gardée : avec la DR, le régulateur de vitesse et la climatisation ne fonctionnent pas.
 
-### v5 + régulateur + conso — `roms/a2_ori_e85_v5_regul_conso.bin` (choix retenu)
+### v5 + régulateur + conso — `roms/historique/a2_ori_e85_v5_regul_conso.bin` (mise de côté, régulateur abandonné pour l'instant)
 - Configuration EGR de la v5 conservée telle quelle (aucun voyant constaté) : pas de patch 0x3C2B4 / 0x226C2 /
   0x23A62, test de débit EGR inchangé. L'adaptation du modèle papillon reste donc bloquée, comme en v5.
 - Ajouts : régulateur v9 (butées PI 0x5C778 / 0x5C77C, coupure 0x24B5A → 0x7F1C0) et conso E85 (0x5BA22 = 541).
 - Différences avec la v5 : uniquement ces zones et le checksum.
-- `roms/a2_ori_e85_v5.bin` : la v5 seule, qui démarre et redémarre sans voyant (référence de secours).
+- `roms/a2_ori_e85_v5.bin` : **ROM de travail retenue**. Démarre et redémarre sans voyant ; base des prochaines modifications.
 
 ### v10c — `roms/a2_ori_e85_v10c.bin` (non retenue pour l'instant)
 - v7c + régulateur (v8/v9) + conso E85 (v10).

@@ -11,6 +11,16 @@ Chaque version a un checksum correct.
 
 La base CA est gardée : avec la DR, le régulateur de vitesse et la climatisation ne fonctionnent pas.
 
+### v10b — `roms/a2_ori_e85_v10b.bin` (version à utiliser après essai de la v7b)
+- v10 + correctif EGR de la v7b (0x3C2C0). Aucune autre différence avec la v10.
+
+### v7b — `roms/a2_ori_e85_v7b.bin` (à essayer en premier)
+- **Correctif du patch v6** : en plus de `$DBA` forcé à 0, 0x3C2C0 `move.w (a1),$DB6(a5)` → `clr.w $DB6(a5)`.
+  `$DB6` est la position EGR utilisée par la gestion (0x46CAE, 0x471A6…). Avec le statut forcé « OK », la v6 y
+  recopiait la tension du capteur débranché (`$DB8`, entrée 0xC8) = vanne vue ouverte → **pas de démarrage**
+  (v6, v7 et donc v8 à v11 concernées). En v5 le défaut était détecté et `$DB6` restait à 0 : on force ce 0.
+- Différences avec la v5 : 0x3C2B4, 0x3C2C0, 0x5B970 = 0, checksum.
+
 ### v11 — `roms/historique/a2_ori_e85_v11_NE_DEMARRE_PAS.bin` (❌ abandonnée : la voiture ne démarre pas)
 - **Modèle papillon 0x57786 agrandi de +10 % de section effective** (≈ 52 → 54,5 mm équivalent),
   pour un papillon légèrement plus gros et une admission plus libre en amont, afin d'éviter le P1553.
@@ -18,11 +28,12 @@ La base CA est gardée : avec la DR, le régulateur de vitesse et la climatisati
   à la pression de référence ne bougent pas, la table reste croissante selon l'angle.
   Effet : pression attendue +10 à +50 mbar à faible ouverture, presque rien près de la pleine ouverture.
 - Script : `papillon_agrandi.py entree.bin sortie.bin 1.10` (facteur réglable).
-- ❌ Essai : la voiture ne démarre pas. La pression modélisée (sortie `$16B2`, fct 0x22DDE) sert aussi au
+- ❌ Essai : la voiture ne démarre pas — mais la v7 non plus : la cause principale est le patch v6 (voir v7b).
+  En plus, la pression modélisée (sortie `$16B2`, fct 0x22DDE) sert aussi au
   calcul de charge : +10 à +50 mbar aux petits angles / bas régimes = plus d'air calculé, donc plus de carburant
   au démarrage (noyé en E85) et/ou moins d'ouverture commandée. Ne plus modifier cette table sans logs.
 
-### v10 — `roms/a2_ori_e85_v10.bin` (version à utiliser)
+### v10 — `roms/historique/a2_ori_e85_v10_NE_DEMARRE_PAS.bin` (contient le défaut de la v6)
 - **Consommation affichée recalée pour l'E85** : 0x5BA22 (masse volumique carburant) 740 → 541.
   Le combiné reçoit masse de carburant × 800 / 0x5BA22 ; la masse calculée porte l'E85 / 1,45
   (cf. v1), d'où 785 g/l / 1,45. Affinage : valeur × conso affichée / conso réelle.
@@ -45,10 +56,10 @@ Régulateur de vitesse : il prenait de la vitesse en descente.
 - Première version du patch de coupure au régulateur, basée sur un seuil de couple −790.
   Ce seuil n'était quasiment jamais atteint à cause des butées PI : remplacée par la v9.
 
-### v7
+### v7 — ❌ ne démarre pas (constaté), voir v7b
 - Test de débit EGR désactivé : 0x5B970 = 0.
 
-### v6
+### v6 — ❌ même défaut, voir v7b
 - 0x3C2B4 : `move.b d0,$DBA(a5)` → `clr.b $DBA(a5)`. Le statut du défaut capteur EGR (chemin 0x26)
   est forcé « OK » : avec le capteur débranché, il bloquait l'adaptation du modèle papillon (une des causes du P1553).
 

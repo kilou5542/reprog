@@ -11,7 +11,16 @@ Chaque version a un checksum correct.
 
 La base CA est gardée : avec la DR, le régulateur de vitesse et la climatisation ne fonctionnent pas.
 
-### v10 — `roms/a2_ori_e85_v10.bin` (version à utiliser)
+### v11 — `roms/a2_ori_e85_v11.bin` (version à utiliser)
+- **Modèle papillon 0x57786 agrandi de +10 % de section effective** (≈ 52 → 54,5 mm équivalent),
+  pour un papillon légèrement plus gros et une admission plus libre en amont, afin d'éviter le P1553.
+  Calcul cellule par cellule avec l'écoulement compressible (débit papillon = débit moteur) ; les cellules
+  à la pression de référence ne bougent pas, la table reste croissante selon l'angle.
+  Effet : pression attendue +10 à +50 mbar à faible ouverture, presque rien près de la pleine ouverture.
+- Script : `papillon_agrandi.py entree.bin sortie.bin 1.10` (facteur réglable).
+- ⚠️ Pas encore essayé sur route.
+
+### v10 — `roms/historique/a2_ori_e85_v10.bin`
 - **Consommation affichée recalée pour l'E85** : 0x5BA22 (masse volumique carburant) 740 → 541.
   Le combiné reçoit masse de carburant × 800 / 0x5BA22 ; la masse calculée porte l'E85 / 1,45
   (cf. v1), d'où 785 g/l / 1,45. Affinage : valeur × conso affichée / conso réelle.

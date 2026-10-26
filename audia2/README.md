@@ -1,11 +1,11 @@
 # Audi A2 1.4 BBY — Marelli 4MV 036906034CA (E85)
 
-ROM à utiliser : **`roms/a2_ori_e85_v10.bin`**. L'historique des versions est dans [CHANGELOG.md](CHANGELOG.md).
+ROM à utiliser : **`roms/a2_ori_e85_v11.bin`**. L'historique des versions est dans [CHANGELOG.md](CHANGELOG.md).
 
 ## Contenu
 | Dossier | Contenu |
 |---|---|
-| `roms/` | ROM actuelle (v10) |
+| `roms/` | ROM actuelle (v11) |
 | `roms/historique/` | toutes les versions intermédiaires |
 | `roms/originales/` | origine CA (`audiori`), ta ROM modifiée « audiEGRoff… », Golf 4 DR, BackupAudiSemiOK, projet WinOLS |
 | `tunerpro/` | définition TunerPro `A2_4MV_036906034CA_E85.xdf` |
@@ -42,7 +42,7 @@ Certaines unités restent brutes, quand l'échelle n'est pas certaine (couple, m
 - STFT : interne = 40000 + intégrateur ; affiché (40000 − x) / 400, signe normal (+ = enrichit).
 - LTFT : affiché (x − 40000) / 400, **signe inversé** sur ce calculateur.
 
-## Reproduire la v10 depuis l'origine
+## Reproduire la v11 depuis l'origine
 ```
 cd scripts
 O=../roms/originales
@@ -52,6 +52,7 @@ python3 reporter_tables.py "$H" v1.bin v2.bin
 python3 etapes_v3_a_v7.py v2.bin "$H" v7.bin
 python3 regulateur_coupure.py v7.bin v9.bin
 python3 conso_e85.py v9.bin v10.bin
+python3 papillon_agrandi.py v10.bin v11.bin 1.10
 python3 generer_xdf.py A2.xdf
 ```
-La chaîne a été vérifiée : elle redonne la v10 à l'octet près.
+La chaîne a été vérifiée : elle redonne la v11 à l'octet près.

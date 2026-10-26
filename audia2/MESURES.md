@@ -41,3 +41,33 @@ capteur EGR débranché met `$DBA` en défaut. Correction nécessaire ≈ −1,0
 ### À refaire après la v5h
 Après 5–10 min de ralenti chaud : mêmes relevés (régime, angle, pression, clim éteinte / en route).
 L'écart modèle / mesure doit tomber vers 0, l'angle au ralenti peut légèrement changer.
+
+## Protocole de validation de la v5h (apprentissage du modèle papillon débloqué)
+
+### Préparation
+1. Flasher `roms/a2_ori_e85_v5h.bin`, effacer les codes défaut.
+2. Apprentissage du papillon VCDS (01 → 04 → groupe 060, « ADP OK »), couper le contact 10 s.
+3. Démarrer, laisser chauffer jusqu'à 80–90 °C, puis **10 min de ralenti** sans toucher à rien
+   (clim éteinte, pas de consommateur) : c'est là que `$1740` s'apprend.
+
+### Relevés à noter (même format que le 26/10)
+| Moment | Régime | Angle papillon | Pression | STFT | LTFT | Codes défaut |
+|---|---|---|---|---|---|---|
+| Ralenti chaud, juste après chauffe | | | | | | |
+| Ralenti chaud, après 10 min | | | | | | |
+| Ralenti chaud, clim en route | | | | | | |
+| Lendemain, ralenti chaud | | | | | | |
+
+### Critères de validation
+| Point | Attendu | Si ce n'est pas le cas |
+|---|---|---|
+| Démarrages (dont un moteur froid le lendemain) | normaux, sans voyant | revenir à la v5g |
+| Redémarrages après avoir roulé (3 ou 4) | normaux, sans voyant | revenir à la v5g |
+| Codes défaut EGR | aucun (EGR restée endormie) | noter le code, revenir à la v5g |
+| Ralenti | stable, ~850–870 tr/min | noter régime et angle |
+| Angle papillon au ralenti | peut baisser un peu (le calculateur compense) | — |
+| STFT au ralenti | oscille dans ±5 % (condition d'apprentissage : ±20 %) | régler le mélange d'abord |
+| P1553 | n'apparaît plus, y compris en transitions à bas régime | noter les conditions (régime, pédale, chaud / froid) |
+
+La v5h est validée si, après plusieurs jours, tous les critères sont remplis : elle remplace alors la v5f
+comme ROM de travail (avec la v5g si la coupure rapide au lâcher de pédale est aussi validée).

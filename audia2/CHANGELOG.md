@@ -11,7 +11,14 @@ Chaque version a un checksum correct.
 
 La base CA est gardée : avec la DR, le régulateur de vitesse et la climatisation ne fonctionnent pas.
 
-### v5c — `roms/a2_ori_e85_v5c.bin` (à essayer : v5b + régulation de cliquetis à 5900)
+### v5d — `roms/a2_ori_e85_v5d_regime_nomlong.bin` (test : régime strictement identique à la ROM nom long)
+- v5c toujours avec le problème de rupteur. Recherche de toutes les valeurs 5700–6000 dans la ROM : seules 0x57CB0
+  (bas de rampe du limiteur) et 0x59712 (amorçage, sans rapport) diffèrent de la ROM nom long.
+- Test décisif : tous les réglages de régime recopiés de la ROM nom long (0x5653A–0x56549 : coupure 6100,
+  0x57CAC–0x57CB7 : limiteur 6600/6450/5800/6600/6400/6700, 0x5BA32 = 5900). Si le rupteur redevient bon,
+  la cause est dans ces valeurs ; sinon elle est ailleurs (VE / modèle papillon / gain → estimation du couple).
+
+### v5c — `roms/a2_ori_e85_v5c.bin` (❌ rupteur toujours mauvais)
 - Constaté en v5b : rupteur toujours mauvais, reprise vers 5000–5900.
 - En v5, 0x5BA32 (régime au-delà duquel la régulation de cliquetis est coupée, fct 0x49C1A) était passé de 5900 à 6800.
   Entre 5900 et 6800 la détection n'est pas calibrée : probable faux cliquetis → fort retard d'allumage près du rupteur,

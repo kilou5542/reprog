@@ -11,7 +11,16 @@ Chaque version a un checksum correct.
 
 La base CA est gardée : avec la DR, le régulateur de vitesse et la climatisation ne fonctionnent pas.
 
-### v5e — `roms/a2_ori_e85_v5e.bin` (à essayer : rupteur façon « A2_CA-DR_7000 »)
+### v5f — `roms/a2_ori_e85_v5f.bin` (à essayer : cause du rupteur trouvée)
+- **Cause** : deuxième rupteur dans l'injection (fct 0x46782). Quand le régime filtré `$1DA8` atteint le seuil de
+  coupure, 100 % des injections sont coupées (`$62C` = 100, drapeau `$62B`) et l'injection ne reprend que sous
+  **0x5B8EA**. CA d'origine : 5610 (DR : 6400). Avec la coupure à 7000, l'injection restait coupée de 7000 à 5610 :
+  c'est la reprise tardive constatée depuis la v5. La ROM CA-DR qui ruptait bien avait 0x5B8EA = 7000.
+- v5f = v5e + **0x5B8EA = 7000**. `rupteur.py` règle maintenant aussi 0x5B8EA = coupure ; ajouté au XDF.
+- ROM de référence ajoutée : `roms/originales/A2_CA-DR_7000_…_torqueori15.bin` (code identique à la CA ;
+  calibration DR + tables utilisateur + 0x555F5 et 0x55640–0x55687 de la CA).
+
+### v5e — `roms/a2_ori_e85_v5e.bin` (❌ même problème : reprise 0x5B8EA restée à 5610)
 - v5d bloquée vers 6000 (coupure 6100, attendu). Analyse du projet WinOLS « …rpmmax » (30 images) : toutes les versions
   sur base CA coupent à 6100 (une à 6700) ; les seules qui montaient proprement à 7000 sont les « A2_CA-DR_7000… »
   (base DR), réglées avec coupure 7000/7000, **limiteur par le couple 7000 sur les 6 valeurs**, surrégime 7200.

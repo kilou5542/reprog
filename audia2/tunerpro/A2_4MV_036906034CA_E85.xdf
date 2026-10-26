@@ -968,6 +968,20 @@
       </MATH>
   </XDFCONSTANT>
   <XDFCONSTANT uniqueid="0x101B" flags="0x0">
+    <title>Reprise injection apres coupure de regime [0x5B8EA]</title>
+    <description>Fct 0x46782 : au seuil de coupure, 100 % des injections coupees jusqu'a repasser sous cette valeur. Origine 5610 : mettre = coupure.</description>
+    <CATEGORYMEM index="0" category="7" />
+    <EMBEDDEDDATA mmedtypeflags="0x02" mmedaddress="0x5B8EA" mmedelementsizebits="16" mmedmajorstridebits="0" mmedminorstridebits="0" />
+    <units>tr/min</units>
+    <decimalpl>0</decimalpl>
+    <datatype>0</datatype>
+    <unittype>0</unittype>
+    <DALINK index="0" />
+      <MATH equation="X">
+        <VAR id="X" />
+      </MATH>
+  </XDFCONSTANT>
+  <XDFCONSTANT uniqueid="0x101C" flags="0x0">
     <title>Seuil defaut surregime [0x56542]</title>
     <description>Chemin de defaut 44.</description>
     <CATEGORYMEM index="0" category="7" />
@@ -981,7 +995,7 @@
         <VAR id="X" />
       </MATH>
   </XDFCONSTANT>
-  <XDFCONSTANT uniqueid="0x101C" flags="0x0">
+  <XDFCONSTANT uniqueid="0x101D" flags="0x0">
     <title>Regime maxi regulation de cliquetis [0x5BA32]</title>
     <description></description>
     <CATEGORYMEM index="0" category="7" />
@@ -995,7 +1009,7 @@
         <VAR id="X" />
       </MATH>
   </XDFCONSTANT>
-  <XDFCONSTANT uniqueid="0x101D" flags="0x0">
+  <XDFCONSTANT uniqueid="0x101E" flags="0x0">
     <title>STFT butee basse (40000 = neutre) [0x596BC]</title>
     <description>Brut 30000 = +25 %.</description>
     <CATEGORYMEM index="0" category="8" />
@@ -1009,7 +1023,7 @@
         <VAR id="X" />
       </MATH>
   </XDFCONSTANT>
-  <XDFCONSTANT uniqueid="0x101E" flags="0x0">
+  <XDFCONSTANT uniqueid="0x101F" flags="0x0">
     <title>STFT butee haute [0x596BE]</title>
     <description>Brut 50000 = -25 %.</description>
     <CATEGORYMEM index="0" category="8" />
@@ -1023,7 +1037,7 @@
         <VAR id="X" />
       </MATH>
   </XDFCONSTANT>
-  <XDFCONSTANT uniqueid="0x101F" flags="0x0">
+  <XDFCONSTANT uniqueid="0x1020" flags="0x0">
     <title>LTFT butee basse [0x5CEA0]</title>
     <description></description>
     <CATEGORYMEM index="0" category="8" />
@@ -1037,7 +1051,7 @@
         <VAR id="X" />
       </MATH>
   </XDFCONSTANT>
-  <XDFCONSTANT uniqueid="0x1020" flags="0x0">
+  <XDFCONSTANT uniqueid="0x1021" flags="0x0">
     <title>LTFT butee haute [0x5CEA2]</title>
     <description></description>
     <CATEGORYMEM index="0" category="8" />
@@ -1051,7 +1065,7 @@
         <VAR id="X" />
       </MATH>
   </XDFCONSTANT>
-  <XDFCONSTANT uniqueid="0x1021" flags="0x0">
+  <XDFCONSTANT uniqueid="0x1022" flags="0x0">
     <title>LTFT plafond apres demarrage [0x5CEB8]</title>
     <description></description>
     <CATEGORYMEM index="0" category="8" />
@@ -1065,7 +1079,7 @@
         <VAR id="X" />
       </MATH>
   </XDFCONSTANT>
-  <XDFCONSTANT uniqueid="0x1022" flags="0x0">
+  <XDFCONSTANT uniqueid="0x1023" flags="0x0">
     <title>Sortie coupure : pedale &gt; [0x5AA76]</title>
     <description></description>
     <CATEGORYMEM index="0" category="9" />
@@ -1079,7 +1093,7 @@
         <VAR id="X" />
       </MATH>
   </XDFCONSTANT>
-  <XDFCONSTANT uniqueid="0x1023" flags="0x0">
+  <XDFCONSTANT uniqueid="0x1024" flags="0x0">
     <title>Entree coupure : seuil $1272 [0x5AA7A]</title>
     <description></description>
     <CATEGORYMEM index="0" category="9" />
@@ -1093,7 +1107,7 @@
         <VAR id="X" />
       </MATH>
   </XDFCONSTANT>
-  <XDFCONSTANT uniqueid="0x1024" flags="0x0">
+  <XDFCONSTANT uniqueid="0x1025" flags="0x0">
     <title>Vitesse mini regulateur [0x59254]</title>
     <description></description>
     <CATEGORYMEM index="0" category="10" />
@@ -1107,7 +1121,7 @@
         <VAR id="X" />
       </MATH>
   </XDFCONSTANT>
-  <XDFCONSTANT uniqueid="0x1025" flags="0x0">
+  <XDFCONSTANT uniqueid="0x1026" flags="0x0">
     <title>Vitesse maxi regulateur [0x59256]</title>
     <description></description>
     <CATEGORYMEM index="0" category="10" />
@@ -1121,7 +1135,7 @@
         <VAR id="X" />
       </MATH>
   </XDFCONSTANT>
-  <XDFCONSTANT uniqueid="0x1026" flags="0x0">
+  <XDFCONSTANT uniqueid="0x1027" flags="0x0">
     <title>Desactivation si vitesse &gt; consigne + [0x57E64]</title>
     <description></description>
     <CATEGORYMEM index="0" category="10" />
@@ -1135,7 +1149,7 @@
         <VAR id="X" />
       </MATH>
   </XDFCONSTANT>
-  <XDFCONSTANT uniqueid="0x1027" flags="0x0">
+  <XDFCONSTANT uniqueid="0x1028" flags="0x0">
     <title>Couple maxi regulateur [0x5C772]</title>
     <description></description>
     <CATEGORYMEM index="0" category="10" />
@@ -1149,7 +1163,7 @@
         <VAR id="X" />
       </MATH>
   </XDFCONSTANT>
-  <XDFCONSTANT uniqueid="0x1028" flags="0x0">
+  <XDFCONSTANT uniqueid="0x1029" flags="0x0">
     <title>Couple mini regulateur [0x5C774]</title>
     <description></description>
     <CATEGORYMEM index="0" category="10" />
@@ -1163,7 +1177,7 @@
         <VAR id="X" />
       </MATH>
   </XDFCONSTANT>
-  <XDFCONSTANT uniqueid="0x1029" flags="0x0">
+  <XDFCONSTANT uniqueid="0x102A" flags="0x0">
     <title>Butee P haute [0x5C776]</title>
     <description>Origine 480.</description>
     <CATEGORYMEM index="0" category="10" />
@@ -1177,7 +1191,7 @@
         <VAR id="X" />
       </MATH>
   </XDFCONSTANT>
-  <XDFCONSTANT uniqueid="0x102A" flags="0x0">
+  <XDFCONSTANT uniqueid="0x102B" flags="0x0">
     <title>Butee P basse [0x5C778]</title>
     <description>Origine -160, v9 -480.</description>
     <CATEGORYMEM index="0" category="10" />
@@ -1191,7 +1205,7 @@
         <VAR id="X" />
       </MATH>
   </XDFCONSTANT>
-  <XDFCONSTANT uniqueid="0x102B" flags="0x0">
+  <XDFCONSTANT uniqueid="0x102C" flags="0x0">
     <title>Butee I haute [0x5C77A]</title>
     <description>Origine 5120.</description>
     <CATEGORYMEM index="0" category="10" />
@@ -1205,7 +1219,7 @@
         <VAR id="X" />
       </MATH>
   </XDFCONSTANT>
-  <XDFCONSTANT uniqueid="0x102C" flags="0x0">
+  <XDFCONSTANT uniqueid="0x102D" flags="0x0">
     <title>Butee I basse [0x5C77C]</title>
     <description>Origine -1280, v9 -8000.</description>
     <CATEGORYMEM index="0" category="10" />
@@ -1219,7 +1233,7 @@
         <VAR id="X" />
       </MATH>
   </XDFCONSTANT>
-  <XDFCONSTANT uniqueid="0x102D" flags="0x0">
+  <XDFCONSTANT uniqueid="0x102E" flags="0x0">
     <title>Montee maxi du couple par cycle [0x5C77E]</title>
     <description></description>
     <CATEGORYMEM index="0" category="10" />
@@ -1233,7 +1247,7 @@
         <VAR id="X" />
       </MATH>
   </XDFCONSTANT>
-  <XDFCONSTANT uniqueid="0x102E" flags="0x0">
+  <XDFCONSTANT uniqueid="0x102F" flags="0x0">
     <title>Nombre de rapports [0x5A036]</title>
     <description></description>
     <CATEGORYMEM index="0" category="11" />
@@ -1247,7 +1261,7 @@
         <VAR id="X" />
       </MATH>
   </XDFCONSTANT>
-  <XDFCONSTANT uniqueid="0x102F" flags="0x0">
+  <XDFCONSTANT uniqueid="0x1030" flags="0x0">
     <title>Tolerance reconnaissance rapport [0x5A054]</title>
     <description></description>
     <CATEGORYMEM index="0" category="11" />
@@ -1261,7 +1275,7 @@
         <VAR id="X" />
       </MATH>
   </XDFCONSTANT>
-  <XDFCONSTANT uniqueid="0x1030" flags="0x0">
+  <XDFCONSTANT uniqueid="0x1031" flags="0x0">
     <title>Coupure regulateur : ecart vitesse pour couper [0x7F238]</title>
     <description>Patch 0x7F1C0. 2047.9 (brut 32767) = coupure desactivee.</description>
     <CATEGORYMEM index="0" category="12" />
@@ -1275,7 +1289,7 @@
         <VAR id="X" />
       </MATH>
   </XDFCONSTANT>
-  <XDFCONSTANT uniqueid="0x1031" flags="0x0">
+  <XDFCONSTANT uniqueid="0x1032" flags="0x0">
     <title>Coupure regulateur : couple maxi pour couper [0x7F23A]</title>
     <description></description>
     <CATEGORYMEM index="0" category="12" />
@@ -1289,7 +1303,7 @@
         <VAR id="X" />
       </MATH>
   </XDFCONSTANT>
-  <XDFCONSTANT uniqueid="0x1032" flags="0x0">
+  <XDFCONSTANT uniqueid="0x1033" flags="0x0">
     <title>Coupure regulateur : ecart vitesse pour maintenir [0x7F23C]</title>
     <description></description>
     <CATEGORYMEM index="0" category="12" />
@@ -1303,7 +1317,7 @@
         <VAR id="X" />
       </MATH>
   </XDFCONSTANT>
-  <XDFCONSTANT uniqueid="0x1033" flags="0x0">
+  <XDFCONSTANT uniqueid="0x1034" flags="0x0">
     <title>Coupure regulateur : couple maxi pour maintenir [0x7F23E]</title>
     <description></description>
     <CATEGORYMEM index="0" category="12" />

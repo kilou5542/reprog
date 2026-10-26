@@ -25,6 +25,8 @@ def reglages(cut):
         (0x5653A, [cut, cut], 'coupure injection (haut / bas)'),
         (0x57CAC, [cut + 300, cut + 150, cut - 300, cut + 300, cut + 150, cut + 400],
          'limiteur couple : début, relâche, bas de rampe, régulateur on/off, maxi (au-dessus de la coupure)'),
+        (0x5B8EA, [cut], 'reprise de l\'injection après coupure de régime (fct 0x46782 : coupe 100 % '
+                         'des injections au seuil et ne réinjecte que sous cette valeur ; 5610 d\'origine)'),
         (0x56542, [max(7300, cut + 500)], 'seuil du défaut de surrégime'),
         (0x5BA32, [5900], 'fin de la régulation de cliquetis : 5900 comme l\'origine et la ROM nom long '
                           '(au-delà, détection non calibrée -> faux cliquetis, retard d\'allumage)'),

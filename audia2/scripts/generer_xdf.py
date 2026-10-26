@@ -74,6 +74,8 @@ CONSTS = [
     (0, 'Masse volumique carburant (conso ordinateur de bord)', 0x5BA22, 'X', 'g/l', False, 0, 16,
      'Origine 740 (essence). E85 : 785 / 1,45 = 541. Affinage : valeur x conso affichée / conso réelle.'),
     (3, 'Pression de référence modèle papillon', 0x57AC6, 'X', 'mbar', False, 0, 16, ''),
+    (6, 'Reprise injection après coupure de régime', 0x5B8EA, 'X', 'tr/min', False, 0, 16,
+     'Fct 0x46782 : au seuil de coupure, 100 % des injections coupées jusqu\'à repasser sous cette valeur. Origine 5610 : mettre = coupure.'),
     (6, 'Seuil défaut surrégime', 0x56542, 'X', 'tr/min', False, 0, 16, 'Chemin de défaut 44.'),
     (6, 'Régime maxi régulation de cliquetis', 0x5BA32, 'X', 'tr/min', False, 0, 16, ''),
     (7, 'STFT butée basse (40000 = neutre)', 0x596BC, '(40000-X)/400', '% (signe VCDS)', False, 1, 16, 'Brut 30000 = +25 %.'),

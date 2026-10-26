@@ -9,6 +9,7 @@ Les axes sont lus dans le fichier (ils suivent donc les modifications), avec leu
   python3 generer_xdf.py sortie.xdf
 """
 import sys
+import unicodedata
 from xml.sax.saxutils import escape
 
 LE, SIGNED = 0x02, 0x01
@@ -102,6 +103,18 @@ CONSTS = [
 ]
 
 
+REMPLACE = {'°': 'deg', '×': 'x', '≥': '>=', '≤': '<=', '→': '->', '«': '"', '»': '"', '’': "'",
+            'œ': 'oe', '—': '-', '–': '-', '…': '...', '±': '+/-'}
+
+
+def ascii_seul(texte):
+    """TunerPro gère mal les accents : tout le fichier est ramené à l'ASCII pur."""
+    for k, v in REMPLACE.items():
+        texte = texte.replace(k, v)
+    texte = unicodedata.normalize('NFKD', texte).encode('ascii', 'ignore').decode('ascii')
+    return texte
+
+
 class Xdf:
     def __init__(self):
         self.out = []
@@ -178,7 +191,8 @@ def main():
     for c in CONSTS:
         x.const(*c)
     x.add('</XDFFORMAT>\n')
-    open(sys.argv[1], 'w', encoding='utf-8').write(''.join(x.out))
+    texte = ascii_seul(''.join(x.out))
+    open(sys.argv[1], 'w', encoding='ascii', newline='\r\n').write(texte)
     print(f'{len(TABLES)} tables, {len(CONSTS)} constantes -> {sys.argv[1]}')
 
 

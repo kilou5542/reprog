@@ -11,7 +11,16 @@ Chaque version a un checksum correct.
 
 La base CA est gardée : avec la DR, le régulateur de vitesse et la climatisation ne fonctionnent pas.
 
-### v5d — `roms/a2_ori_e85_v5d_regime_nomlong.bin` (test : régime strictement identique à la ROM nom long)
+### v5e — `roms/a2_ori_e85_v5e.bin` (à essayer : rupteur façon « A2_CA-DR_7000 »)
+- v5d bloquée vers 6000 (coupure 6100, attendu). Analyse du projet WinOLS « …rpmmax » (30 images) : toutes les versions
+  sur base CA coupent à 6100 (une à 6700) ; les seules qui montaient proprement à 7000 sont les « A2_CA-DR_7000… »
+  (base DR), réglées avec coupure 7000/7000, **limiteur par le couple 7000 sur les 6 valeurs**, surrégime 7200.
+- Six valeurs égales = plus de remontée progressive du couple (rampe de 0x57C2E, jusqu'à 500 cycles) : le couple
+  revient d'un coup sous 7000. C'est probablement ce qui manquait en v5/v5b/v5c (reprise tardive 5000–5900).
+- v5e = v5 + 0x57CAC–0x57CB6 = 7000 ×6, 0x56542 = 7200, 0x5BA32 = 5900 (coupure 0x5653A déjà à 7000 en v5).
+- Projet WinOLS ajouté : `roms/originales/WinOLS_Audi_A2_audiEGRoff_rpmmax.ols`.
+
+### v5d — `roms/a2_ori_e85_v5d_regime_nomlong.bin` (❌ bloquée vers 6000 : coupure 6100 de la ROM nom long)
 - v5c toujours avec le problème de rupteur. Recherche de toutes les valeurs 5700–6000 dans la ROM : seules 0x57CB0
   (bas de rampe du limiteur) et 0x59712 (amorçage, sans rapport) diffèrent de la ROM nom long.
 - Test décisif : tous les réglages de régime recopiés de la ROM nom long (0x5653A–0x56549 : coupure 6100,

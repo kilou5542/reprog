@@ -11,10 +11,10 @@ Chaque version a un checksum correct.
 
 La base CA est gardée : avec la DR, le régulateur de vitesse et la climatisation ne fonctionnent pas.
 
-### v10b — `roms/a2_ori_e85_v10b.bin` (version à utiliser après essai de la v7b)
+### v10b — `roms/a2_ori_e85_v10b.bin` (prochaine à essayer)
 - v10 + correctif EGR de la v7b (0x3C2C0). Aucune autre différence avec la v10.
 
-### v7b — `roms/a2_ori_e85_v7b.bin` (à essayer en premier)
+### v7b — `roms/a2_ori_e85_v7b.bin` (✅ démarre, essai confirmé)
 - **Correctif du patch v6** : en plus de `$DBA` forcé à 0, 0x3C2C0 `move.w (a1),$DB6(a5)` → `clr.w $DB6(a5)`.
   `$DB6` est la position EGR utilisée par la gestion (0x46CAE, 0x471A6…). Avec le statut forcé « OK », la v6 y
   recopiait la tension du capteur débranché (`$DB8`, entrée 0xC8) = vanne vue ouverte → **pas de démarrage**

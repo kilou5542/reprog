@@ -1,6 +1,6 @@
 # Audi A2 1.4 BBY — Marelli 4MV 036906034CA (E85)
 
-ROM de travail : **`roms/a2_ori_e85_v5f.bin`** (v5 + rupteur franc à 7000, validée sur route) — base de toutes les prochaines modifications ; à essayer : **`roms/a2_ori_e85_v5g.bin`** (v5f + coupure plus rapide au lâcher de pédale). L'historique des versions est dans [CHANGELOG.md](CHANGELOG.md).
+ROM de travail : **`roms/a2_ori_e85_v5f.bin`** (v5 + rupteur franc à 7000, validée sur route) — base de toutes les prochaines modifications ; à essayer : **`roms/a2_ori_e85_v5g.bin`** (v5f + coupure plus rapide au lâcher de pédale), puis **`roms/a2_ori_e85_v5h.bin`** (v5g + apprentissage du modèle papillon débloqué, EGR intacte). L'historique des versions est dans [CHANGELOG.md](CHANGELOG.md).
 
 ## Contenu
 | Dossier | Contenu |
@@ -56,6 +56,7 @@ python3 regulateur_coupure.py v5.bin v5r.bin             # v5 : sortie de la v5 
 python3 conso_e85.py v5r.bin v5_regul_conso.bin
 python3 rupteur.py v5.bin v5f.bin 7000                 # ROM de travail
 python3 coupure_rapide.py ../roms/originales/A2_CA-DR_7000_afterlogNG4_cranking_idle_VEbyT3_maxairfiling_2torqueori15.bin v5f.bin v5g.bin
+python3 adaptation_papillon.py v5g.bin v5h.bin
 python3 generer_xdf.py A2.xdf
 ```
 La chaîne a été vérifiée : elle redonne les ROM du dépôt à l'octet près.

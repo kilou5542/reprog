@@ -11,6 +11,15 @@ Chaque version a un checksum correct.
 
 La base CA est gardée : avec la DR, le régulateur de vitesse et la climatisation ne fonctionnent pas.
 
+### v5h — `roms/a2_ori_e85_v5h.bin` (à essayer : apprentissage du modèle papillon débloqué, EGR intacte)
+- Mesures au ralenti (90 °C) : 870 tr/min, papillon 2,35–2,75 %, 320 mbar ; clim : 930 tr/min, 4,31–4,71 %, 410 mbar.
+  Le modèle (même la table CA d'origine) attend ~244 mbar à 2,55 % : écart ~ +80 mbar, probable cause du P1553.
+- L'angle du modèle est corrigé par une valeur apprise en roulant (`$1740`, `$1742`, fct 0x22DDE) qui absorbe ce
+  type d'écart ; elle était remise à zéro en permanence car le capteur EGR débranché met `$DBA` en défaut.
+- v5h = v5g + 0x226C2 et 0x23A62 `bne.w` → `nop nop` uniquement. `$DBA` n'est pas touché : la partie EGR reste
+  endormie comme en v5 (contrairement à v6/v7/v7b). Script : `adaptation_papillon.py`.
+- À valider : plusieurs redémarrages après avoir roulé, absence de voyant, P1553.
+
 ### v5g — `roms/a2_ori_e85_v5g.bin` (à essayer : coupure plus rapide au lâcher de pédale)
 - Constaté : délai avant coupure d'injection au lâcher de pédale (nul si embrayage enfoncé), plus court sur la CA-DR.
 - La coupure (test 0x3D15A) attend, sauf embrayage, |couple `$E6606` − couple lissé `$126C`| < 0x5AA7A. Le lissage

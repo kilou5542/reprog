@@ -11,10 +11,23 @@ Chaque version a un checksum correct.
 
 La base CA est gardée : avec la DR, le régulateur de vitesse et la climatisation ne fonctionnent pas.
 
-### v10b — `roms/a2_ori_e85_v10b.bin` (prochaine à essayer)
+### v10c — `roms/a2_ori_e85_v10c.bin` (après validation de la v7c)
+- v7c + régulateur (v8/v9) + conso E85 (v10).
+
+### v7c — `roms/a2_ori_e85_v7c.bin` (à essayer)
+- On ne touche plus au capteur EGR : son statut reste « en défaut » comme en v5 (code défaut masqué depuis la v1),
+  donc toute la surveillance / apprentissage EGR (0x46C80–0x47F00) reste endormie.
+- Seules les deux adaptations du modèle papillon, bloquées par ce statut, sont débloquées :
+  0x226C2 et 0x23A62 `bne.w` → `nop nop`.
+- Différences avec la v5 : 0x226C2, 0x23A62, 0x5B971 = 0 (test débit EGR), checksum.
+
+### v10b — `roms/historique/a2_ori_e85_v10b_NE_REDEMARRE_PAS.bin` (même défaut que v7b)
 - v10 + correctif EGR de la v7b (0x3C2C0). Aucune autre différence avec la v10.
 
-### v7b — `roms/a2_ori_e85_v7b.bin` (✅ démarre, essai confirmé)
+### v7b — `roms/historique/a2_ori_e85_v7b_NE_REDEMARRE_PAS.bin` (❌ démarre une fois, puis plus)
+- Constaté : démarre, voyant moteur « vanne EGR non calibrée », puis ne redémarre plus après arrêt.
+  Le statut « capteur sain » réveille l'apprentissage EGR, qui apprend une position fictive (0) et la stocke
+  en EEPROM (`$E4190`–`$E4198`). Abandonnée au profit de la v7c.
 - **Correctif du patch v6** : en plus de `$DBA` forcé à 0, 0x3C2C0 `move.w (a1),$DB6(a5)` → `clr.w $DB6(a5)`.
   `$DB6` est la position EGR utilisée par la gestion (0x46CAE, 0x471A6…). Avec le statut forcé « OK », la v6 y
   recopiait la tension du capteur débranché (`$DB8`, entrée 0xC8) = vanne vue ouverte → **pas de démarrage**

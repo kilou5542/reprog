@@ -4,11 +4,15 @@
   v3 : ralenti chaud 850 tr/min (0x56C58, points 60 à 120 °C)
   v4 : tables de couple 0x55688 (16x11) et 0x55EB8 (24x12) reprises de la ROM « audiEGRoff… »
   v5 : régime maxi 6800 (regime_max.py)
-  v6 : 0x3C2B4  move.b d0,$DBA(a5) -> clr.b $DBA(a5) : état du défaut EGR (chemin 0x26) forcé « OK »,
-       sinon l'adaptation du modèle papillon reste bloquée par le capteur EGR débranché
-       + 0x3C2C0  move.w (a1),$DB6(a5) -> clr.w $DB6(a5) : position EGR utilisée forcée à 0 (fermée).
-       Sans cette 2e partie (v6/v7 d'origine), la tension du capteur débranché est prise pour une vanne
-       ouverte et la voiture NE DÉMARRE PAS (constaté). Sortie = « v7b ».
+  v6 : l'adaptation du modèle papillon est bloquée tant que le capteur EGR (débranché) est en défaut
+       ($DBA != 0). On débloque UNIQUEMENT les deux adaptations du modèle papillon :
+         0x226C2  bne.w (si $DBA) -> nop nop   (intégrateur d'adaptation $174E/$1740)
+         0x23A62  bne.w (si $DBA) -> nop nop   (adaptation du modèle 0x57786)
+       Le statut EGR reste « en défaut » comme en v5 (code défaut masqué depuis la v1), donc toute la
+       surveillance / apprentissage EGR (0x46C80-0x47F00) reste endormie. Sortie = « v7c ».
+       Historique : forcer $DBA = 0 (v6/v7) recopiait le capteur débranché comme position EGR -> pas de
+       démarrage ; v7b (position forcée à 0) démarrait une fois, puis voyant « vanne EGR non calibrée »
+       (apprentissage EGR sur un capteur fictif, valeurs stockées en EEPROM) et plus de redémarrage.
   v7 : 0x5B970 = 0 : test de débit EGR désactivé
 
   python3 etapes_v3_a_v7.py a2_ori_e85_v2.bin rom_audiEGRoff.bin sortie_v7.bin
@@ -33,10 +37,9 @@ def main():
     for a, vals, _ in regime_max.REGLAGES:                              # v5
         m.put_words(d, a, vals)
 
-    assert d[0x3C2B4:0x3C2B8] == bytes.fromhex('1b400dba')             # v6
-    d[0x3C2B4:0x3C2B6] = struct.pack('>H', 0x422D)
-    assert d[0x3C2C0:0x3C2C4] == bytes.fromhex('3b510db6')             # move.w (a1),$DB6(a5)
-    d[0x3C2C0:0x3C2C4] = bytes.fromhex('426d0db6')                     # clr.w $DB6(a5)
+    for a, orig in ((0x226C2, '66000052'), (0x23A62, '660001da')):   # v6 : bne.w -> nop nop
+        assert d[a:a + 4] == bytes.fromhex(orig), hex(a)
+        d[a:a + 4] = bytes.fromhex('4e714e71')
 
     m.put_words(d, 0x5B970, [0])                                       # v7
 

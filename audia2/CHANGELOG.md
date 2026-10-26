@@ -11,6 +11,14 @@ Chaque version a un checksum correct.
 
 La base CA est gardée : avec la DR, le régulateur de vitesse et la climatisation ne fonctionnent pas.
 
+### v5g — `roms/a2_ori_e85_v5g.bin` (à essayer : coupure plus rapide au lâcher de pédale)
+- Constaté : délai avant coupure d'injection au lâcher de pédale (nul si embrayage enfoncé), plus court sur la CA-DR.
+- La coupure (test 0x3D15A) attend, sauf embrayage, |couple `$E6606` − couple lissé `$126C`| < 0x5AA7A. Le lissage
+  (fct 0x31FBE, filtre 1er ordre) prend son coefficient dans 0x5857C / 0x585FA (9 × 7 : régime axe 0x56402 ×
+  couple axe 0x563F4). La CA-DR lisse 2 à 3 fois plus vite et accepte un écart de 50 au lieu de 30.
+- v5g = v5f + tables 0x5857C / 0x585FA de la CA-DR **ré-interpolées sur les axes CA** + 0x5AA7A = 50.
+  Script : `coupure_rapide.py source_CADR.bin cible.bin sortie.bin`.
+
 ### v5f — `roms/a2_ori_e85_v5f.bin` (✅ ROM DE TRAVAIL — rupteur franc à 7000 confirmé sur route)
 - **Cause** : deuxième rupteur dans l'injection (fct 0x46782). Quand le régime filtré `$1DA8` atteint le seuil de
   coupure, 100 % des injections sont coupées (`$62C` = 100, drapeau `$62B`) et l'injection ne reprend que sous

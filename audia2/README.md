@@ -1,11 +1,11 @@
 # Audi A2 1.4 BBY — Marelli 4MV 036906034CA (E85)
 
-ROM à utiliser : **`roms/a2_ori_e85_v11.bin`**. L'historique des versions est dans [CHANGELOG.md](CHANGELOG.md).
+ROM à utiliser : **`roms/a2_ori_e85_v10.bin`**. L'historique des versions est dans [CHANGELOG.md](CHANGELOG.md).
 
 ## Contenu
 | Dossier | Contenu |
 |---|---|
-| `roms/` | ROM actuelle (v11) |
+| `roms/` | ROM actuelle (v10) |
 | `roms/historique/` | toutes les versions intermédiaires |
 | `roms/originales/` | origine CA (`audiori`), ta ROM modifiée « audiEGRoff… », Golf 4 DR, BackupAudiSemiOK, projet WinOLS |
 | `tunerpro/` | définition TunerPro `A2_4MV_036906034CA_E85.xdf` |

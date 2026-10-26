@@ -12,6 +12,7 @@ ROM de travail : **`roms/a2_ori_e85_v5f.bin`** (v5 + rupteur franc à 7000, vali
 | `scripts/` | scripts Python qui produisent chaque version |
 | `outils_desassemblage/` | aides au désassemblage (références `$xxxx(a5)`, axes) |
 | `MESURES.md` | relevés faits sur la voiture (ralenti, pression, angle papillon) |
+| `ANALYSE_COUPLE.md` | structure de couple du calculateur (analyse du code en cours) |
 
 ## Format du fichier
 - 512 Ko, processeur Motorola CPU32 ; RAM du programme `a5 = 0xE5770`.

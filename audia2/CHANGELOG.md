@@ -11,16 +11,17 @@ Chaque version a un checksum correct.
 
 La base CA est gardée : avec la DR, le régulateur de vitesse et la climatisation ne fonctionnent pas.
 
-### v5f — `roms/a2_ori_e85_v5f.bin` (à essayer : cause du rupteur trouvée)
+### v5f — `roms/a2_ori_e85_v5f.bin` (✅ ROM DE TRAVAIL — rupteur franc à 7000 confirmé sur route)
 - **Cause** : deuxième rupteur dans l'injection (fct 0x46782). Quand le régime filtré `$1DA8` atteint le seuil de
   coupure, 100 % des injections sont coupées (`$62C` = 100, drapeau `$62B`) et l'injection ne reprend que sous
   **0x5B8EA**. CA d'origine : 5610 (DR : 6400). Avec la coupure à 7000, l'injection restait coupée de 7000 à 5610 :
   c'est la reprise tardive constatée depuis la v5. La ROM CA-DR qui ruptait bien avait 0x5B8EA = 7000.
-- v5f = v5e + **0x5B8EA = 7000**. `rupteur.py` règle maintenant aussi 0x5B8EA = coupure ; ajouté au XDF.
+- v5f = v5e + **0x5B8EA = 7000**. `rupteur.py v5.bin v5f.bin 7000` la régénère à l'octet près
+  (coupure 7000/7000, reprise 7000, limiteur 7000 ×6, surrégime 7200, cliquetis 5900) ; ajouté au XDF.
 - ROM de référence ajoutée : `roms/originales/A2_CA-DR_7000_…_torqueori15.bin` (code identique à la CA ;
   calibration DR + tables utilisateur + 0x555F5 et 0x55640–0x55687 de la CA).
 
-### v5e — `roms/a2_ori_e85_v5e.bin` (❌ même problème : reprise 0x5B8EA restée à 5610)
+### v5e — `roms/historique/a2_ori_e85_v5e.bin` (❌ même problème : reprise 0x5B8EA restée à 5610)
 - v5d bloquée vers 6000 (coupure 6100, attendu). Analyse du projet WinOLS « …rpmmax » (30 images) : toutes les versions
   sur base CA coupent à 6100 (une à 6700) ; les seules qui montaient proprement à 7000 sont les « A2_CA-DR_7000… »
   (base DR), réglées avec coupure 7000/7000, **limiteur par le couple 7000 sur les 6 valeurs**, surrégime 7200.
@@ -29,14 +30,14 @@ La base CA est gardée : avec la DR, le régulateur de vitesse et la climatisati
 - v5e = v5 + 0x57CAC–0x57CB6 = 7000 ×6, 0x56542 = 7200, 0x5BA32 = 5900 (coupure 0x5653A déjà à 7000 en v5).
 - Projet WinOLS ajouté : `roms/originales/WinOLS_Audi_A2_audiEGRoff_rpmmax.ols`.
 
-### v5d — `roms/a2_ori_e85_v5d_regime_nomlong.bin` (❌ bloquée vers 6000 : coupure 6100 de la ROM nom long)
+### v5d — `roms/historique/a2_ori_e85_v5d_regime_nomlong.bin` (❌ bloquée vers 6000 : coupure 6100 de la ROM nom long)
 - v5c toujours avec le problème de rupteur. Recherche de toutes les valeurs 5700–6000 dans la ROM : seules 0x57CB0
   (bas de rampe du limiteur) et 0x59712 (amorçage, sans rapport) diffèrent de la ROM nom long.
 - Test décisif : tous les réglages de régime recopiés de la ROM nom long (0x5653A–0x56549 : coupure 6100,
   0x57CAC–0x57CB7 : limiteur 6600/6450/5800/6600/6400/6700, 0x5BA32 = 5900). Si le rupteur redevient bon,
   la cause est dans ces valeurs ; sinon elle est ailleurs (VE / modèle papillon / gain → estimation du couple).
 
-### v5c — `roms/a2_ori_e85_v5c.bin` (❌ rupteur toujours mauvais)
+### v5c — `roms/historique/a2_ori_e85_v5c.bin` (❌ rupteur toujours mauvais)
 - Constaté en v5b : rupteur toujours mauvais, reprise vers 5000–5900.
 - En v5, 0x5BA32 (régime au-delà duquel la régulation de cliquetis est coupée, fct 0x49C1A) était passé de 5900 à 6800.
   Entre 5900 et 6800 la détection n'est pas calibrée : probable faux cliquetis → fort retard d'allumage près du rupteur,
@@ -58,7 +59,7 @@ La base CA est gardée : avec la DR, le régulateur de vitesse et la climatisati
   0x23A62, test de débit EGR inchangé. L'adaptation du modèle papillon reste donc bloquée, comme en v5.
 - Ajouts : régulateur v9 (butées PI 0x5C778 / 0x5C77C, coupure 0x24B5A → 0x7F1C0) et conso E85 (0x5BA22 = 541).
 - Différences avec la v5 : uniquement ces zones et le checksum.
-- `roms/a2_ori_e85_v5.bin` : **ROM de travail retenue**. Démarre et redémarre sans voyant ; base des prochaines modifications.
+- `roms/historique/a2_ori_e85_v5.bin` : base de la v5f (démarre et redémarre sans voyant).
 
 ### v10c — `roms/a2_ori_e85_v10c.bin` (non retenue pour l'instant)
 - v7c + régulateur (v8/v9) + conso E85 (v10).

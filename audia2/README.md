@@ -1,11 +1,11 @@
 # Audi A2 1.4 BBY — Marelli 4MV 036906034CA (E85)
 
-ROM de travail : **`roms/a2_ori_e85_v5.bin`** (base de toutes les prochaines modifications) ; à essayer : **`roms/a2_ori_e85_v5f.bin`** (v5 + rupteur 7000 corrigé). L'historique des versions est dans [CHANGELOG.md](CHANGELOG.md).
+ROM de travail : **`roms/a2_ori_e85_v5f.bin`** (v5 + rupteur franc à 7000, validée sur route) — base de toutes les prochaines modifications. L'historique des versions est dans [CHANGELOG.md](CHANGELOG.md).
 
 ## Contenu
 | Dossier | Contenu |
 |---|---|
-| `roms/` | ROM de travail (v5) ; v7c / v10c en alternative non retenue |
+| `roms/` | ROM de travail (v5f) ; v7c / v10c en alternative non retenue |
 | `roms/historique/` | toutes les versions intermédiaires |
 | `roms/originales/` | origine CA (`audiori`), ta ROM modifiée « audiEGRoff… », Golf 4 DR, BackupAudiSemiOK, projet WinOLS |
 | `tunerpro/` | définition TunerPro `A2_4MV_036906034CA_E85.xdf` |
@@ -34,7 +34,7 @@ Il faut Python 3. Le désassemblage demande en plus le module `capstone`.
 Sur la v5, la catégorie « Patchs (v8-v10) » du XDF ne veut rien dire (zone vide, 0xFFFF) : ne pas y toucher.
 
 Ouvrir `tunerpro/A2_4MV_036906034CA_E85.xdf`, puis le `.bin`. Les tables sont rangées par catégories :
-carburant, lambda, allumage, papillon, couple, ralenti / démarrage, régime maxi, trims, coupure,
+carburant, lambda, allumage, papillon, couple, ralenti / démarrage, régime maxi (coupure, reprise d'injection 0x5B8EA, limiteur), trims, coupure,
 régulateur, boîte, patchs. Les axes sont lus dans le fichier.
 
 Les axes et les tailles ont été établis en désassemblant le code, pas d'après les noms WinOLS.
@@ -54,7 +54,7 @@ python3 reporter_tables.py "$H" v1.bin v2.bin
 python3 etapes_v3_a_v7.py v2.bin "$H" v7c.bin          # v3 à v5 inclus, puis v6/v7 (alternative)
 python3 regulateur_coupure.py v5.bin v5r.bin             # v5 : sortie de la v5 de l'historique
 python3 conso_e85.py v5r.bin v5_regul_conso.bin
-python3 rupteur.py v5.bin v5c.bin 6800
+python3 rupteur.py v5.bin v5f.bin 7000                 # ROM de travail
 python3 generer_xdf.py A2.xdf
 ```
 La chaîne a été vérifiée : elle redonne les ROM du dépôt à l'octet près.

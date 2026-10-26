@@ -1,6 +1,6 @@
 # Audi A2 1.4 BBY — Marelli 4MV 036906034CA (E85)
 
-ROM de travail : **`roms/a2_ori_e85_v5.bin`** (base de toutes les prochaines modifications) ; à essayer : **`roms/a2_ori_e85_v5b.bin`** (v5 + rupteur franc). L'historique des versions est dans [CHANGELOG.md](CHANGELOG.md).
+ROM de travail : **`roms/a2_ori_e85_v5.bin`** (base de toutes les prochaines modifications) ; à essayer : **`roms/a2_ori_e85_v5c.bin`** (v5 + rupteur franc + cliquetis à 5900). L'historique des versions est dans [CHANGELOG.md](CHANGELOG.md).
 
 ## Contenu
 | Dossier | Contenu |
@@ -54,7 +54,7 @@ python3 reporter_tables.py "$H" v1.bin v2.bin
 python3 etapes_v3_a_v7.py v2.bin "$H" v7c.bin          # v3 à v5 inclus, puis v6/v7 (alternative)
 python3 regulateur_coupure.py v5.bin v5r.bin             # v5 : sortie de la v5 de l'historique
 python3 conso_e85.py v5r.bin v5_regul_conso.bin
-python3 rupteur.py v5.bin v5b.bin 6800
+python3 rupteur.py v5.bin v5c.bin 6800
 python3 generer_xdf.py A2.xdf
 ```
 La chaîne a été vérifiée : elle redonne les ROM du dépôt à l'octet près.

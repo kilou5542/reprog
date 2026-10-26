@@ -7,7 +7,9 @@ et sous 0x57CB0 (6000) le couple est rendu d'un coup : le régime oscille 6000 <
 Dans la ROM d'origine de l'utilisateur, la coupure d'injection (6100) arrivait avant le limiteur
 par le couple (6600) : rupteur franc.
 
-Ici : la coupure d'injection fait le rupteur, le limiteur par le couple est placé au-dessus (sécurité).
+Ici : la coupure d'injection fait le rupteur, le limiteur par le couple est placé au-dessus (sécurité),
+et la régulation de cliquetis s'arrête à 5900 comme d'origine (en v5/v5b elle allait jusqu'à 6800 :
+probable faux cliquetis à haut régime, retard d'allumage et reprise tardive constatée vers 5000-5900).
 Coupure (0x14F58) : seuil en rapport = 0x5653A - 0x56548[rapport] (décalages nuls) ; au point mort
 0x5653A - 0x56546 (2500).
 
@@ -24,7 +26,8 @@ def reglages(cut):
         (0x57CAC, [cut + 300, cut + 150, cut - 300, cut + 300, cut + 150, cut + 400],
          'limiteur couple : début, relâche, bas de rampe, régulateur on/off, maxi (au-dessus de la coupure)'),
         (0x56542, [max(7300, cut + 500)], 'seuil du défaut de surrégime'),
-        (0x5BA32, [cut], 'régime maxi de la régulation de cliquetis'),
+        (0x5BA32, [5900], 'fin de la régulation de cliquetis : 5900 comme l\'origine et la ROM nom long '
+                          '(au-delà, détection non calibrée -> faux cliquetis, retard d\'allumage)'),
     ]
 
 

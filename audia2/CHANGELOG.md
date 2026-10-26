@@ -11,7 +11,16 @@ Chaque version a un checksum correct.
 
 La base CA est gardée : avec la DR, le régulateur de vitesse et la climatisation ne fonctionnent pas.
 
-### v5b — `roms/a2_ori_e85_v5b.bin` (à essayer : v5 + rupteur franc)
+### v5c — `roms/a2_ori_e85_v5c.bin` (à essayer : v5b + régulation de cliquetis à 5900)
+- Constaté en v5b : rupteur toujours mauvais, reprise vers 5000–5900.
+- En v5, 0x5BA32 (régime au-delà duquel la régulation de cliquetis est coupée, fct 0x49C1A) était passé de 5900 à 6800.
+  Entre 5900 et 6800 la détection n'est pas calibrée : probable faux cliquetis → fort retard d'allumage près du rupteur,
+  puissance retrouvée seulement en redescendant. Remis à **5900**, comme l'origine et la ROM nom long.
+- Vérifié : la coupure d'injection elle-même reprend 100 tr/min sous le seuil (hystérésis 0x5653E = 100, identique
+  partout) ; seuil spécial 0x56554/0x56556 (1200/1300) seulement en mode dégradé (`$E4033` = 3).
+- Différences avec la v5b : 0x5BA32 et checksum.
+
+### v5b — `roms/historique/a2_ori_e85_v5b.bin` (rupteur encore mauvais, voir v5c)
 - Constaté en v5 : rupteur qui oscille 6000 ↔ 7000. Le limiteur par le couple (0x57CAC, 6800) agissait avant
   la coupure d'injection (0x5653A, 7000), rabattait le couple vers 0x57C3C (350) puis le rendait d'un coup
   sous 0x57CB0 (6000).

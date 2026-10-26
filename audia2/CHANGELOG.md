@@ -11,6 +11,14 @@ Chaque version a un checksum correct.
 
 La base CA est gardée : avec la DR, le régulateur de vitesse et la climatisation ne fonctionnent pas.
 
+### v5b — `roms/a2_ori_e85_v5b.bin` (à essayer : v5 + rupteur franc)
+- Constaté en v5 : rupteur qui oscille 6000 ↔ 7000. Le limiteur par le couple (0x57CAC, 6800) agissait avant
+  la coupure d'injection (0x5653A, 7000), rabattait le couple vers 0x57C3C (350) puis le rendait d'un coup
+  sous 0x57CB0 (6000).
+- Comme dans la ROM « audiEGRoff… », la coupure d'injection fait maintenant le rupteur : 0x5653A/0x5653C = 6800 ;
+  limiteur par le couple placé au-dessus (7100 / 6950 / 6500 / 7100 / 6950 / 7200) comme sécurité.
+- Script : `rupteur.py entree.bin sortie.bin 6800`. Différences avec la v5 : 0x5653A–0x5653D, 0x57CAC–0x57CB7, checksum.
+
 ### v5 + régulateur + conso — `roms/historique/a2_ori_e85_v5_regul_conso.bin` (mise de côté, régulateur abandonné pour l'instant)
 - Configuration EGR de la v5 conservée telle quelle (aucun voyant constaté) : pas de patch 0x3C2B4 / 0x226C2 /
   0x23A62, test de débit EGR inchangé. L'adaptation du modèle papillon reste donc bloquée, comme en v5.

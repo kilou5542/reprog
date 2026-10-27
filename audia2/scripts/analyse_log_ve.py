@@ -42,3 +42,19 @@ bym=collections.defaultdict(list)
 for rpm,m,s,l,f in keep: bym[int(m//100*100)].append((f,s,l,rpm))
 for k in sorted(bym):
     v=bym[k]; print(f'{k:5}-{k+99} mbar : f={st.mean(x[0] for x in v):.2f}  STFT={st.mean(x[1] for x in v):+5.1f}  LTFT={st.mean(x[2] for x in v):+5.1f}  n={len(v)}  rpm moy {st.mean(x[3] for x in v):.0f}')
+
+# ---- Pleine charge : filtre assoupli (montées en régime acceptées) ----
+SEUIL = 90  # kPa
+RPMP = [1500, 2000, 2500, 3000, 3500, 4000, 4500, 5000, 5500, 6000, 6500, 7000]
+print(f'\nPleine charge (MAP >= {SEUIL} kPa), toutes les mesures, par régime (facteur moyen [nb]) :')
+print('  retard 0 = STFT associée au régime de la même ligne ; retard 1 = au régime de la ligne précédente')
+for lag in (0, 1):
+    b = collections.defaultdict(list)
+    for i in range(lag, len(R)):
+        t, rpm, s, l, m = R[i]
+        rpm_ref = R[i - lag][1]
+        if m < SEUIL or s >= 99:
+            continue
+        f = 40000 / (40000 + 100 * s) * 40000 / (40000 + 200 * l)
+        b[min(RPMP, key=lambda x: abs(x - rpm_ref))].append(f)
+    print(f'  retard {lag} : ' + '  '.join(f'{k}:{st.mean(b[k]):.2f}[{len(b[k])}]' for k in RPMP if b[k]))

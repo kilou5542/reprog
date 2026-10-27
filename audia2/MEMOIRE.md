@@ -280,6 +280,9 @@ Chaîne de fabrication reproductible à l'octet près : voir README.
 - **Log OBD du 27/10 (v5i)**, échelles corrigées : base trop riche (f 0,96 à 250 mbar → 0,85 à 550 mbar ; 0,80–0,85
   à 3300–4200 tr/min mi-charge) ; pleine charge 0,89–0,93 jusqu'à 4500, **1,04–1,07 au-dessus de 5500 (trop pauvre)**.
   Profil VE + richesse générale ; pas un profil de temps mort.
+- Filtre des logs (demande du 27/10) : en **pleine charge (MAP ≥ 90 kPa) toutes les mesures sont gardées**, même
+  en montée en régime ; la STFT est associée au régime de la ligne précédente (retard ~1 s). `analyse_log_ve.py`
+  affiche les deux (retard 0 / 1) ; `ve_tendance.py` utilise le retard 1, poids 0,7.
 - 2e log OBD (27/10 17 h, v5g, bouchons) : médiane 0,93 ; les deux logs : 0,928 → gain × 0,93 confirmé.
 - **Décision de l'utilisateur (27/10) : corriger À LA FOIS le gain injecteur et la VE.** Proposition : gain 0x569A0
   × ~0,93 (médiane f = 0,92 sur 397 points, quartiles 0,85–0,96), puis VE case par case × f / 0,93 (dont hausse en

@@ -4,8 +4,8 @@
 Pour chaque mesure : facteur réellement appliqué f = 40000/(40000+100·STFT_obd) × 40000/(40000+200·LTFT_obd)
 (échelles de ce calculateur, voir analyse_log_ve.py), résidu r = f / gain_deja_applique (ex. 0,93 en v5j).
 La VE est corrigée par lissage à noyau (régime ±400 tr/min, MAP ±80 mbar) : loin des mesures, la correction
-s'efface vers 1 ; elle est appliquée à `force` (70 %) et bornée à ±12 %. Pleine charge (MAP ≥ 950, LTFT non
-publiée) : prise en compte avec un poids réduit (montées en régime, retard de la STFT).
+s'efface vers 1 ; elle est appliquée à `force` (70 %) et bornée à ±12 %. Pleine charge (MAP ≥ 900) : toutes les
+mesures, même en montée en régime, associées au régime de la ligne précédente (retard de la STFT), poids 0,7.
 
   python3 ve_tendance.py entree.bin sortie.bin gain_deja_applique log1.csv [log2.csv ...]
 """
@@ -28,13 +28,15 @@ def mesures(path, gain):
         t, rpm, s, l, kpa = R[i]
         a, b = R[i - 1], R[i + 1]
         mbar = kpa * 10
-        pleine = mbar >= 950
+        pleine = mbar >= 900
         if not pleine and (l == 0 or abs(b[1] - a[1]) > 150 or abs(b[4] - a[4]) > 4):
             continue
         if s >= 99:
             continue
         f = 40000 / (40000 + 100 * s) * 40000 / (40000 + 200 * l)
-        out.append((rpm, mbar, f / gain, 0.5 if pleine else 1.0))
+        if pleine:
+            rpm = R[i - 1][1]          # retard de la STFT : régime de la ligne précédente
+        out.append((rpm, mbar, f / gain, 0.7 if pleine else 1.0))
     return out
 
 

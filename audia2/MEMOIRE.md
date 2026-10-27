@@ -170,6 +170,12 @@ Chaîne de fabrication reproductible à l'octet près : voir README.
   (0x3C002) et ne retarde pas l'allumage pour freiner. L'air en roue libre = max(colonne 0 de 0x55688,
   0x557E8) : 2200 en v5g contre ~1400 d'origine entre 900 et 1250 tr/min. Pistes (plus tard) : baisser cet
   air, relever la ligne 0 de 0x5A904 (~2000 à chaud).
+- **Boucle fermée quasi permanente** (fct 0x36D64, drapeau `$1071`) : sonde large bande, la STFT régule
+  dès que λ cible **ou** λ mesuré est dans **0,800…1,200** (0x596FC / 0x596FE), y compris pleine charge
+  (λ 0,86–0,95) et moteur froid (0,85). Conditions : interrupteur 0x59622, sonde prête `$1DF3`, pas de
+  défaut (`$11A0` bit 11), pas de coupure / lancement (`$193B` ≠ 0x20/0x40/0x80), 5 s (0x59704) après un
+  redémarrage à chaud, pas de coupure ASR ; délai d'entrée 0x596C0 × 0x59624 / 1000. Hors conditions, la
+  STFT revient vers 40000 de 200 (0x59702) par pas.
 - **E85** : stœchiométrie 0x59768 = 14,5 gardée, ×1,45 dans le gain injecteur 0x569A0. Pas strictement
   équivalent à changer 0x59768 (lancement, modèle d'échappement 0xEF08, purge, seuils) : le gain est le
   bon choix. Conso affichée : 0x5BA22 = 541.

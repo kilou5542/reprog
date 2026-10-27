@@ -134,6 +134,9 @@ Dépression aux injecteurs = pression atmosphérique − pression collecteur (te
   0x59530 × MAP 0x59540), **0x59624** (8 × 8, régime × MAP), 0x59520, 0x596E0, 0x595E0…0x59606.
   Butées 0x596BC / 0x596BE (XDF ✓).
 - Régulateur large bande (offset λ `$201E`) : fct 0x35F82.
+- **Activation de la STFT** (fct 0x36D64) : λ cible ou λ mesuré entre **0x596FC = 0,800** et
+  **0x596FE = 1,200** → la boucle fermée fonctionne aussi en pleine charge et à froid (sonde large bande).
+  Interrupteur général 0x59622 ; hors conditions, retour vers neutre de 0x59702 par pas.
 - LTFT par zones : fct 0x532A8, axes MAP 0x5CE84 et régime 0x5CE74, butées 0x5CEA0 / 0x5CEA2 (XDF ✓).
 
 ## 1.8 Interventions sur l'injection

@@ -181,3 +181,6 @@ Régulateur de vitesse : il prenait de la vitesse en descente.
 - Trims : STFT 30000–50000 (±25 %), LTFT 26000–54000, plafond 41600 après démarrage. Les signes affichés par VCDS sont dans le README.
 - Régulateur refusé en 5ᵉ : les rapports de boîte (0x5A036…) sont identiques dans toutes les ROM CA, donc ce n'est pas l'ancienne ROM.
   La piste est la reconnaissance du rapport (fenêtre 410 ± 19 en 5ᵉ) si la taille des pneus a changé.
+- Injection et allumage : toutes les tables identifiées par le désassemblage (INJECTION_ALLUMAGE.md).
+  XDF : 31 tables et 4 constantes ajoutées ; noms corrigés pour 0x58D40 (λ moteur froid), 0x55EB8 (avance
+  optimale du modèle de couple), 0x5C220 (seuil d'accélération du cliquetis, pas une avance), 0x55688 et 0x57E72.

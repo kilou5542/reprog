@@ -174,8 +174,8 @@
     </XDFAXIS>
   </XDFTABLE>
   <XDFTABLE uniqueid="0x1005" flags="0x0">
-    <title>Lambda cible protection (composants) [0x58D40]</title>
-    <description>Lecture 0x330F0.</description>
+    <title>Lambda cible moteur froid [0x58D40]</title>
+    <description>Lecture 0x330F0. Seulement si eau &lt; 20 degC (0x58F80), melangee selon le poids 0x58F82.</description>
     <CATEGORYMEM index="0" category="2" />
     <XDFAXIS id="x" uniqueid="0x0">
       <EMBEDDEDDATA mmedtypeflags="0x02" mmedaddress="0x56164" mmedelementsizebits="16" mmedmajorstridebits="0" mmedminorstridebits="0" />
@@ -212,8 +212,84 @@
     </XDFAXIS>
   </XDFTABLE>
   <XDFTABLE uniqueid="0x1006" flags="0x0">
+    <title>Poids du lambda moteur froid [0x58F82]</title>
+    <description>Fct 0x3332C.</description>
+    <CATEGORYMEM index="0" category="2" />
+    <XDFAXIS id="x" uniqueid="0x0">
+      <EMBEDDEDDATA mmedtypeflags="0x02" mmedaddress="0x562EC" mmedelementsizebits="16" mmedmajorstridebits="0" mmedminorstridebits="0" />
+      <units>degC eau</units>
+      <indexcount>16</indexcount>
+      <embedinfo type="1" />
+      <datatype>0</datatype>
+      <unittype>0</unittype>
+      <DALINK index="0" />
+      <MATH equation="X-40">
+        <VAR id="X" />
+      </MATH>
+    </XDFAXIS>
+    <XDFAXIS id="y" uniqueid="0x0">
+      <EMBEDDEDDATA mmedelementsizebits="16" mmedmajorstridebits="-32" mmedminorstridebits="0" />
+      <units></units>
+      <indexcount>1</indexcount>
+      <datatype>0</datatype>
+      <unittype>0</unittype>
+      <DALINK index="0" />
+      <LABEL index="0" value="0" />
+      <MATH equation="X">
+        <VAR id="X" />
+      </MATH>
+    </XDFAXIS>
+    <XDFAXIS id="z">
+      <EMBEDDEDDATA mmedtypeflags="0x02" mmedaddress="0x58F82" mmedelementsizebits="16" mmedrowcount="1" mmedcolcount="16" mmedmajorstridebits="0" mmedminorstridebits="0" />
+      <units>poids</units>
+      <decimalpl>3</decimalpl>
+      <outputtype>1</outputtype>
+      <MATH equation="X/1000">
+        <VAR id="X" />
+      </MATH>
+    </XDFAXIS>
+  </XDFTABLE>
+  <XDFTABLE uniqueid="0x1007" flags="0x0">
+    <title>Lambda le plus riche autorise (&gt; 1050 tr/min) [0x590E2]</title>
+    <description>Fct 0x3332C.</description>
+    <CATEGORYMEM index="0" category="2" />
+    <XDFAXIS id="x" uniqueid="0x0">
+      <EMBEDDEDDATA mmedtypeflags="0x02" mmedaddress="0x5630C" mmedelementsizebits="16" mmedmajorstridebits="0" mmedminorstridebits="0" />
+      <units>degC eau</units>
+      <indexcount>9</indexcount>
+      <embedinfo type="1" />
+      <datatype>0</datatype>
+      <unittype>0</unittype>
+      <DALINK index="0" />
+      <MATH equation="X-40">
+        <VAR id="X" />
+      </MATH>
+    </XDFAXIS>
+    <XDFAXIS id="y" uniqueid="0x0">
+      <EMBEDDEDDATA mmedelementsizebits="16" mmedmajorstridebits="-32" mmedminorstridebits="0" />
+      <units></units>
+      <indexcount>1</indexcount>
+      <datatype>0</datatype>
+      <unittype>0</unittype>
+      <DALINK index="0" />
+      <LABEL index="0" value="0" />
+      <MATH equation="X">
+        <VAR id="X" />
+      </MATH>
+    </XDFAXIS>
+    <XDFAXIS id="z">
+      <EMBEDDEDDATA mmedtypeflags="0x02" mmedaddress="0x590E2" mmedelementsizebits="16" mmedrowcount="1" mmedcolcount="9" mmedmajorstridebits="0" mmedminorstridebits="0" />
+      <units>lambda</units>
+      <decimalpl>3</decimalpl>
+      <outputtype>1</outputtype>
+      <MATH equation="X/1000">
+        <VAR id="X" />
+      </MATH>
+    </XDFAXIS>
+  </XDFTABLE>
+  <XDFTABLE uniqueid="0x1008" flags="0x0">
     <title>Lambda pleine charge [0x59046]</title>
-    <description>Lecture 0x3315E.</description>
+    <description>Lecture 0x3315E. Appliquee entre les angles papillon 0x55BEE et 0x55BCE.</description>
     <CATEGORYMEM index="0" category="2" />
     <XDFAXIS id="x" uniqueid="0x0">
       <EMBEDDEDDATA mmedtypeflags="0x02" mmedaddress="0x5619C" mmedelementsizebits="16" mmedmajorstridebits="0" mmedminorstridebits="0" />
@@ -249,7 +325,653 @@
       </MATH>
     </XDFAXIS>
   </XDFTABLE>
-  <XDFTABLE uniqueid="0x1007" flags="0x0">
+  <XDFTABLE uniqueid="0x1009" flags="0x0">
+    <title>Pleine charge : angle papillon de debut [0x55BEE]</title>
+    <description>Fct 0xE604.</description>
+    <CATEGORYMEM index="0" category="2" />
+    <XDFAXIS id="x" uniqueid="0x0">
+      <EMBEDDEDDATA mmedtypeflags="0x02" mmedaddress="0x561CC" mmedelementsizebits="16" mmedmajorstridebits="0" mmedminorstridebits="0" />
+      <units>tr/min</units>
+      <indexcount>16</indexcount>
+      <embedinfo type="1" />
+      <datatype>0</datatype>
+      <unittype>0</unittype>
+      <DALINK index="0" />
+      <MATH equation="X">
+        <VAR id="X" />
+      </MATH>
+    </XDFAXIS>
+    <XDFAXIS id="y" uniqueid="0x0">
+      <EMBEDDEDDATA mmedelementsizebits="16" mmedmajorstridebits="-32" mmedminorstridebits="0" />
+      <units></units>
+      <indexcount>1</indexcount>
+      <datatype>0</datatype>
+      <unittype>0</unittype>
+      <DALINK index="0" />
+      <LABEL index="0" value="0" />
+      <MATH equation="X">
+        <VAR id="X" />
+      </MATH>
+    </XDFAXIS>
+    <XDFAXIS id="z">
+      <EMBEDDEDDATA mmedtypeflags="0x02" mmedaddress="0x55BEE" mmedelementsizebits="16" mmedrowcount="1" mmedcolcount="16" mmedmajorstridebits="0" mmedminorstridebits="0" />
+      <units>% papillon</units>
+      <decimalpl>1</decimalpl>
+      <outputtype>1</outputtype>
+      <MATH equation="X/10">
+        <VAR id="X" />
+      </MATH>
+    </XDFAXIS>
+  </XDFTABLE>
+  <XDFTABLE uniqueid="0x100A" flags="0x0">
+    <title>Pleine charge : angle papillon de fin [0x55BCE]</title>
+    <description>Fct 0xE604.</description>
+    <CATEGORYMEM index="0" category="2" />
+    <XDFAXIS id="x" uniqueid="0x0">
+      <EMBEDDEDDATA mmedtypeflags="0x02" mmedaddress="0x561CC" mmedelementsizebits="16" mmedmajorstridebits="0" mmedminorstridebits="0" />
+      <units>tr/min</units>
+      <indexcount>16</indexcount>
+      <embedinfo type="1" />
+      <datatype>0</datatype>
+      <unittype>0</unittype>
+      <DALINK index="0" />
+      <MATH equation="X">
+        <VAR id="X" />
+      </MATH>
+    </XDFAXIS>
+    <XDFAXIS id="y" uniqueid="0x0">
+      <EMBEDDEDDATA mmedelementsizebits="16" mmedmajorstridebits="-32" mmedminorstridebits="0" />
+      <units></units>
+      <indexcount>1</indexcount>
+      <datatype>0</datatype>
+      <unittype>0</unittype>
+      <DALINK index="0" />
+      <LABEL index="0" value="0" />
+      <MATH equation="X">
+        <VAR id="X" />
+      </MATH>
+    </XDFAXIS>
+    <XDFAXIS id="z">
+      <EMBEDDEDDATA mmedtypeflags="0x02" mmedaddress="0x55BCE" mmedelementsizebits="16" mmedrowcount="1" mmedcolcount="16" mmedmajorstridebits="0" mmedminorstridebits="0" />
+      <units>% papillon</units>
+      <decimalpl>1</decimalpl>
+      <outputtype>1</outputtype>
+      <MATH equation="X/10">
+        <VAR id="X" />
+      </MATH>
+    </XDFAXIS>
+  </XDFTABLE>
+  <XDFTABLE uniqueid="0x100B" flags="0x0">
+    <title>Enrichissement apres demarrage (depart) [0x58FA2]</title>
+    <description>Fct 0x32F36.</description>
+    <CATEGORYMEM index="0" category="2" />
+    <XDFAXIS id="x" uniqueid="0x0">
+      <EMBEDDEDDATA mmedtypeflags="0x02" mmedaddress="0x562EC" mmedelementsizebits="16" mmedmajorstridebits="0" mmedminorstridebits="0" />
+      <units>degC eau</units>
+      <indexcount>16</indexcount>
+      <embedinfo type="1" />
+      <datatype>0</datatype>
+      <unittype>0</unittype>
+      <DALINK index="0" />
+      <MATH equation="X-40">
+        <VAR id="X" />
+      </MATH>
+    </XDFAXIS>
+    <XDFAXIS id="y" uniqueid="0x0">
+      <EMBEDDEDDATA mmedelementsizebits="16" mmedmajorstridebits="-32" mmedminorstridebits="0" />
+      <units></units>
+      <indexcount>1</indexcount>
+      <datatype>0</datatype>
+      <unittype>0</unittype>
+      <DALINK index="0" />
+      <LABEL index="0" value="0" />
+      <MATH equation="X">
+        <VAR id="X" />
+      </MATH>
+    </XDFAXIS>
+    <XDFAXIS id="z">
+      <EMBEDDEDDATA mmedtypeflags="0x02" mmedaddress="0x58FA2" mmedelementsizebits="16" mmedrowcount="1" mmedcolcount="16" mmedmajorstridebits="0" mmedminorstridebits="0" />
+      <units>brut</units>
+      <decimalpl>0</decimalpl>
+      <outputtype>1</outputtype>
+      <MATH equation="X">
+        <VAR id="X" />
+      </MATH>
+    </XDFAXIS>
+  </XDFTABLE>
+  <XDFTABLE uniqueid="0x100C" flags="0x0">
+    <title>Dynamique collecteur (remplissage / vidange) [0x572C4]</title>
+    <description>Fct 0x22FF6.</description>
+    <CATEGORYMEM index="0" category="1" />
+    <XDFAXIS id="x" uniqueid="0x0">
+      <EMBEDDEDDATA mmedtypeflags="0x02" mmedaddress="0x5627C" mmedelementsizebits="16" mmedmajorstridebits="0" mmedminorstridebits="0" />
+      <units>mbar</units>
+      <indexcount>12</indexcount>
+      <embedinfo type="1" />
+      <datatype>0</datatype>
+      <unittype>0</unittype>
+      <DALINK index="0" />
+      <MATH equation="X">
+        <VAR id="X" />
+      </MATH>
+    </XDFAXIS>
+    <XDFAXIS id="y" uniqueid="0x0">
+      <EMBEDDEDDATA mmedtypeflags="0x02" mmedaddress="0x5619C" mmedelementsizebits="16" mmedmajorstridebits="0" mmedminorstridebits="0" />
+      <units>tr/min</units>
+      <indexcount>24</indexcount>
+      <embedinfo type="1" />
+      <datatype>0</datatype>
+      <unittype>0</unittype>
+      <DALINK index="0" />
+      <MATH equation="X">
+        <VAR id="X" />
+      </MATH>
+    </XDFAXIS>
+    <XDFAXIS id="z">
+      <EMBEDDEDDATA mmedtypeflags="0x02" mmedaddress="0x572C4" mmedelementsizebits="16" mmedrowcount="24" mmedcolcount="12" mmedmajorstridebits="0" mmedminorstridebits="0" />
+      <units>brut</units>
+      <decimalpl>0</decimalpl>
+      <outputtype>1</outputtype>
+      <MATH equation="X">
+        <VAR id="X" />
+      </MATH>
+    </XDFAXIS>
+  </XDFTABLE>
+  <XDFTABLE uniqueid="0x100D" flags="0x0">
+    <title>Part de charge retranchee [0x57686]</title>
+    <description>Fct 0x22FF6 (si 0x57AC8 = 1). 0 partout d'origine.</description>
+    <CATEGORYMEM index="0" category="1" />
+    <XDFAXIS id="x" uniqueid="0x0">
+      <EMBEDDEDDATA mmedtypeflags="0x02" mmedaddress="0x56294" mmedelementsizebits="16" mmedmajorstridebits="0" mmedminorstridebits="0" />
+      <units>mbar</units>
+      <indexcount>8</indexcount>
+      <embedinfo type="1" />
+      <datatype>0</datatype>
+      <unittype>0</unittype>
+      <DALINK index="0" />
+      <MATH equation="X">
+        <VAR id="X" />
+      </MATH>
+    </XDFAXIS>
+    <XDFAXIS id="y" uniqueid="0x0">
+      <EMBEDDEDDATA mmedtypeflags="0x02" mmedaddress="0x561CC" mmedelementsizebits="16" mmedmajorstridebits="0" mmedminorstridebits="0" />
+      <units>tr/min</units>
+      <indexcount>16</indexcount>
+      <embedinfo type="1" />
+      <datatype>0</datatype>
+      <unittype>0</unittype>
+      <DALINK index="0" />
+      <MATH equation="X">
+        <VAR id="X" />
+      </MATH>
+    </XDFAXIS>
+    <XDFAXIS id="z">
+      <EMBEDDEDDATA mmedtypeflags="0x02" mmedaddress="0x57686" mmedelementsizebits="16" mmedrowcount="16" mmedcolcount="8" mmedmajorstridebits="0" mmedminorstridebits="0" />
+      <units>fraction</units>
+      <decimalpl>3</decimalpl>
+      <outputtype>1</outputtype>
+      <MATH equation="X/1000">
+        <VAR id="X" />
+      </MATH>
+    </XDFAXIS>
+  </XDFTABLE>
+  <XDFTABLE uniqueid="0x100E" flags="0x0">
+    <title>Correction temps mort selon depression [0x56970]</title>
+    <description>Fct 0x1FEC2.</description>
+    <CATEGORYMEM index="0" category="1" />
+    <XDFAXIS id="x" uniqueid="0x0">
+      <EMBEDDEDDATA mmedtypeflags="0x02" mmedaddress="0x56988" mmedelementsizebits="16" mmedmajorstridebits="0" mmedminorstridebits="0" />
+      <units>mbar depression</units>
+      <indexcount>12</indexcount>
+      <embedinfo type="1" />
+      <datatype>0</datatype>
+      <unittype>0</unittype>
+      <DALINK index="0" />
+      <MATH equation="X">
+        <VAR id="X" />
+      </MATH>
+    </XDFAXIS>
+    <XDFAXIS id="y" uniqueid="0x0">
+      <EMBEDDEDDATA mmedelementsizebits="16" mmedmajorstridebits="-32" mmedminorstridebits="0" />
+      <units></units>
+      <indexcount>1</indexcount>
+      <datatype>0</datatype>
+      <unittype>0</unittype>
+      <DALINK index="0" />
+      <LABEL index="0" value="0" />
+      <MATH equation="X">
+        <VAR id="X" />
+      </MATH>
+    </XDFAXIS>
+    <XDFAXIS id="z">
+      <EMBEDDEDDATA mmedtypeflags="0x02" mmedaddress="0x56970" mmedelementsizebits="16" mmedrowcount="1" mmedcolcount="12" mmedmajorstridebits="0" mmedminorstridebits="0" />
+      <units>brut</units>
+      <decimalpl>0</decimalpl>
+      <outputtype>1</outputtype>
+      <MATH equation="X">
+        <VAR id="X" />
+      </MATH>
+    </XDFAXIS>
+  </XDFTABLE>
+  <XDFTABLE uniqueid="0x100F" flags="0x0">
+    <title>Temps mort injecteur (tension) [0x57E74]</title>
+    <description>Fct 0x2AABA.</description>
+    <CATEGORYMEM index="0" category="1" />
+    <XDFAXIS id="x" uniqueid="0x0">
+      <EMBEDDEDDATA mmedtypeflags="0x02" mmedaddress="0x5625C" mmedelementsizebits="16" mmedmajorstridebits="0" mmedminorstridebits="0" />
+      <units>V</units>
+      <indexcount>16</indexcount>
+      <embedinfo type="1" />
+      <datatype>0</datatype>
+      <unittype>0</unittype>
+      <DALINK index="0" />
+      <MATH equation="X/10">
+        <VAR id="X" />
+      </MATH>
+    </XDFAXIS>
+    <XDFAXIS id="y" uniqueid="0x0">
+      <EMBEDDEDDATA mmedelementsizebits="16" mmedmajorstridebits="-32" mmedminorstridebits="0" />
+      <units></units>
+      <indexcount>1</indexcount>
+      <datatype>0</datatype>
+      <unittype>0</unittype>
+      <DALINK index="0" />
+      <LABEL index="0" value="0" />
+      <MATH equation="X">
+        <VAR id="X" />
+      </MATH>
+    </XDFAXIS>
+    <XDFAXIS id="z">
+      <EMBEDDEDDATA mmedtypeflags="0x02" mmedaddress="0x57E74" mmedelementsizebits="16" mmedrowcount="1" mmedcolcount="16" mmedmajorstridebits="0" mmedminorstridebits="0" />
+      <units>brut (us ?)</units>
+      <decimalpl>0</decimalpl>
+      <outputtype>1</outputtype>
+      <MATH equation="X">
+        <VAR id="X" />
+      </MATH>
+    </XDFAXIS>
+  </XDFTABLE>
+  <XDFTABLE uniqueid="0x1010" flags="0x0">
+    <title>Correction debit injecteur (tension) [0x57E94]</title>
+    <description>Fct 0x2AABA.</description>
+    <CATEGORYMEM index="0" category="1" />
+    <XDFAXIS id="x" uniqueid="0x0">
+      <EMBEDDEDDATA mmedtypeflags="0x02" mmedaddress="0x5625C" mmedelementsizebits="16" mmedmajorstridebits="0" mmedminorstridebits="0" />
+      <units>V</units>
+      <indexcount>16</indexcount>
+      <embedinfo type="1" />
+      <datatype>0</datatype>
+      <unittype>0</unittype>
+      <DALINK index="0" />
+      <MATH equation="X/10">
+        <VAR id="X" />
+      </MATH>
+    </XDFAXIS>
+    <XDFAXIS id="y" uniqueid="0x0">
+      <EMBEDDEDDATA mmedelementsizebits="16" mmedmajorstridebits="-32" mmedminorstridebits="0" />
+      <units></units>
+      <indexcount>1</indexcount>
+      <datatype>0</datatype>
+      <unittype>0</unittype>
+      <DALINK index="0" />
+      <LABEL index="0" value="0" />
+      <MATH equation="X">
+        <VAR id="X" />
+      </MATH>
+    </XDFAXIS>
+    <XDFAXIS id="z">
+      <EMBEDDEDDATA mmedtypeflags="0x02" mmedaddress="0x57E94" mmedelementsizebits="16" mmedrowcount="1" mmedcolcount="16" mmedmajorstridebits="0" mmedminorstridebits="0" />
+      <units>facteur</units>
+      <decimalpl>3</decimalpl>
+      <outputtype>1</outputtype>
+      <MATH equation="X/1024">
+        <VAR id="X" />
+      </MATH>
+    </XDFAXIS>
+  </XDFTABLE>
+  <XDFTABLE uniqueid="0x1011" flags="0x0">
+    <title>Phase d'injection (fin d'injection) [0x5B668]</title>
+    <description>Fct 0x45E78.</description>
+    <CATEGORYMEM index="0" category="1" />
+    <XDFAXIS id="x" uniqueid="0x0">
+      <EMBEDDEDDATA mmedtypeflags="0x02" mmedaddress="0x56164" mmedelementsizebits="16" mmedmajorstridebits="0" mmedminorstridebits="0" />
+      <units>% charge</units>
+      <indexcount>12</indexcount>
+      <embedinfo type="1" />
+      <datatype>0</datatype>
+      <unittype>0</unittype>
+      <DALINK index="0" />
+      <MATH equation="X/100">
+        <VAR id="X" />
+      </MATH>
+    </XDFAXIS>
+    <XDFAXIS id="y" uniqueid="0x0">
+      <EMBEDDEDDATA mmedtypeflags="0x02" mmedaddress="0x5619C" mmedelementsizebits="16" mmedmajorstridebits="0" mmedminorstridebits="0" />
+      <units>tr/min</units>
+      <indexcount>24</indexcount>
+      <embedinfo type="1" />
+      <datatype>0</datatype>
+      <unittype>0</unittype>
+      <DALINK index="0" />
+      <MATH equation="X">
+        <VAR id="X" />
+      </MATH>
+    </XDFAXIS>
+    <XDFAXIS id="z">
+      <EMBEDDEDDATA mmedtypeflags="0x02" mmedaddress="0x5B668" mmedelementsizebits="16" mmedrowcount="24" mmedcolcount="12" mmedmajorstridebits="0" mmedminorstridebits="0" />
+      <units>deg vilo (brut)</units>
+      <decimalpl>0</decimalpl>
+      <outputtype>1</outputtype>
+      <MATH equation="X">
+        <VAR id="X" />
+      </MATH>
+    </XDFAXIS>
+  </XDFTABLE>
+  <XDFTABLE uniqueid="0x1012" flags="0x0">
+    <title>Enrichissement de demarrage (multiplie lambda) [0x59742]</title>
+    <description>Fct 0x375C4. 1.000 = neutre.</description>
+    <CATEGORYMEM index="0" category="1" />
+    <XDFAXIS id="x" uniqueid="0x0">
+      <EMBEDDEDDATA mmedtypeflags="0x02" mmedaddress="0x5630C" mmedelementsizebits="16" mmedmajorstridebits="0" mmedminorstridebits="0" />
+      <units>degC eau</units>
+      <indexcount>9</indexcount>
+      <embedinfo type="1" />
+      <datatype>0</datatype>
+      <unittype>0</unittype>
+      <DALINK index="0" />
+      <MATH equation="X-40">
+        <VAR id="X" />
+      </MATH>
+    </XDFAXIS>
+    <XDFAXIS id="y" uniqueid="0x0">
+      <EMBEDDEDDATA mmedelementsizebits="16" mmedmajorstridebits="-32" mmedminorstridebits="0" />
+      <units></units>
+      <indexcount>1</indexcount>
+      <datatype>0</datatype>
+      <unittype>0</unittype>
+      <DALINK index="0" />
+      <LABEL index="0" value="0" />
+      <MATH equation="X">
+        <VAR id="X" />
+      </MATH>
+    </XDFAXIS>
+    <XDFAXIS id="z">
+      <EMBEDDEDDATA mmedtypeflags="0x02" mmedaddress="0x59742" mmedelementsizebits="16" mmedrowcount="1" mmedcolcount="9" mmedmajorstridebits="0" mmedminorstridebits="0" />
+      <units>facteur</units>
+      <decimalpl>3</decimalpl>
+      <outputtype>1</outputtype>
+      <MATH equation="X/1024">
+        <VAR id="X" />
+      </MATH>
+    </XDFAXIS>
+  </XDFTABLE>
+  <XDFTABLE uniqueid="0x1013" flags="0x0">
+    <title>Decroissance de l'enrichissement de demarrage [0x59754]</title>
+    <description>Fct 0x375C4.</description>
+    <CATEGORYMEM index="0" category="1" />
+    <XDFAXIS id="x" uniqueid="0x0">
+      <EMBEDDEDDATA mmedtypeflags="0x02" mmedaddress="0x5630C" mmedelementsizebits="16" mmedmajorstridebits="0" mmedminorstridebits="0" />
+      <units>degC eau</units>
+      <indexcount>9</indexcount>
+      <embedinfo type="1" />
+      <datatype>0</datatype>
+      <unittype>0</unittype>
+      <DALINK index="0" />
+      <MATH equation="X-40">
+        <VAR id="X" />
+      </MATH>
+    </XDFAXIS>
+    <XDFAXIS id="y" uniqueid="0x0">
+      <EMBEDDEDDATA mmedelementsizebits="16" mmedmajorstridebits="-32" mmedminorstridebits="0" />
+      <units></units>
+      <indexcount>1</indexcount>
+      <datatype>0</datatype>
+      <unittype>0</unittype>
+      <DALINK index="0" />
+      <LABEL index="0" value="0" />
+      <MATH equation="X">
+        <VAR id="X" />
+      </MATH>
+    </XDFAXIS>
+    <XDFAXIS id="z">
+      <EMBEDDEDDATA mmedtypeflags="0x02" mmedaddress="0x59754" mmedelementsizebits="16" mmedrowcount="1" mmedcolcount="9" mmedmajorstridebits="0" mmedminorstridebits="0" />
+      <units>brut</units>
+      <decimalpl>0</decimalpl>
+      <outputtype>1</outputtype>
+      <MATH equation="X">
+        <VAR id="X" />
+      </MATH>
+    </XDFAXIS>
+  </XDFTABLE>
+  <XDFTABLE uniqueid="0x1014" flags="0x0">
+    <title>Film de paroi : X froid [0x580EA]</title>
+    <description>Fct 0x31382.</description>
+    <CATEGORYMEM index="0" category="1" />
+    <XDFAXIS id="x" uniqueid="0x0">
+      <EMBEDDEDDATA mmedtypeflags="0x02" mmedaddress="0x56294" mmedelementsizebits="16" mmedmajorstridebits="0" mmedminorstridebits="0" />
+      <units>mbar</units>
+      <indexcount>8</indexcount>
+      <embedinfo type="1" />
+      <datatype>0</datatype>
+      <unittype>0</unittype>
+      <DALINK index="0" />
+      <MATH equation="X">
+        <VAR id="X" />
+      </MATH>
+    </XDFAXIS>
+    <XDFAXIS id="y" uniqueid="0x0">
+      <EMBEDDEDDATA mmedtypeflags="0x02" mmedaddress="0x561CC" mmedelementsizebits="16" mmedmajorstridebits="0" mmedminorstridebits="0" />
+      <units>tr/min</units>
+      <indexcount>16</indexcount>
+      <embedinfo type="1" />
+      <datatype>0</datatype>
+      <unittype>0</unittype>
+      <DALINK index="0" />
+      <MATH equation="X">
+        <VAR id="X" />
+      </MATH>
+    </XDFAXIS>
+    <XDFAXIS id="z">
+      <EMBEDDEDDATA mmedtypeflags="0x02" mmedaddress="0x580EA" mmedelementsizebits="16" mmedrowcount="16" mmedcolcount="8" mmedmajorstridebits="0" mmedminorstridebits="0" />
+      <units>brut</units>
+      <decimalpl>0</decimalpl>
+      <outputtype>1</outputtype>
+      <MATH equation="X">
+        <VAR id="X" />
+      </MATH>
+    </XDFAXIS>
+  </XDFTABLE>
+  <XDFTABLE uniqueid="0x1015" flags="0x0">
+    <title>Film de paroi : tau froid [0x581EA]</title>
+    <description>Fct 0x31382.</description>
+    <CATEGORYMEM index="0" category="1" />
+    <XDFAXIS id="x" uniqueid="0x0">
+      <EMBEDDEDDATA mmedtypeflags="0x02" mmedaddress="0x56294" mmedelementsizebits="16" mmedmajorstridebits="0" mmedminorstridebits="0" />
+      <units>mbar</units>
+      <indexcount>8</indexcount>
+      <embedinfo type="1" />
+      <datatype>0</datatype>
+      <unittype>0</unittype>
+      <DALINK index="0" />
+      <MATH equation="X">
+        <VAR id="X" />
+      </MATH>
+    </XDFAXIS>
+    <XDFAXIS id="y" uniqueid="0x0">
+      <EMBEDDEDDATA mmedtypeflags="0x02" mmedaddress="0x561CC" mmedelementsizebits="16" mmedmajorstridebits="0" mmedminorstridebits="0" />
+      <units>tr/min</units>
+      <indexcount>16</indexcount>
+      <embedinfo type="1" />
+      <datatype>0</datatype>
+      <unittype>0</unittype>
+      <DALINK index="0" />
+      <MATH equation="X">
+        <VAR id="X" />
+      </MATH>
+    </XDFAXIS>
+    <XDFAXIS id="z">
+      <EMBEDDEDDATA mmedtypeflags="0x02" mmedaddress="0x581EA" mmedelementsizebits="16" mmedrowcount="16" mmedcolcount="8" mmedmajorstridebits="0" mmedminorstridebits="0" />
+      <units>brut</units>
+      <decimalpl>0</decimalpl>
+      <outputtype>1</outputtype>
+      <MATH equation="X">
+        <VAR id="X" />
+      </MATH>
+    </XDFAXIS>
+  </XDFTABLE>
+  <XDFTABLE uniqueid="0x1016" flags="0x0">
+    <title>Film de paroi : X chaud [0x582EA]</title>
+    <description>Fct 0x31382.</description>
+    <CATEGORYMEM index="0" category="1" />
+    <XDFAXIS id="x" uniqueid="0x0">
+      <EMBEDDEDDATA mmedtypeflags="0x02" mmedaddress="0x56294" mmedelementsizebits="16" mmedmajorstridebits="0" mmedminorstridebits="0" />
+      <units>mbar</units>
+      <indexcount>8</indexcount>
+      <embedinfo type="1" />
+      <datatype>0</datatype>
+      <unittype>0</unittype>
+      <DALINK index="0" />
+      <MATH equation="X">
+        <VAR id="X" />
+      </MATH>
+    </XDFAXIS>
+    <XDFAXIS id="y" uniqueid="0x0">
+      <EMBEDDEDDATA mmedtypeflags="0x02" mmedaddress="0x561CC" mmedelementsizebits="16" mmedmajorstridebits="0" mmedminorstridebits="0" />
+      <units>tr/min</units>
+      <indexcount>16</indexcount>
+      <embedinfo type="1" />
+      <datatype>0</datatype>
+      <unittype>0</unittype>
+      <DALINK index="0" />
+      <MATH equation="X">
+        <VAR id="X" />
+      </MATH>
+    </XDFAXIS>
+    <XDFAXIS id="z">
+      <EMBEDDEDDATA mmedtypeflags="0x02" mmedaddress="0x582EA" mmedelementsizebits="16" mmedrowcount="16" mmedcolcount="8" mmedmajorstridebits="0" mmedminorstridebits="0" />
+      <units>brut</units>
+      <decimalpl>0</decimalpl>
+      <outputtype>1</outputtype>
+      <MATH equation="X">
+        <VAR id="X" />
+      </MATH>
+    </XDFAXIS>
+  </XDFTABLE>
+  <XDFTABLE uniqueid="0x1017" flags="0x0">
+    <title>Film de paroi : tau chaud [0x583EA]</title>
+    <description>Fct 0x31382.</description>
+    <CATEGORYMEM index="0" category="1" />
+    <XDFAXIS id="x" uniqueid="0x0">
+      <EMBEDDEDDATA mmedtypeflags="0x02" mmedaddress="0x56294" mmedelementsizebits="16" mmedmajorstridebits="0" mmedminorstridebits="0" />
+      <units>mbar</units>
+      <indexcount>8</indexcount>
+      <embedinfo type="1" />
+      <datatype>0</datatype>
+      <unittype>0</unittype>
+      <DALINK index="0" />
+      <MATH equation="X">
+        <VAR id="X" />
+      </MATH>
+    </XDFAXIS>
+    <XDFAXIS id="y" uniqueid="0x0">
+      <EMBEDDEDDATA mmedtypeflags="0x02" mmedaddress="0x561CC" mmedelementsizebits="16" mmedmajorstridebits="0" mmedminorstridebits="0" />
+      <units>tr/min</units>
+      <indexcount>16</indexcount>
+      <embedinfo type="1" />
+      <datatype>0</datatype>
+      <unittype>0</unittype>
+      <DALINK index="0" />
+      <MATH equation="X">
+        <VAR id="X" />
+      </MATH>
+    </XDFAXIS>
+    <XDFAXIS id="z">
+      <EMBEDDEDDATA mmedtypeflags="0x02" mmedaddress="0x583EA" mmedelementsizebits="16" mmedrowcount="16" mmedcolcount="8" mmedmajorstridebits="0" mmedminorstridebits="0" />
+      <units>brut</units>
+      <decimalpl>0</decimalpl>
+      <outputtype>1</outputtype>
+      <MATH equation="X">
+        <VAR id="X" />
+      </MATH>
+    </XDFAXIS>
+  </XDFTABLE>
+  <XDFTABLE uniqueid="0x1018" flags="0x0">
+    <title>Film de paroi : poids froid (X) [0x584EA]</title>
+    <description>Fct 0x31318.</description>
+    <CATEGORYMEM index="0" category="1" />
+    <XDFAXIS id="x" uniqueid="0x0">
+      <EMBEDDEDDATA mmedtypeflags="0x02" mmedaddress="0x562EC" mmedelementsizebits="16" mmedmajorstridebits="0" mmedminorstridebits="0" />
+      <units>degC eau</units>
+      <indexcount>16</indexcount>
+      <embedinfo type="1" />
+      <datatype>0</datatype>
+      <unittype>0</unittype>
+      <DALINK index="0" />
+      <MATH equation="X-40">
+        <VAR id="X" />
+      </MATH>
+    </XDFAXIS>
+    <XDFAXIS id="y" uniqueid="0x0">
+      <EMBEDDEDDATA mmedelementsizebits="16" mmedmajorstridebits="-32" mmedminorstridebits="0" />
+      <units></units>
+      <indexcount>1</indexcount>
+      <datatype>0</datatype>
+      <unittype>0</unittype>
+      <DALINK index="0" />
+      <LABEL index="0" value="0" />
+      <MATH equation="X">
+        <VAR id="X" />
+      </MATH>
+    </XDFAXIS>
+    <XDFAXIS id="z">
+      <EMBEDDEDDATA mmedtypeflags="0x02" mmedaddress="0x584EA" mmedelementsizebits="16" mmedrowcount="1" mmedcolcount="16" mmedmajorstridebits="0" mmedminorstridebits="0" />
+      <units>brut</units>
+      <decimalpl>0</decimalpl>
+      <outputtype>1</outputtype>
+      <MATH equation="X">
+        <VAR id="X" />
+      </MATH>
+    </XDFAXIS>
+  </XDFTABLE>
+  <XDFTABLE uniqueid="0x1019" flags="0x0">
+    <title>Film de paroi : poids froid (tau) [0x5850A]</title>
+    <description>Fct 0x31318.</description>
+    <CATEGORYMEM index="0" category="1" />
+    <XDFAXIS id="x" uniqueid="0x0">
+      <EMBEDDEDDATA mmedtypeflags="0x02" mmedaddress="0x562EC" mmedelementsizebits="16" mmedmajorstridebits="0" mmedminorstridebits="0" />
+      <units>degC eau</units>
+      <indexcount>16</indexcount>
+      <embedinfo type="1" />
+      <datatype>0</datatype>
+      <unittype>0</unittype>
+      <DALINK index="0" />
+      <MATH equation="X-40">
+        <VAR id="X" />
+      </MATH>
+    </XDFAXIS>
+    <XDFAXIS id="y" uniqueid="0x0">
+      <EMBEDDEDDATA mmedelementsizebits="16" mmedmajorstridebits="-32" mmedminorstridebits="0" />
+      <units></units>
+      <indexcount>1</indexcount>
+      <datatype>0</datatype>
+      <unittype>0</unittype>
+      <DALINK index="0" />
+      <LABEL index="0" value="0" />
+      <MATH equation="X">
+        <VAR id="X" />
+      </MATH>
+    </XDFAXIS>
+    <XDFAXIS id="z">
+      <EMBEDDEDDATA mmedtypeflags="0x02" mmedaddress="0x5850A" mmedelementsizebits="16" mmedrowcount="1" mmedcolcount="16" mmedmajorstridebits="0" mmedminorstridebits="0" />
+      <units>brut</units>
+      <decimalpl>0</decimalpl>
+      <outputtype>1</outputtype>
+      <MATH equation="X">
+        <VAR id="X" />
+      </MATH>
+    </XDFAXIS>
+  </XDFTABLE>
+  <XDFTABLE uniqueid="0x101A" flags="0x0">
     <title>Avance de base [0x5BA66]</title>
     <description>Fct 0x4CD32.</description>
     <CATEGORYMEM index="0" category="3" />
@@ -287,7 +1009,7 @@
       </MATH>
     </XDFAXIS>
   </XDFTABLE>
-  <XDFTABLE uniqueid="0x1008" flags="0x0">
+  <XDFTABLE uniqueid="0x101B" flags="0x0">
     <title>Avance pleine charge (correction) [0x5BCAE]</title>
     <description>Fct 0x4CF0E.</description>
     <CATEGORYMEM index="0" category="3" />
@@ -325,9 +1047,9 @@
       </MATH>
     </XDFAXIS>
   </XDFTABLE>
-  <XDFTABLE uniqueid="0x1009" flags="0x0">
-    <title>Avance 0x5C220 (plafond) [0x5C220]</title>
-    <description>Fct 0x4E7DA.</description>
+  <XDFTABLE uniqueid="0x101C" flags="0x0">
+    <title>Seuil d'acceleration pour retard de cliquetis renforce [0x5C220]</title>
+    <description>Fct 0x4E7C4 / 0x4DA3A. CE N'EST PAS UNE AVANCE : un cliquetis apres une acceleration plus forte que ce seuil donne un pas de retard x1,9 (0x5C462).</description>
     <CATEGORYMEM index="0" category="3" />
     <XDFAXIS id="x" uniqueid="0x0">
       <EMBEDDEDDATA mmedtypeflags="0x02" mmedaddress="0x56164" mmedelementsizebits="16" mmedmajorstridebits="0" mmedminorstridebits="0" />
@@ -355,6 +1077,44 @@
     </XDFAXIS>
     <XDFAXIS id="z">
       <EMBEDDEDDATA mmedtypeflags="0x03" mmedaddress="0x5C220" mmedelementsizebits="16" mmedrowcount="24" mmedcolcount="12" mmedmajorstridebits="0" mmedminorstridebits="0" />
+      <units>% papillon / 5 cycles</units>
+      <decimalpl>1</decimalpl>
+      <outputtype>1</outputtype>
+      <MATH equation="X/10">
+        <VAR id="X" />
+      </MATH>
+    </XDFAXIS>
+  </XDFTABLE>
+  <XDFTABLE uniqueid="0x101D" flags="0x0">
+    <title>Avance 1re / embrayage [0x5C5F0]</title>
+    <description>Fct 0x4CE3A. Bornee a la base +/- 0x5C712 et &lt;= base.</description>
+    <CATEGORYMEM index="0" category="3" />
+    <XDFAXIS id="x" uniqueid="0x0">
+      <EMBEDDEDDATA mmedtypeflags="0x02" mmedaddress="0x5630C" mmedelementsizebits="16" mmedmajorstridebits="0" mmedminorstridebits="0" />
+      <units>degC eau</units>
+      <indexcount>9</indexcount>
+      <embedinfo type="1" />
+      <datatype>0</datatype>
+      <unittype>0</unittype>
+      <DALINK index="0" />
+      <MATH equation="X-40">
+        <VAR id="X" />
+      </MATH>
+    </XDFAXIS>
+    <XDFAXIS id="y" uniqueid="0x0">
+      <EMBEDDEDDATA mmedtypeflags="0x02" mmedaddress="0x561CC" mmedelementsizebits="16" mmedmajorstridebits="0" mmedminorstridebits="0" />
+      <units>tr/min</units>
+      <indexcount>16</indexcount>
+      <embedinfo type="1" />
+      <datatype>0</datatype>
+      <unittype>0</unittype>
+      <DALINK index="0" />
+      <MATH equation="X">
+        <VAR id="X" />
+      </MATH>
+    </XDFAXIS>
+    <XDFAXIS id="z">
+      <EMBEDDEDDATA mmedtypeflags="0x03" mmedaddress="0x5C5F0" mmedelementsizebits="16" mmedrowcount="16" mmedcolcount="9" mmedmajorstridebits="0" mmedminorstridebits="0" />
       <units>deg</units>
       <decimalpl>1</decimalpl>
       <outputtype>1</outputtype>
@@ -363,7 +1123,463 @@
       </MATH>
     </XDFAXIS>
   </XDFTABLE>
-  <XDFTABLE uniqueid="0x100A" flags="0x0">
+  <XDFTABLE uniqueid="0x101E" flags="0x0">
+    <title>Avance de ralenti (table 1) [0x5BD6E]</title>
+    <description>Fct 0x4CE3A, si $18EF = 1.</description>
+    <CATEGORYMEM index="0" category="3" />
+    <XDFAXIS id="x" uniqueid="0x0">
+      <EMBEDDEDDATA mmedtypeflags="0x02" mmedaddress="0x5C57E" mmedelementsizebits="16" mmedmajorstridebits="0" mmedminorstridebits="0" />
+      <units>regime - consigne + 730</units>
+      <indexcount>24</indexcount>
+      <embedinfo type="1" />
+      <datatype>0</datatype>
+      <unittype>0</unittype>
+      <DALINK index="0" />
+      <MATH equation="X">
+        <VAR id="X" />
+      </MATH>
+    </XDFAXIS>
+    <XDFAXIS id="y" uniqueid="0x0">
+      <EMBEDDEDDATA mmedelementsizebits="16" mmedmajorstridebits="-32" mmedminorstridebits="0" />
+      <units></units>
+      <indexcount>1</indexcount>
+      <datatype>0</datatype>
+      <unittype>0</unittype>
+      <DALINK index="0" />
+      <LABEL index="0" value="0" />
+      <MATH equation="X">
+        <VAR id="X" />
+      </MATH>
+    </XDFAXIS>
+    <XDFAXIS id="z">
+      <EMBEDDEDDATA mmedtypeflags="0x03" mmedaddress="0x5BD6E" mmedelementsizebits="16" mmedrowcount="1" mmedcolcount="24" mmedmajorstridebits="0" mmedminorstridebits="0" />
+      <units>deg</units>
+      <decimalpl>1</decimalpl>
+      <outputtype>1</outputtype>
+      <MATH equation="X/10">
+        <VAR id="X" />
+      </MATH>
+    </XDFAXIS>
+  </XDFTABLE>
+  <XDFTABLE uniqueid="0x101F" flags="0x0">
+    <title>Avance de ralenti (table 2) [0x5BF1E]</title>
+    <description>Fct 0x4CE3A.</description>
+    <CATEGORYMEM index="0" category="3" />
+    <XDFAXIS id="x" uniqueid="0x0">
+      <EMBEDDEDDATA mmedtypeflags="0x02" mmedaddress="0x5C57E" mmedelementsizebits="16" mmedmajorstridebits="0" mmedminorstridebits="0" />
+      <units>regime - consigne + 730</units>
+      <indexcount>24</indexcount>
+      <embedinfo type="1" />
+      <datatype>0</datatype>
+      <unittype>0</unittype>
+      <DALINK index="0" />
+      <MATH equation="X">
+        <VAR id="X" />
+      </MATH>
+    </XDFAXIS>
+    <XDFAXIS id="y" uniqueid="0x0">
+      <EMBEDDEDDATA mmedelementsizebits="16" mmedmajorstridebits="-32" mmedminorstridebits="0" />
+      <units></units>
+      <indexcount>1</indexcount>
+      <datatype>0</datatype>
+      <unittype>0</unittype>
+      <DALINK index="0" />
+      <LABEL index="0" value="0" />
+      <MATH equation="X">
+        <VAR id="X" />
+      </MATH>
+    </XDFAXIS>
+    <XDFAXIS id="z">
+      <EMBEDDEDDATA mmedtypeflags="0x03" mmedaddress="0x5BF1E" mmedelementsizebits="16" mmedrowcount="1" mmedcolcount="24" mmedmajorstridebits="0" mmedminorstridebits="0" />
+      <units>deg</units>
+      <decimalpl>1</decimalpl>
+      <outputtype>1</outputtype>
+      <MATH equation="X/10">
+        <VAR id="X" />
+      </MATH>
+    </XDFAXIS>
+  </XDFTABLE>
+  <XDFTABLE uniqueid="0x1020" flags="0x0">
+    <title>Correction avance de ralenti [0x5BD9E]</title>
+    <description>Fct 0x4CE3A.</description>
+    <CATEGORYMEM index="0" category="3" />
+    <XDFAXIS id="x" uniqueid="0x0">
+      <EMBEDDEDDATA mmedtypeflags="0x02" mmedaddress="0x562EC" mmedelementsizebits="16" mmedmajorstridebits="0" mmedminorstridebits="0" />
+      <units>degC eau</units>
+      <indexcount>16</indexcount>
+      <embedinfo type="1" />
+      <datatype>0</datatype>
+      <unittype>0</unittype>
+      <DALINK index="0" />
+      <MATH equation="X-40">
+        <VAR id="X" />
+      </MATH>
+    </XDFAXIS>
+    <XDFAXIS id="y" uniqueid="0x0">
+      <EMBEDDEDDATA mmedtypeflags="0x02" mmedaddress="0x5627C" mmedelementsizebits="16" mmedmajorstridebits="0" mmedminorstridebits="0" />
+      <units>mbar</units>
+      <indexcount>12</indexcount>
+      <embedinfo type="1" />
+      <datatype>0</datatype>
+      <unittype>0</unittype>
+      <DALINK index="0" />
+      <MATH equation="X">
+        <VAR id="X" />
+      </MATH>
+    </XDFAXIS>
+    <XDFAXIS id="z">
+      <EMBEDDEDDATA mmedtypeflags="0x03" mmedaddress="0x5BD9E" mmedelementsizebits="16" mmedrowcount="12" mmedcolcount="16" mmedmajorstridebits="0" mmedminorstridebits="0" />
+      <units>deg</units>
+      <decimalpl>1</decimalpl>
+      <outputtype>1</outputtype>
+      <MATH equation="X/10">
+        <VAR id="X" />
+      </MATH>
+    </XDFAXIS>
+  </XDFTABLE>
+  <XDFTABLE uniqueid="0x1021" flags="0x0">
+    <title>Correction avance de ralenti (altitude) [0x5C5BA]</title>
+    <description>Fct 0x4CE3A.</description>
+    <CATEGORYMEM index="0" category="3" />
+    <XDFAXIS id="x" uniqueid="0x0">
+      <EMBEDDEDDATA mmedtypeflags="0x02" mmedaddress="0x562A4" mmedelementsizebits="16" mmedmajorstridebits="0" mmedminorstridebits="0" />
+      <units>mbar atmo</units>
+      <indexcount>12</indexcount>
+      <embedinfo type="1" />
+      <datatype>0</datatype>
+      <unittype>0</unittype>
+      <DALINK index="0" />
+      <MATH equation="X">
+        <VAR id="X" />
+      </MATH>
+    </XDFAXIS>
+    <XDFAXIS id="y" uniqueid="0x0">
+      <EMBEDDEDDATA mmedelementsizebits="16" mmedmajorstridebits="-32" mmedminorstridebits="0" />
+      <units></units>
+      <indexcount>1</indexcount>
+      <datatype>0</datatype>
+      <unittype>0</unittype>
+      <DALINK index="0" />
+      <LABEL index="0" value="0" />
+      <MATH equation="X">
+        <VAR id="X" />
+      </MATH>
+    </XDFAXIS>
+    <XDFAXIS id="z">
+      <EMBEDDEDDATA mmedtypeflags="0x03" mmedaddress="0x5C5BA" mmedelementsizebits="16" mmedrowcount="1" mmedcolcount="12" mmedmajorstridebits="0" mmedminorstridebits="0" />
+      <units>deg</units>
+      <decimalpl>1</decimalpl>
+      <outputtype>1</outputtype>
+      <MATH equation="X/10">
+        <VAR id="X" />
+      </MATH>
+    </XDFAXIS>
+  </XDFTABLE>
+  <XDFTABLE uniqueid="0x1022" flags="0x0">
+    <title>Correction avance temperature d'air [0x5BF4E]</title>
+    <description>Fct 0x4D2E4.</description>
+    <CATEGORYMEM index="0" category="3" />
+    <XDFAXIS id="x" uniqueid="0x0">
+      <EMBEDDEDDATA mmedtypeflags="0x02" mmedaddress="0x5617C" mmedelementsizebits="16" mmedmajorstridebits="0" mmedminorstridebits="0" />
+      <units>% charge</units>
+      <indexcount>8</indexcount>
+      <embedinfo type="1" />
+      <datatype>0</datatype>
+      <unittype>0</unittype>
+      <DALINK index="0" />
+      <MATH equation="X/100">
+        <VAR id="X" />
+      </MATH>
+    </XDFAXIS>
+    <XDFAXIS id="y" uniqueid="0x0">
+      <EMBEDDEDDATA mmedtypeflags="0x02" mmedaddress="0x562CC" mmedelementsizebits="16" mmedmajorstridebits="0" mmedminorstridebits="0" />
+      <units>degC air</units>
+      <indexcount>16</indexcount>
+      <embedinfo type="1" />
+      <datatype>0</datatype>
+      <unittype>0</unittype>
+      <DALINK index="0" />
+      <MATH equation="X-40">
+        <VAR id="X" />
+      </MATH>
+    </XDFAXIS>
+    <XDFAXIS id="z">
+      <EMBEDDEDDATA mmedtypeflags="0x03" mmedaddress="0x5BF4E" mmedelementsizebits="16" mmedrowcount="16" mmedcolcount="8" mmedmajorstridebits="0" mmedminorstridebits="0" />
+      <units>deg</units>
+      <decimalpl>1</decimalpl>
+      <outputtype>1</outputtype>
+      <MATH equation="X/10">
+        <VAR id="X" />
+      </MATH>
+    </XDFAXIS>
+  </XDFTABLE>
+  <XDFTABLE uniqueid="0x1023" flags="0x0">
+    <title>Correction avance temperature d'eau [0x5C04E]</title>
+    <description>Fct 0x4D2E4.</description>
+    <CATEGORYMEM index="0" category="3" />
+    <XDFAXIS id="x" uniqueid="0x0">
+      <EMBEDDEDDATA mmedtypeflags="0x02" mmedaddress="0x5617C" mmedelementsizebits="16" mmedmajorstridebits="0" mmedminorstridebits="0" />
+      <units>% charge</units>
+      <indexcount>8</indexcount>
+      <embedinfo type="1" />
+      <datatype>0</datatype>
+      <unittype>0</unittype>
+      <DALINK index="0" />
+      <MATH equation="X/100">
+        <VAR id="X" />
+      </MATH>
+    </XDFAXIS>
+    <XDFAXIS id="y" uniqueid="0x0">
+      <EMBEDDEDDATA mmedtypeflags="0x02" mmedaddress="0x5630C" mmedelementsizebits="16" mmedmajorstridebits="0" mmedminorstridebits="0" />
+      <units>degC eau</units>
+      <indexcount>9</indexcount>
+      <embedinfo type="1" />
+      <datatype>0</datatype>
+      <unittype>0</unittype>
+      <DALINK index="0" />
+      <MATH equation="X-40">
+        <VAR id="X" />
+      </MATH>
+    </XDFAXIS>
+    <XDFAXIS id="z">
+      <EMBEDDEDDATA mmedtypeflags="0x03" mmedaddress="0x5C04E" mmedelementsizebits="16" mmedrowcount="9" mmedcolcount="8" mmedmajorstridebits="0" mmedminorstridebits="0" />
+      <units>deg</units>
+      <decimalpl>1</decimalpl>
+      <outputtype>1</outputtype>
+      <MATH equation="X/10">
+        <VAR id="X" />
+      </MATH>
+    </XDFAXIS>
+  </XDFTABLE>
+  <XDFTABLE uniqueid="0x1024" flags="0x0">
+    <title>Avance au lancement [0x5BA54]</title>
+    <description>Fct 0x4C744.</description>
+    <CATEGORYMEM index="0" category="3" />
+    <XDFAXIS id="x" uniqueid="0x0">
+      <EMBEDDEDDATA mmedtypeflags="0x02" mmedaddress="0x5630C" mmedelementsizebits="16" mmedmajorstridebits="0" mmedminorstridebits="0" />
+      <units>degC eau</units>
+      <indexcount>9</indexcount>
+      <embedinfo type="1" />
+      <datatype>0</datatype>
+      <unittype>0</unittype>
+      <DALINK index="0" />
+      <MATH equation="X-40">
+        <VAR id="X" />
+      </MATH>
+    </XDFAXIS>
+    <XDFAXIS id="y" uniqueid="0x0">
+      <EMBEDDEDDATA mmedelementsizebits="16" mmedmajorstridebits="-32" mmedminorstridebits="0" />
+      <units></units>
+      <indexcount>1</indexcount>
+      <datatype>0</datatype>
+      <unittype>0</unittype>
+      <DALINK index="0" />
+      <LABEL index="0" value="0" />
+      <MATH equation="X">
+        <VAR id="X" />
+      </MATH>
+    </XDFAXIS>
+    <XDFAXIS id="z">
+      <EMBEDDEDDATA mmedtypeflags="0x03" mmedaddress="0x5BA54" mmedelementsizebits="16" mmedrowcount="1" mmedcolcount="9" mmedmajorstridebits="0" mmedminorstridebits="0" />
+      <units>deg</units>
+      <decimalpl>1</decimalpl>
+      <outputtype>1</outputtype>
+      <MATH equation="X/10">
+        <VAR id="X" />
+      </MATH>
+    </XDFAXIS>
+  </XDFTABLE>
+  <XDFTABLE uniqueid="0x1025" flags="0x0">
+    <title>Avance de sortie de lancement [0x5C0E4]</title>
+    <description>Fct 0x4D3BA.</description>
+    <CATEGORYMEM index="0" category="3" />
+    <XDFAXIS id="x" uniqueid="0x0">
+      <EMBEDDEDDATA mmedtypeflags="0x02" mmedaddress="0x5619C" mmedelementsizebits="16" mmedmajorstridebits="0" mmedminorstridebits="0" />
+      <units>tr/min</units>
+      <indexcount>24</indexcount>
+      <embedinfo type="1" />
+      <datatype>0</datatype>
+      <unittype>0</unittype>
+      <DALINK index="0" />
+      <MATH equation="X">
+        <VAR id="X" />
+      </MATH>
+    </XDFAXIS>
+    <XDFAXIS id="y" uniqueid="0x0">
+      <EMBEDDEDDATA mmedelementsizebits="16" mmedmajorstridebits="-32" mmedminorstridebits="0" />
+      <units></units>
+      <indexcount>1</indexcount>
+      <datatype>0</datatype>
+      <unittype>0</unittype>
+      <DALINK index="0" />
+      <LABEL index="0" value="0" />
+      <MATH equation="X">
+        <VAR id="X" />
+      </MATH>
+    </XDFAXIS>
+    <XDFAXIS id="z">
+      <EMBEDDEDDATA mmedtypeflags="0x03" mmedaddress="0x5C0E4" mmedelementsizebits="16" mmedrowcount="1" mmedcolcount="24" mmedmajorstridebits="0" mmedminorstridebits="0" />
+      <units>deg</units>
+      <decimalpl>1</decimalpl>
+      <outputtype>1</outputtype>
+      <MATH equation="X/10">
+        <VAR id="X" />
+      </MATH>
+    </XDFAXIS>
+  </XDFTABLE>
+  <XDFTABLE uniqueid="0x1026" flags="0x0">
+    <title>Cliquetis : pas de retard [0x5C152]</title>
+    <description>Fct 0x4DA3A.</description>
+    <CATEGORYMEM index="0" category="3" />
+    <XDFAXIS id="x" uniqueid="0x0">
+      <EMBEDDEDDATA mmedtypeflags="0x02" mmedaddress="0x5622C" mmedelementsizebits="16" mmedmajorstridebits="0" mmedminorstridebits="0" />
+      <units>tr/min</units>
+      <indexcount>16</indexcount>
+      <embedinfo type="1" />
+      <datatype>0</datatype>
+      <unittype>0</unittype>
+      <DALINK index="0" />
+      <MATH equation="X">
+        <VAR id="X" />
+      </MATH>
+    </XDFAXIS>
+    <XDFAXIS id="y" uniqueid="0x0">
+      <EMBEDDEDDATA mmedelementsizebits="16" mmedmajorstridebits="-32" mmedminorstridebits="0" />
+      <units></units>
+      <indexcount>1</indexcount>
+      <datatype>0</datatype>
+      <unittype>0</unittype>
+      <DALINK index="0" />
+      <LABEL index="0" value="0" />
+      <MATH equation="X">
+        <VAR id="X" />
+      </MATH>
+    </XDFAXIS>
+    <XDFAXIS id="z">
+      <EMBEDDEDDATA mmedtypeflags="0x03" mmedaddress="0x5C152" mmedelementsizebits="16" mmedrowcount="1" mmedcolcount="16" mmedmajorstridebits="0" mmedminorstridebits="0" />
+      <units>deg</units>
+      <decimalpl>1</decimalpl>
+      <outputtype>1</outputtype>
+      <MATH equation="X/10">
+        <VAR id="X" />
+      </MATH>
+    </XDFAXIS>
+  </XDFTABLE>
+  <XDFTABLE uniqueid="0x1027" flags="0x0">
+    <title>Cliquetis : duree de maintien [0x5C172]</title>
+    <description>Fct 0x4DA3A.</description>
+    <CATEGORYMEM index="0" category="3" />
+    <XDFAXIS id="x" uniqueid="0x0">
+      <EMBEDDEDDATA mmedtypeflags="0x02" mmedaddress="0x5622C" mmedelementsizebits="16" mmedmajorstridebits="0" mmedminorstridebits="0" />
+      <units>tr/min</units>
+      <indexcount>16</indexcount>
+      <embedinfo type="1" />
+      <datatype>0</datatype>
+      <unittype>0</unittype>
+      <DALINK index="0" />
+      <MATH equation="X">
+        <VAR id="X" />
+      </MATH>
+    </XDFAXIS>
+    <XDFAXIS id="y" uniqueid="0x0">
+      <EMBEDDEDDATA mmedelementsizebits="16" mmedmajorstridebits="-32" mmedminorstridebits="0" />
+      <units></units>
+      <indexcount>1</indexcount>
+      <datatype>0</datatype>
+      <unittype>0</unittype>
+      <DALINK index="0" />
+      <LABEL index="0" value="0" />
+      <MATH equation="X">
+        <VAR id="X" />
+      </MATH>
+    </XDFAXIS>
+    <XDFAXIS id="z">
+      <EMBEDDEDDATA mmedtypeflags="0x02" mmedaddress="0x5C172" mmedelementsizebits="16" mmedrowcount="1" mmedcolcount="16" mmedmajorstridebits="0" mmedminorstridebits="0" />
+      <units>brut</units>
+      <decimalpl>0</decimalpl>
+      <outputtype>1</outputtype>
+      <MATH equation="X">
+        <VAR id="X" />
+      </MATH>
+    </XDFAXIS>
+  </XDFTABLE>
+  <XDFTABLE uniqueid="0x1028" flags="0x0">
+    <title>Cliquetis : retard de securite [0x5C12C]</title>
+    <description>Fct 0x4D566.</description>
+    <CATEGORYMEM index="0" category="3" />
+    <XDFAXIS id="x" uniqueid="0x0">
+      <EMBEDDEDDATA mmedtypeflags="0x02" mmedaddress="0x5622C" mmedelementsizebits="16" mmedmajorstridebits="0" mmedminorstridebits="0" />
+      <units>tr/min</units>
+      <indexcount>16</indexcount>
+      <embedinfo type="1" />
+      <datatype>0</datatype>
+      <unittype>0</unittype>
+      <DALINK index="0" />
+      <MATH equation="X">
+        <VAR id="X" />
+      </MATH>
+    </XDFAXIS>
+    <XDFAXIS id="y" uniqueid="0x0">
+      <EMBEDDEDDATA mmedelementsizebits="16" mmedmajorstridebits="-32" mmedminorstridebits="0" />
+      <units></units>
+      <indexcount>1</indexcount>
+      <datatype>0</datatype>
+      <unittype>0</unittype>
+      <DALINK index="0" />
+      <LABEL index="0" value="0" />
+      <MATH equation="X">
+        <VAR id="X" />
+      </MATH>
+    </XDFAXIS>
+    <XDFAXIS id="z">
+      <EMBEDDEDDATA mmedtypeflags="0x03" mmedaddress="0x5C12C" mmedelementsizebits="16" mmedrowcount="1" mmedcolcount="16" mmedmajorstridebits="0" mmedminorstridebits="0" />
+      <units>deg</units>
+      <decimalpl>1</decimalpl>
+      <outputtype>1</outputtype>
+      <MATH equation="X/10">
+        <VAR id="X" />
+      </MATH>
+    </XDFAXIS>
+  </XDFTABLE>
+  <XDFTABLE uniqueid="0x1029" flags="0x0">
+    <title>Avance optimale (MBT) du modele de couple [0x55EB8]</title>
+    <description>Fct 0x10D8C. Ne regle pas l'avance : sert a calculer le rendement de l'allumage.</description>
+    <CATEGORYMEM index="0" category="3" />
+    <XDFAXIS id="x" uniqueid="0x0">
+      <EMBEDDEDDATA mmedtypeflags="0x02" mmedaddress="0x56164" mmedelementsizebits="16" mmedmajorstridebits="0" mmedminorstridebits="0" />
+      <units>% charge</units>
+      <indexcount>12</indexcount>
+      <embedinfo type="1" />
+      <datatype>0</datatype>
+      <unittype>0</unittype>
+      <DALINK index="0" />
+      <MATH equation="X/100">
+        <VAR id="X" />
+      </MATH>
+    </XDFAXIS>
+    <XDFAXIS id="y" uniqueid="0x0">
+      <EMBEDDEDDATA mmedtypeflags="0x02" mmedaddress="0x5619C" mmedelementsizebits="16" mmedmajorstridebits="0" mmedminorstridebits="0" />
+      <units>tr/min</units>
+      <indexcount>24</indexcount>
+      <embedinfo type="1" />
+      <datatype>0</datatype>
+      <unittype>0</unittype>
+      <DALINK index="0" />
+      <MATH equation="X">
+        <VAR id="X" />
+      </MATH>
+    </XDFAXIS>
+    <XDFAXIS id="z">
+      <EMBEDDEDDATA mmedtypeflags="0x03" mmedaddress="0x55EB8" mmedelementsizebits="16" mmedrowcount="24" mmedcolcount="12" mmedmajorstridebits="0" mmedminorstridebits="0" />
+      <units>deg</units>
+      <decimalpl>1</decimalpl>
+      <outputtype>1</outputtype>
+      <MATH equation="X/10">
+        <VAR id="X" />
+      </MATH>
+    </XDFAXIS>
+  </XDFTABLE>
+  <XDFTABLE uniqueid="0x102A" flags="0x0">
     <title>Modele papillon (pression vs angle) - 52 mm [0x57786]</title>
     <description>Lectures 0x22EC6 / 0x23A20. Recale Golf 52 mm (036 133 062 M). Cause du P1553 si faux.</description>
     <CATEGORYMEM index="0" category="4" />
@@ -401,9 +1617,9 @@
       </MATH>
     </XDFAXIS>
   </XDFTABLE>
-  <XDFTABLE uniqueid="0x100B" flags="0x0">
-    <title>Couple 0x55688 [0x55688]</title>
-    <description>Lectures 0xDACE / 0xDBCE.</description>
+  <XDFTABLE uniqueid="0x102B" flags="0x0">
+    <title>Conversion couple demande -&gt; charge [0x55688]</title>
+    <description>Lectures 0xDACE / 0xDBCE. Colonne 0 = air minimum moteur entraine (avec 0x557E8).</description>
     <CATEGORYMEM index="0" category="5" />
     <XDFAXIS id="x" uniqueid="0x0">
       <EMBEDDEDDATA mmedtypeflags="0x02" mmedaddress="0x563DE" mmedelementsizebits="16" mmedmajorstridebits="0" mmedminorstridebits="0" />
@@ -431,53 +1647,15 @@
     </XDFAXIS>
     <XDFAXIS id="z">
       <EMBEDDEDDATA mmedtypeflags="0x02" mmedaddress="0x55688" mmedelementsizebits="16" mmedrowcount="16" mmedcolcount="11" mmedmajorstridebits="0" mmedminorstridebits="0" />
-      <units>brut</units>
-      <decimalpl>0</decimalpl>
-      <outputtype>1</outputtype>
-      <MATH equation="X">
-        <VAR id="X" />
-      </MATH>
-    </XDFAXIS>
-  </XDFTABLE>
-  <XDFTABLE uniqueid="0x100C" flags="0x0">
-    <title>Couple 0x55EB8 [0x55EB8]</title>
-    <description>Fct 0x10D8C.</description>
-    <CATEGORYMEM index="0" category="5" />
-    <XDFAXIS id="x" uniqueid="0x0">
-      <EMBEDDEDDATA mmedtypeflags="0x02" mmedaddress="0x56164" mmedelementsizebits="16" mmedmajorstridebits="0" mmedminorstridebits="0" />
       <units>% charge</units>
-      <indexcount>12</indexcount>
-      <embedinfo type="1" />
-      <datatype>0</datatype>
-      <unittype>0</unittype>
-      <DALINK index="0" />
+      <decimalpl>2</decimalpl>
+      <outputtype>1</outputtype>
       <MATH equation="X/100">
         <VAR id="X" />
       </MATH>
     </XDFAXIS>
-    <XDFAXIS id="y" uniqueid="0x0">
-      <EMBEDDEDDATA mmedtypeflags="0x02" mmedaddress="0x5619C" mmedelementsizebits="16" mmedmajorstridebits="0" mmedminorstridebits="0" />
-      <units>tr/min</units>
-      <indexcount>24</indexcount>
-      <embedinfo type="1" />
-      <datatype>0</datatype>
-      <unittype>0</unittype>
-      <DALINK index="0" />
-      <MATH equation="X">
-        <VAR id="X" />
-      </MATH>
-    </XDFAXIS>
-    <XDFAXIS id="z">
-      <EMBEDDEDDATA mmedtypeflags="0x02" mmedaddress="0x55EB8" mmedelementsizebits="16" mmedrowcount="24" mmedcolcount="12" mmedmajorstridebits="0" mmedminorstridebits="0" />
-      <units>brut</units>
-      <decimalpl>0</decimalpl>
-      <outputtype>1</outputtype>
-      <MATH equation="X">
-        <VAR id="X" />
-      </MATH>
-    </XDFAXIS>
   </XDFTABLE>
-  <XDFTABLE uniqueid="0x100D" flags="0x0">
+  <XDFTABLE uniqueid="0x102C" flags="0x0">
     <title>Consigne ralenti (table 1) [0x56C58]</title>
     <description>Froid releve +150 en v7, chaud 850.</description>
     <CATEGORYMEM index="0" category="6" />
@@ -515,7 +1693,7 @@
       </MATH>
     </XDFAXIS>
   </XDFTABLE>
-  <XDFTABLE uniqueid="0x100E" flags="0x0">
+  <XDFTABLE uniqueid="0x102D" flags="0x0">
     <title>Consigne ralenti (table 2) [0x56C38]</title>
     <description></description>
     <CATEGORYMEM index="0" category="6" />
@@ -553,7 +1731,7 @@
       </MATH>
     </XDFAXIS>
   </XDFTABLE>
-  <XDFTABLE uniqueid="0x100F" flags="0x0">
+  <XDFTABLE uniqueid="0x102E" flags="0x0">
     <title>Amorcage demarrage (Craaaaanking) [0x59708]</title>
     <description>Masse d'amorcage par impulsion.</description>
     <CATEGORYMEM index="0" category="6" />
@@ -591,7 +1769,7 @@
       </MATH>
     </XDFAXIS>
   </XDFTABLE>
-  <XDFTABLE uniqueid="0x1010" flags="0x0">
+  <XDFTABLE uniqueid="0x102F" flags="0x0">
     <title>Budget total d'amorcage [0x5B8B6]</title>
     <description></description>
     <CATEGORYMEM index="0" category="6" />
@@ -629,7 +1807,7 @@
       </MATH>
     </XDFAXIS>
   </XDFTABLE>
-  <XDFTABLE uniqueid="0x1011" flags="0x0">
+  <XDFTABLE uniqueid="0x1030" flags="0x0">
     <title>Limiteur par le couple (debut, relache, bas rampe, regul on/off, maxi) [0x57CAC]</title>
     <description>Fct 0x26930. Les 4 groupes de regime maxi doivent rester coherents.</description>
     <CATEGORYMEM index="0" category="7" />
@@ -672,7 +1850,7 @@
       </MATH>
     </XDFAXIS>
   </XDFTABLE>
-  <XDFTABLE uniqueid="0x1012" flags="0x0">
+  <XDFTABLE uniqueid="0x1031" flags="0x0">
     <title>Coupure injection surregime (haut / bas) [0x5653A]</title>
     <description>Fct 0x14F58.</description>
     <CATEGORYMEM index="0" category="7" />
@@ -711,7 +1889,7 @@
       </MATH>
     </XDFAXIS>
   </XDFTABLE>
-  <XDFTABLE uniqueid="0x1013" flags="0x0">
+  <XDFTABLE uniqueid="0x1032" flags="0x0">
     <title>Couple de base regulateur (par rapport x vitesse) [0x5C7DE]</title>
     <description>Lignes = rapport 0 a 5. Couple pour rouler a plat.</description>
     <CATEGORYMEM index="0" category="10" />
@@ -754,7 +1932,7 @@
       </MATH>
     </XDFAXIS>
   </XDFTABLE>
-  <XDFTABLE uniqueid="0x1014" flags="0x0">
+  <XDFTABLE uniqueid="0x1033" flags="0x0">
     <title>Gain P regulateur (par rapport 0-5) [0x5C780]</title>
     <description></description>
     <CATEGORYMEM index="0" category="10" />
@@ -797,7 +1975,7 @@
       </MATH>
     </XDFAXIS>
   </XDFTABLE>
-  <XDFTABLE uniqueid="0x1015" flags="0x0">
+  <XDFTABLE uniqueid="0x1034" flags="0x0">
     <title>Gain I regulateur (par rapport 0-5) [0x5C78C]</title>
     <description></description>
     <CATEGORYMEM index="0" category="10" />
@@ -840,7 +2018,7 @@
       </MATH>
     </XDFAXIS>
   </XDFTABLE>
-  <XDFTABLE uniqueid="0x1016" flags="0x0">
+  <XDFTABLE uniqueid="0x1035" flags="0x0">
     <title>Centre de chaque rapport (vitesse/regime) [0x5A046]</title>
     <description>Reconnaissance du rapport engage (fct 0x3A100).</description>
     <CATEGORYMEM index="0" category="11" />
@@ -882,7 +2060,7 @@
       </MATH>
     </XDFAXIS>
   </XDFTABLE>
-  <XDFTABLE uniqueid="0x1017" flags="0x0">
+  <XDFTABLE uniqueid="0x1036" flags="0x0">
     <title>Seuils entre rapports [0x5A038]</title>
     <description></description>
     <CATEGORYMEM index="0" category="11" />
@@ -925,21 +2103,77 @@
       </MATH>
     </XDFAXIS>
   </XDFTABLE>
-  <XDFCONSTANT uniqueid="0x1018" flags="0x0">
-    <title>Facteur injection demarrage (K) [0x57E72]</title>
-    <description>Multiplie le temps d'injection (fct 0x2AAF0).</description>
+  <XDFCONSTANT uniqueid="0x1037" flags="0x0">
+    <title>Facteur injection redemarrage a chaud [0x57E72]</title>
+    <description>Multiplie le temps d'injection (fct 0x2AAF0) peu apres un redemarrage moteur chaud (eau &gt;= 70 degC).</description>
     <CATEGORYMEM index="0" category="1" />
     <EMBEDDEDDATA mmedtypeflags="0x02" mmedaddress="0x57E72" mmedelementsizebits="16" mmedmajorstridebits="0" mmedminorstridebits="0" />
-    <units>brut</units>
-    <decimalpl>0</decimalpl>
+    <units>facteur</units>
+    <decimalpl>3</decimalpl>
     <datatype>0</datatype>
     <unittype>0</unittype>
     <DALINK index="0" />
-      <MATH equation="X">
+      <MATH equation="X/1024">
         <VAR id="X" />
       </MATH>
   </XDFCONSTANT>
-  <XDFCONSTANT uniqueid="0x1019" flags="0x0">
+  <XDFCONSTANT uniqueid="0x1038" flags="0x0">
+    <title>Rapport stoechiometrique x10 [0x59768]</title>
+    <description>Fct 0x376B8 : masse carburant = masse d'air / (lambda x AFR). 14,5 dans toutes les versions (E85 dans le gain injecteur).</description>
+    <CATEGORYMEM index="0" category="1" />
+    <EMBEDDEDDATA mmedtypeflags="0x02" mmedaddress="0x59768" mmedelementsizebits="16" mmedmajorstridebits="0" mmedminorstridebits="0" />
+    <units>AFR</units>
+    <decimalpl>1</decimalpl>
+    <datatype>0</datatype>
+    <unittype>0</unittype>
+    <DALINK index="0" />
+      <MATH equation="X/10">
+        <VAR id="X" />
+      </MATH>
+  </XDFCONSTANT>
+  <XDFCONSTANT uniqueid="0x1039" flags="0x0">
+    <title>Cliquetis : retard maximal par cylindre [0x5C192]</title>
+    <description>Fct 0x4DA3A.</description>
+    <CATEGORYMEM index="0" category="3" />
+    <EMBEDDEDDATA mmedtypeflags="0x03" mmedaddress="0x5C192" mmedelementsizebits="16" mmedmajorstridebits="0" mmedminorstridebits="0" />
+    <units>deg</units>
+    <decimalpl>1</decimalpl>
+    <datatype>0</datatype>
+    <unittype>0</unittype>
+    <DALINK index="0" />
+      <MATH equation="X/10">
+        <VAR id="X" />
+      </MATH>
+  </XDFCONSTANT>
+  <XDFCONSTANT uniqueid="0x103A" flags="0x0">
+    <title>Avance 1re / embrayage : ecart maxi a la base [0x5C712]</title>
+    <description>Fct 0x4CE3A.</description>
+    <CATEGORYMEM index="0" category="3" />
+    <EMBEDDEDDATA mmedtypeflags="0x03" mmedaddress="0x5C712" mmedelementsizebits="16" mmedmajorstridebits="0" mmedminorstridebits="0" />
+    <units>deg</units>
+    <decimalpl>1</decimalpl>
+    <datatype>0</datatype>
+    <unittype>0</unittype>
+    <DALINK index="0" />
+      <MATH equation="X/10">
+        <VAR id="X" />
+      </MATH>
+  </XDFCONSTANT>
+  <XDFCONSTANT uniqueid="0x103B" flags="0x0">
+    <title>Cliquetis : multiplicateur du pas apres acceleration [0x5C462]</title>
+    <description>Fct 0x4DA3A.</description>
+    <CATEGORYMEM index="0" category="3" />
+    <EMBEDDEDDATA mmedtypeflags="0x02" mmedaddress="0x5C462" mmedelementsizebits="16" mmedmajorstridebits="0" mmedminorstridebits="0" />
+    <units>facteur</units>
+    <decimalpl>2</decimalpl>
+    <datatype>0</datatype>
+    <unittype>0</unittype>
+    <DALINK index="0" />
+      <MATH equation="X/1000">
+        <VAR id="X" />
+      </MATH>
+  </XDFCONSTANT>
+  <XDFCONSTANT uniqueid="0x103C" flags="0x0">
     <title>Masse volumique carburant (conso ordinateur de bord) [0x5BA22]</title>
     <description>Origine 740 (essence). E85 : 785 / 1,45 = 541. Affinage : valeur x conso affichee / conso reelle.</description>
     <CATEGORYMEM index="0" category="1" />
@@ -953,7 +2187,7 @@
         <VAR id="X" />
       </MATH>
   </XDFCONSTANT>
-  <XDFCONSTANT uniqueid="0x101A" flags="0x0">
+  <XDFCONSTANT uniqueid="0x103D" flags="0x0">
     <title>Pression de reference modele papillon [0x57AC6]</title>
     <description></description>
     <CATEGORYMEM index="0" category="4" />
@@ -967,7 +2201,7 @@
         <VAR id="X" />
       </MATH>
   </XDFCONSTANT>
-  <XDFCONSTANT uniqueid="0x101B" flags="0x0">
+  <XDFCONSTANT uniqueid="0x103E" flags="0x0">
     <title>Reprise injection apres coupure de regime [0x5B8EA]</title>
     <description>Fct 0x46782 : au seuil de coupure, 100 % des injections coupees jusqu'a repasser sous cette valeur. Origine 5610 : mettre = coupure.</description>
     <CATEGORYMEM index="0" category="7" />
@@ -981,7 +2215,7 @@
         <VAR id="X" />
       </MATH>
   </XDFCONSTANT>
-  <XDFCONSTANT uniqueid="0x101C" flags="0x0">
+  <XDFCONSTANT uniqueid="0x103F" flags="0x0">
     <title>Seuil defaut surregime [0x56542]</title>
     <description>Chemin de defaut 44.</description>
     <CATEGORYMEM index="0" category="7" />
@@ -995,7 +2229,7 @@
         <VAR id="X" />
       </MATH>
   </XDFCONSTANT>
-  <XDFCONSTANT uniqueid="0x101D" flags="0x0">
+  <XDFCONSTANT uniqueid="0x1040" flags="0x0">
     <title>Regime maxi regulation de cliquetis [0x5BA32]</title>
     <description></description>
     <CATEGORYMEM index="0" category="7" />
@@ -1009,7 +2243,7 @@
         <VAR id="X" />
       </MATH>
   </XDFCONSTANT>
-  <XDFCONSTANT uniqueid="0x101E" flags="0x0">
+  <XDFCONSTANT uniqueid="0x1041" flags="0x0">
     <title>STFT butee basse (40000 = neutre) [0x596BC]</title>
     <description>Brut 30000 = +25 %.</description>
     <CATEGORYMEM index="0" category="8" />
@@ -1023,7 +2257,7 @@
         <VAR id="X" />
       </MATH>
   </XDFCONSTANT>
-  <XDFCONSTANT uniqueid="0x101F" flags="0x0">
+  <XDFCONSTANT uniqueid="0x1042" flags="0x0">
     <title>STFT butee haute [0x596BE]</title>
     <description>Brut 50000 = -25 %.</description>
     <CATEGORYMEM index="0" category="8" />
@@ -1037,7 +2271,7 @@
         <VAR id="X" />
       </MATH>
   </XDFCONSTANT>
-  <XDFCONSTANT uniqueid="0x1020" flags="0x0">
+  <XDFCONSTANT uniqueid="0x1043" flags="0x0">
     <title>LTFT butee basse [0x5CEA0]</title>
     <description></description>
     <CATEGORYMEM index="0" category="8" />
@@ -1051,7 +2285,7 @@
         <VAR id="X" />
       </MATH>
   </XDFCONSTANT>
-  <XDFCONSTANT uniqueid="0x1021" flags="0x0">
+  <XDFCONSTANT uniqueid="0x1044" flags="0x0">
     <title>LTFT butee haute [0x5CEA2]</title>
     <description></description>
     <CATEGORYMEM index="0" category="8" />
@@ -1065,7 +2299,7 @@
         <VAR id="X" />
       </MATH>
   </XDFCONSTANT>
-  <XDFCONSTANT uniqueid="0x1022" flags="0x0">
+  <XDFCONSTANT uniqueid="0x1045" flags="0x0">
     <title>LTFT plafond apres demarrage [0x5CEB8]</title>
     <description></description>
     <CATEGORYMEM index="0" category="8" />
@@ -1079,7 +2313,7 @@
         <VAR id="X" />
       </MATH>
   </XDFCONSTANT>
-  <XDFCONSTANT uniqueid="0x1023" flags="0x0">
+  <XDFCONSTANT uniqueid="0x1046" flags="0x0">
     <title>Sortie coupure : pedale &gt; [0x5AA76]</title>
     <description></description>
     <CATEGORYMEM index="0" category="9" />
@@ -1093,7 +2327,7 @@
         <VAR id="X" />
       </MATH>
   </XDFCONSTANT>
-  <XDFCONSTANT uniqueid="0x1024" flags="0x0">
+  <XDFCONSTANT uniqueid="0x1047" flags="0x0">
     <title>Entree coupure : seuil $1272 [0x5AA7A]</title>
     <description></description>
     <CATEGORYMEM index="0" category="9" />
@@ -1107,7 +2341,7 @@
         <VAR id="X" />
       </MATH>
   </XDFCONSTANT>
-  <XDFCONSTANT uniqueid="0x1025" flags="0x0">
+  <XDFCONSTANT uniqueid="0x1048" flags="0x0">
     <title>Vitesse mini regulateur [0x59254]</title>
     <description></description>
     <CATEGORYMEM index="0" category="10" />
@@ -1121,7 +2355,7 @@
         <VAR id="X" />
       </MATH>
   </XDFCONSTANT>
-  <XDFCONSTANT uniqueid="0x1026" flags="0x0">
+  <XDFCONSTANT uniqueid="0x1049" flags="0x0">
     <title>Vitesse maxi regulateur [0x59256]</title>
     <description></description>
     <CATEGORYMEM index="0" category="10" />
@@ -1135,7 +2369,7 @@
         <VAR id="X" />
       </MATH>
   </XDFCONSTANT>
-  <XDFCONSTANT uniqueid="0x1027" flags="0x0">
+  <XDFCONSTANT uniqueid="0x104A" flags="0x0">
     <title>Desactivation si vitesse &gt; consigne + [0x57E64]</title>
     <description></description>
     <CATEGORYMEM index="0" category="10" />
@@ -1149,7 +2383,7 @@
         <VAR id="X" />
       </MATH>
   </XDFCONSTANT>
-  <XDFCONSTANT uniqueid="0x1028" flags="0x0">
+  <XDFCONSTANT uniqueid="0x104B" flags="0x0">
     <title>Couple maxi regulateur [0x5C772]</title>
     <description></description>
     <CATEGORYMEM index="0" category="10" />
@@ -1163,7 +2397,7 @@
         <VAR id="X" />
       </MATH>
   </XDFCONSTANT>
-  <XDFCONSTANT uniqueid="0x1029" flags="0x0">
+  <XDFCONSTANT uniqueid="0x104C" flags="0x0">
     <title>Couple mini regulateur [0x5C774]</title>
     <description></description>
     <CATEGORYMEM index="0" category="10" />
@@ -1177,7 +2411,7 @@
         <VAR id="X" />
       </MATH>
   </XDFCONSTANT>
-  <XDFCONSTANT uniqueid="0x102A" flags="0x0">
+  <XDFCONSTANT uniqueid="0x104D" flags="0x0">
     <title>Butee P haute [0x5C776]</title>
     <description>Origine 480.</description>
     <CATEGORYMEM index="0" category="10" />
@@ -1191,7 +2425,7 @@
         <VAR id="X" />
       </MATH>
   </XDFCONSTANT>
-  <XDFCONSTANT uniqueid="0x102B" flags="0x0">
+  <XDFCONSTANT uniqueid="0x104E" flags="0x0">
     <title>Butee P basse [0x5C778]</title>
     <description>Origine -160, v9 -480.</description>
     <CATEGORYMEM index="0" category="10" />
@@ -1205,7 +2439,7 @@
         <VAR id="X" />
       </MATH>
   </XDFCONSTANT>
-  <XDFCONSTANT uniqueid="0x102C" flags="0x0">
+  <XDFCONSTANT uniqueid="0x104F" flags="0x0">
     <title>Butee I haute [0x5C77A]</title>
     <description>Origine 5120.</description>
     <CATEGORYMEM index="0" category="10" />
@@ -1219,7 +2453,7 @@
         <VAR id="X" />
       </MATH>
   </XDFCONSTANT>
-  <XDFCONSTANT uniqueid="0x102D" flags="0x0">
+  <XDFCONSTANT uniqueid="0x1050" flags="0x0">
     <title>Butee I basse [0x5C77C]</title>
     <description>Origine -1280, v9 -8000.</description>
     <CATEGORYMEM index="0" category="10" />
@@ -1233,7 +2467,7 @@
         <VAR id="X" />
       </MATH>
   </XDFCONSTANT>
-  <XDFCONSTANT uniqueid="0x102E" flags="0x0">
+  <XDFCONSTANT uniqueid="0x1051" flags="0x0">
     <title>Montee maxi du couple par cycle [0x5C77E]</title>
     <description></description>
     <CATEGORYMEM index="0" category="10" />
@@ -1247,7 +2481,7 @@
         <VAR id="X" />
       </MATH>
   </XDFCONSTANT>
-  <XDFCONSTANT uniqueid="0x102F" flags="0x0">
+  <XDFCONSTANT uniqueid="0x1052" flags="0x0">
     <title>Nombre de rapports [0x5A036]</title>
     <description></description>
     <CATEGORYMEM index="0" category="11" />
@@ -1261,7 +2495,7 @@
         <VAR id="X" />
       </MATH>
   </XDFCONSTANT>
-  <XDFCONSTANT uniqueid="0x1030" flags="0x0">
+  <XDFCONSTANT uniqueid="0x1053" flags="0x0">
     <title>Tolerance reconnaissance rapport [0x5A054]</title>
     <description></description>
     <CATEGORYMEM index="0" category="11" />
@@ -1275,7 +2509,7 @@
         <VAR id="X" />
       </MATH>
   </XDFCONSTANT>
-  <XDFCONSTANT uniqueid="0x1031" flags="0x0">
+  <XDFCONSTANT uniqueid="0x1054" flags="0x0">
     <title>Coupure regulateur : ecart vitesse pour couper [0x7F238]</title>
     <description>Patch 0x7F1C0. 2047.9 (brut 32767) = coupure desactivee.</description>
     <CATEGORYMEM index="0" category="12" />
@@ -1289,7 +2523,7 @@
         <VAR id="X" />
       </MATH>
   </XDFCONSTANT>
-  <XDFCONSTANT uniqueid="0x1032" flags="0x0">
+  <XDFCONSTANT uniqueid="0x1055" flags="0x0">
     <title>Coupure regulateur : couple maxi pour couper [0x7F23A]</title>
     <description></description>
     <CATEGORYMEM index="0" category="12" />
@@ -1303,7 +2537,7 @@
         <VAR id="X" />
       </MATH>
   </XDFCONSTANT>
-  <XDFCONSTANT uniqueid="0x1033" flags="0x0">
+  <XDFCONSTANT uniqueid="0x1056" flags="0x0">
     <title>Coupure regulateur : ecart vitesse pour maintenir [0x7F23C]</title>
     <description></description>
     <CATEGORYMEM index="0" category="12" />
@@ -1317,7 +2551,7 @@
         <VAR id="X" />
       </MATH>
   </XDFCONSTANT>
-  <XDFCONSTANT uniqueid="0x1034" flags="0x0">
+  <XDFCONSTANT uniqueid="0x1057" flags="0x0">
     <title>Coupure regulateur : couple maxi pour maintenir [0x7F23E]</title>
     <description></description>
     <CATEGORYMEM index="0" category="12" />

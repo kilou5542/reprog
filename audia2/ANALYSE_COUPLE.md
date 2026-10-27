@@ -71,4 +71,5 @@ Le ralenti (réserve ≈ 150–200 → demande ≈ 7–15 % du max) se situe plu
 
 ## Reste à identifier
 - La conversion charge de consigne `$DF8` → angle papillon (inverse du modèle 0x57786).
-- Le retard d'allumage utilisé pour réduire le couple en décélération sans coupure.
+- ~~Le retard d'allumage en décélération~~ : trouvé (fct 0x4E19C, voir INJECTION_ALLUMAGE.md § 2.6). Il ne sert
+  qu'à l'anti-à-coups ; il n'y a pas de retard pour freiner en roue libre.

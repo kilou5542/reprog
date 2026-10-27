@@ -94,7 +94,7 @@ Après-démarrage (fct 0x32F36, valeurs selon la temp. d'eau 0x562EC) : **0x58FA
 
 | Table | Taille / axes | Rôle |
 |---|---|---|
-| **0x59768** | constante = **145** | **rapport stœchiométrique × 10 (14,5)**. Inchangé dans tes ROM : l'E85 est porté par le gain injecteur. |
+| **0x59768** | constante = **145** | **rapport stœchiométrique × 10 (14,5)**. Inchangé dans tes ROM : l'E85 est porté par le gain injecteur (voir § 1.9). Lue aussi par le modèle de température d'échappement (fct 0xEF08). |
 | **0x59742** | 9, temp. d'eau | enrichissement de démarrage (multiplie λ ; 287/1024 à −30 °C, 1024 = neutre). Actif après un démarrage à froid. |
 | **0x59754** | 9, temp. d'eau | vitesse de disparition de l'enrichissement 0x59742 |
 | **0x59708** | 16, temp. d'eau | amorçage au lancement « Craaaaanking » (XDF ✓) |
@@ -142,6 +142,24 @@ Dépression aux injecteurs = pression atmosphérique − pression collecteur (te
   `$15C4`, tables **0x57D2C** (temp. d'eau), **0x57CE4** et **0x57D04** (régime).
 - Coupure en décélération : voir ANALYSE_COUPLE.md et v5g.
 - Coupure de cylindres ASR : motifs 0x540F4 (code).
+
+## 1.9 E85 : stœchiométrie 0x59768 ou gain injecteur 0x569A0 ?
+
+Pour le carburant calculé à partir de l'air (cas normal), les deux donnent le même temps d'injection :
+temps = air / (λ × AFR) × gain. Mais le calculateur ne fait pas que ce calcul :
+
+| Point | Gain injecteur × 1,45 (ta ROM) | AFR 0x59768 = 98 |
+|---|---|---|
+| Carburant calculé depuis l'air | ✓ | ✓ identique |
+| Masses fixées par table (lancement 0x59708, budget 0x5B8B6, impulsions de démarrage) : elles passent par le gain (fct 0x2AAF0) | mises à l'échelle automatiquement | **pas** mises à l'échelle : à multiplier à la main |
+| Modèle de température d'échappement (fct 0xEF08 : débit carburant = débit d'air / (λ mesuré × 0x59768), axe 0x55DD4, cartes 0x55C98 / 0x55D88) | inchangé : l'énergie par kg d'air est presque la même à l'E85 qu'à l'essence, le modèle reste juste | débit ×1,48 : le modèle se décale |
+| Grandeurs qui lisent la masse de carburant `$202A` en valeur absolue : purge canister (fct 0x39444), seuils de la régulation λ (0x35CAC, 0x35D10, 0x353AA / 0x594E6), seuil du film de paroi 0x58538 | restent calibrés « essence » | décalés de ×1,48 |
+| Consommation affichée (cumul de la masse `$62E`) | à corriger par 0x5BA22 (fait : 541) | 0x5BA22 = 785 directement |
+| LTFT / STFT (multiplicatifs), temps morts, impulsion mini (en temps, après le gain) | identique | identique |
+
+Conclusion : le gain injecteur est la méthode la plus cohérente ici. Pour le calculateur, tout reste
+en « équivalent essence » ; seule la conversion finale en temps change. Avec l'AFR, il faudrait en plus
+recaler le lancement, le modèle d'échappement et quelques seuils.
 
 ---
 
@@ -241,8 +259,10 @@ Moteur tournant :
    se déclenche plus aux mêmes moments. **À remettre d'origine** lors d'une prochaine version (pas
    maintenant).
 2. **E85** : la stœchiométrie 0x59768 est restée 14,5 ; le ×1,45 est dans le gain injecteur 0x569A0.
-   C'est équivalent. Les tables qui comptent vraiment pour l'E85 en plus : film de paroi
-   (0x580EA…0x583EA) et enrichissement de démarrage (0x59742, 0x58FA2…).
+   Ce n'est **pas strictement équivalent** à mettre 0x59768 à ~98 (voir § 1.9) ; garder 14,5 et
+   corriger le gain est le choix le plus cohérent sur ce calculateur. Les tables qui comptent
+   vraiment pour l'E85 en plus : film de paroi (0x580EA…0x583EA) et enrichissement de démarrage
+   (0x59742, 0x58FA2…).
 3. **Frein moteur** : le calculateur ne retarde pas l'allumage pour freiner en roue libre (0x4E19C
    n'agit que pour l'anti-à-coups). La piste reste l'air minimum 0x55688 / 0x557E8.
 

@@ -259,7 +259,11 @@ Chaîne de fabrication reproductible à l'octet près : voir README.
 - Relevé OBD 27/10, ralenti clim en route (49 kPa) : STFT −3,9 %, **LTFT +20,3 %** (le calculateur retire ~17 %).
 - **Log OBD du 27/10 (v5i)**, échelles corrigées : base trop riche (f 0,96 à 250 mbar → 0,85 à 550 mbar ; 0,80–0,85
   à 3300–4200 tr/min mi-charge) ; pleine charge 0,89–0,93 jusqu'à 4500, **1,04–1,07 au-dessus de 5500 (trop pauvre)**.
-  Profil VE + richesse générale ; pas un profil de temps mort. Détail : MESURES.md, script
+  Profil VE + richesse générale ; pas un profil de temps mort.
+- **Décision de l'utilisateur (27/10) : corriger À LA FOIS le gain injecteur et la VE.** Proposition : gain 0x569A0
+  × ~0,93 (médiane f = 0,92 sur 397 points, quartiles 0,85–0,96), puis VE case par case × f / 0,93 (dont hausse en
+  pleine charge > 5500 tr/min, déjà pauvre), et compenser le lancement (0x59708, 0x5B8B6 passent par le gain)
+  de +7,5 % pour ne pas dégrader le démarrage à froid. Attente d'un 2e log (paliers stables mi / forte charge). Détail : MESURES.md, script
   `scripts/analyse_log_ve.py`, logs dans `logs/`.
 
 ### Adaptation de richesse (LTFT)

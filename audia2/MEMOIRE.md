@@ -217,6 +217,12 @@ Chaîne de fabrication reproductible à l'octet près : voir README.
   0x55688 = conversion couple → charge ; 0x57E72 = facteur redémarrage à chaud.
 
 ### Adaptation de richesse (LTFT)
+- **Groupe VCDS 032** (fct 0x99E0 / 0x9A44) : ce ne sont pas un additif et un multiplicatif « Bosch » mais deux
+  **instantanés de la LTFT** (`$28`, valeur de la carte au point courant) pris une fois par cycle (fct 0x3F0E8) :
+  champ 1 « add. » = `$BFE` au **ralenti** ; champ 2 « mult. » = `$BFC` en **charge partielle** (zones 2,7…6 des
+  axes). Affichage = brut/400 − 100 (pas de 1 %) ; **0,0 % = pas encore relevé** (brut < 30000).
+- **Signe** : le carburant est multiplié par 40000 / LTFT → **VCDS +8 % = le calculateur RETIRE ~7 %** (base
+  trop riche). La STFT VCDS (« Lambda Controller ») a le signe normal (+ = ajoute).
 - Carte **8 × 8** en EEPROM 0xE43D8 (fct 0x532A8) : régime 0x5CE64 [680…5600] × MAP 0x5CE74 [150…1000 mbar],
   interpolée ; butées 0x5CEA0 / 0x5CEA2 = 26000 / 54000 (±35 %) ; STFT ±25 % (0x596BC / 0x596BE).
 - Relevé du 27/10 (v5g, outil à préciser) : LTFT **+15 % ralenti, +40 % roulage faible charge, −10 % pleine

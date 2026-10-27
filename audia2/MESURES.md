@@ -62,6 +62,10 @@ Relevé VCDS (groupes 001–003), ralenti chaud, clim éteinte :
 | Angle papillon (capteur 1, groupe 003) | 2,0° |
 | Avance | 2,0° |
 
+Après quelques minutes : STFT +3,0 %, pression 288,8 mbar, papillon 2,0°, avance 2,0° (stable).
+Groupe 032 : « add. » **+8,0 %** (= LTFT au ralenti : le calculateur retire ~7 % d'essence), « mult. » 0,0 % (pas
+encore relevé dans ce cycle : il faut rouler en charge partielle).
+
 ## Protocole de validation de la v5i (ex-v5h) (apprentissage du modèle papillon débloqué)
 
 ### Préparation

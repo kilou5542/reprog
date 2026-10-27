@@ -142,6 +142,10 @@ Chaîne de fabrication reproductible à l'octet près : voir README.
   carte SD FAT32 ≤ 32 Go, fichiers /sd/logs). ⚠️ La doc AutoPID ne cite que des protocoles CAN alors que le
   moteur de l'A2 répond en ligne K : à tester (protocole Automatic ou commande d'init ATSP4 / ATSP5).
   Une appli téléphone connectée met AutoPID en pause. Préférer logger λ plutôt que l'AFR (E85).
+- WiCAN de l'utilisateur (capture du 27/10) : interface ancienne (page « CAN » : bitrate 500K, mode Normal,
+  TCP 35000, protocole elm327, MQTT désactivé, adresse 192.168.0.10, mot de passe AP par défaut) → pas de
+  menus Automate / Logger visibles : firmware à mettre à jour pour le log autonome. Diagnostic de l'A2 par ligne
+  K : les réglages CAN n'interviennent pas.
 
 ### Pression atmosphérique et observateur de pression (vu en analysant l'échec de la v5h)
 - `$16D4` pression atmosphérique : au démarrage (fct 0x22C68) = EEPROM `$E4044` si somme `$E4048` bonne et

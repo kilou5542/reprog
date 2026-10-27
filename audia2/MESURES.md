@@ -48,6 +48,20 @@ L'écart modèle / mesure doit tomber vers 0, l'angle au ralenti peut légèreme
 |---|---|---|---|
 | Ralenti, clim éteinte (juste après démarrage, apprentissage en cours) | 850 tr/min | — | **29 kPa** |
 
+Relevé VCDS (groupes 001–003), ralenti chaud, clim éteinte :
+
+| Grandeur | Valeur |
+|---|---|
+| Régime | 850 tr/min (847 en groupe 002) |
+| Température d'eau | 97,0 °C |
+| Régulation lambda (STFT) | +4,0 % |
+| Conditions réglage de base | 10111111 (un critère non rempli) |
+| Charge | 16,3 % |
+| Temps d'injection | 3,0 ms |
+| Pression collecteur | **288,8 mbar** (v5g : 320) |
+| Angle papillon (capteur 1, groupe 003) | 2,0° |
+| Avance | 2,0° |
+
 ## Protocole de validation de la v5i (ex-v5h) (apprentissage du modèle papillon débloqué)
 
 ### Préparation

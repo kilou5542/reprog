@@ -118,6 +118,11 @@ Chaîne de fabrication reproductible à l'octet près : voir README.
 - Idée pour réutiliser AN8 avec un signal analogique (ex. capteur éthanol converti en tension) sans
   réveiller l'EGR : vider la plage valide (0x5A846 > 0x5A848) pour que le statut reste en défaut, et lire
   `$DB8` par patch. Non fait, à proposer seulement quand l'utilisateur le demandera.
+- Capteur éthanol GM / Continental 13577429 (SE1004S) : pas de fiche officielle publique trouvée.
+  Données concordantes (revendeurs, GM) : 12 V, 3 broches, sortie à collecteur ouvert (rappel au 5 V côté
+  calculateur), fréquence 50 Hz = 0 % → 150 Hz = 100 % (linéaire), 180–190 Hz = carburant contaminé ;
+  largeur d'impulsion 1 ms = −40 °C → 5 ms = 125 °C. À vérifier à l'oscilloscope. Il faut un convertisseur
+  fréquence → tension pour l'entrée AN8.
 - Groupes de mesure : table en 0x54360… (mot = n° de groupe, puis 4 pointeurs vers les fonctions de champ).
 
 ## 7. Fonctions repérées

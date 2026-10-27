@@ -111,6 +111,13 @@ Chaîne de fabrication reproductible à l'octet près : voir README.
   sur un schéma (non connu ici).
 - **Lisible dans VCDS : groupe de mesure 074, champ 3** (tension du capteur EGR en volts,
   `$DB8` × 5000 / 1024 mV, fct 0xB7FC). Champs 1 et 2 : `$590` / `$58E` en % ; champ 4 : état `$587` (texte).
+- Microcontrôleur de type 68376 *(probable)* : QADC en 0xFFF200 (CCW 0xFFF230, résultat 0xFFF2B0),
+  CTM4 en 0xFFF400 *(probable)*, TPU en 0xFFFE00 (16 canaux ; CFSR 0xFFFE0C…12 : fonctions B, C, D, E, F
+  changées en marche ; microcode Marelli, non décodé). Pas d'entrée PWM / fréquence libre identifiable
+  depuis la ROM : dépend du câblage du boîtier.
+- Idée pour réutiliser AN8 avec un signal analogique (ex. capteur éthanol converti en tension) sans
+  réveiller l'EGR : vider la plage valide (0x5A846 > 0x5A848) pour que le statut reste en défaut, et lire
+  `$DB8` par patch. Non fait, à proposer seulement quand l'utilisateur le demandera.
 - Groupes de mesure : table en 0x54360… (mot = n° de groupe, puis 4 pointeurs vers les fonctions de champ).
 
 ## 7. Fonctions repérées

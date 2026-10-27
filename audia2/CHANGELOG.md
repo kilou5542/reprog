@@ -11,7 +11,7 @@ Chaque version a un checksum correct.
 
 La base CA est gardée : avec la DR, le régulateur de vitesse et la climatisation ne fonctionnent pas.
 
-### v5j — `roms/a2_ori_e85_v5j.bin` (à essayer : v5i + gain injecteur × 0,93 + tendance VE)
+### v5j — `roms/a2_ori_e85_v5j.bin` (⛔ NE PAS FLASHER : basée sur la v5i, qui ne redémarre plus)
 - Log OBD du 27/10 : base trop riche presque partout (médiane du facteur appliqué 0,92). Première étape demandée :
   **gain injecteur 0x569A0 × 0,93** (605…558 → 563…519).
 - Compensations pour ne rien changer d'autre : lancement 0x59708 et budget 0x5B8B6 ÷ 0,93 (masses avant le gain),
@@ -23,7 +23,13 @@ La base CA est gardée : avec la DR, le régulateur de vitesse et la climatisati
   5600–6000 tr/min **+6 à +10 %** (zone pauvre) ; ailleurs ±2 %. Script : `ve_tendance.py`.
 - Attendu : trims (LTFT / STFT) plus proches de 0 ; démarrage inchangé. Étape suivante : affiner la VE (2e log).
 
-### v5i — `roms/a2_ori_e85_v5i.bin` (✅ démarre — cause des non-démarrages confirmée ; apprentissage en cours)
+### v5i — `roms/a2_ori_e85_v5i.bin` (❌ a démarré le 27/10, puis **ne redémarre plus** — même schéma que la v7b)
+- 27/10, plus tard : la voiture ne redémarre plus. Aucun code de l'application ne lit la somme 0x7FF74 (seulement
+  le diagnostic) : la corrélation « somme fausse = pas de démarrage » est à relativiser (vérif. possible par l'outil
+  de flash / le chargeur). Piste principale : une **valeur apprise et stockée en EEPROM à l'arrêt**, comme la v7b :
+  pression atmosphérique `$E4044` (débloquée par le `nop` 0x23A62, bornes 550…1050 mbar, rechargée au démarrage
+  par la fct 0x22C68 dans TOUTES les versions) ou correction papillon `$E4574`. À vérifier : groupe VCDS 006
+  champ 4 (correction d'altitude) contact mis, et codes défaut.
 - **27/10/2026** : la voiture démarre. Adaptation papillon VCDS 060 « ADP O.K. ». Ralenti 850 tr/min,
   29 kPa clim éteinte (v5g : 870 tr/min, 32 kPa).
 - Identique à la v5h (2 `nop` en 0x226C2 et 0x23A62 : apprentissages du modèle papillon `$1740` et de la pression

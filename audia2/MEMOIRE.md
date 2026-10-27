@@ -39,8 +39,8 @@ Documents détaillés : [README](README.md) (format, checksum, reproduction des 
 
 | ROM | État |
 |---|---|
-| **v5f** | ✅ ROM de travail, validée sur route (rupteur franc à 7000) |
-| **v5g** | essayée sur route (27/10) : **frein moteur amélioré** ; coupure plus rapide au lâcher de pédale (filtre `$126C` repris de la CA-DR) |
+| v5f | ✅ validée (rupteur franc à 7000), remplacée par la v5g |
+| **v5g** | ✅ **ROM de travail** (validée 27/10) : coupure au lâcher bien plus rapide, frein moteur amélioré, pas de voyant ; à-coups en 1re pas encore testés |
 | **v5h** | à essayer : v5g + apprentissage du modèle papillon débloqué (2 `nop`, EGR intacte) ; protocole dans MESURES.md |
 | v6, v7, v10, v11 | ❌ ne démarrent pas (forcer `$DBA` = 0 recopie le capteur EGR débranché) |
 | v7b, v10b | ❌ démarrent une fois puis plus (apprentissage EGR réveillé, valeurs en EEPROM) |
@@ -185,7 +185,8 @@ Chaîne de fabrication reproductible à l'octet près : voir README.
 
 ## 9. À faire / en attente
 
-- v5g essayée (frein moteur amélioré) ; attendre le retour sur la v5h (protocole MESURES.md).
+- v5g validée (ROM de travail). Attendre : test des à-coups en 1re en descente sur v5g, puis retour sur la v5h
+  (protocole MESURES.md). Toute nouvelle ROM part de la v5g (ou de la v5h si elle est validée).
 - Ensuite seulement, si demandé : air minimum en roue libre (0x55688 col. 0 / 0x557E8), ligne 0 de
   0x5A904, remise d'origine de 0x5C220, conso E85 sur la ROM retenue, suivi du P1553.
 - Reste inconnu : conversion `$DF8` → angle papillon (inverse du modèle 0x57786) ; rôle exact de

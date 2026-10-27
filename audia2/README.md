@@ -1,12 +1,12 @@
 # Audi A2 1.4 BBY — Marelli 4MV 036906034CA (E85)
 
-ROM de travail : **`roms/a2_ori_e85_v5f.bin`** (v5 + rupteur franc à 7000, validée sur route) — base de toutes les prochaines modifications ; essayée : **`roms/a2_ori_e85_v5g.bin`** (v5f + coupure plus rapide au lâcher de pédale : frein moteur amélioré) ; à essayer ensuite : **`roms/a2_ori_e85_v5h.bin`** (v5g + apprentissage du modèle papillon débloqué, EGR intacte). L'historique des versions est dans [CHANGELOG.md](CHANGELOG.md).
+ROM de travail : **`roms/a2_ori_e85_v5g.bin`** (v5f + coupure plus rapide au lâcher de pédale, validée sur route le 27/10/2026) — base de toutes les prochaines modifications ; à essayer : **`roms/a2_ori_e85_v5h.bin`** (v5g + apprentissage du modèle papillon débloqué, EGR intacte). La v5f (rupteur franc à 7000) reste la version précédente validée. L'historique des versions est dans [CHANGELOG.md](CHANGELOG.md).
 
 ## Contenu
 | Dossier | Contenu |
 |---|---|
 | `MEMOIRE.md` | **à lire en premier** : tout ce qui a été appris (pour une nouvelle session) |
-| `roms/` | ROM de travail (v5f) ; v7c / v10c en alternative non retenue |
+| `roms/` | ROM de travail (v5g), v5f, v5h ; v7c / v10c en alternative non retenue |
 | `roms/historique/` | toutes les versions intermédiaires |
 | `roms/originales/` | origine CA (`audiori`), ta ROM modifiée « audiEGRoff… », Golf 4 DR, BackupAudiSemiOK, projet WinOLS |
 | `tunerpro/` | définition TunerPro `A2_4MV_036906034CA_E85.xdf` |
@@ -58,8 +58,8 @@ python3 reporter_tables.py "$H" v1.bin v2.bin
 python3 etapes_v3_a_v7.py v2.bin "$H" v7c.bin          # v3 à v5 inclus, puis v6/v7 (alternative)
 python3 regulateur_coupure.py v5.bin v5r.bin             # v5 : sortie de la v5 de l'historique
 python3 conso_e85.py v5r.bin v5_regul_conso.bin
-python3 rupteur.py v5.bin v5f.bin 7000                 # ROM de travail
-python3 coupure_rapide.py ../roms/originales/A2_CA-DR_7000_afterlogNG4_cranking_idle_VEbyT3_maxairfiling_2torqueori15.bin v5f.bin v5g.bin
+python3 rupteur.py v5.bin v5f.bin 7000
+python3 coupure_rapide.py ../roms/originales/A2_CA-DR_7000_afterlogNG4_cranking_idle_VEbyT3_maxairfiling_2torqueori15.bin v5f.bin v5g.bin   # ROM de travail
 python3 adaptation_papillon.py v5g.bin v5h.bin
 python3 generer_xdf.py A2.xdf
 ```

@@ -20,8 +20,9 @@ La base CA est gardée : avec la DR, le régulateur de vitesse et la climatisati
   endormie comme en v5 (contrairement à v6/v7/v7b). Script : `adaptation_papillon.py`.
 - À valider : plusieurs redémarrages après avoir roulé, absence de voyant, P1553.
 
-### v5g — `roms/a2_ori_e85_v5g.bin` (essayée sur route : frein moteur amélioré)
-- **Essai sur route (retour du 27/10/2026)** : le frein moteur est amélioré par rapport à la v5f.
+### v5g — `roms/a2_ori_e85_v5g.bin` (✅ ROM DE TRAVAIL — validée sur route le 27/10/2026)
+- **Essai sur route (27/10/2026)** : coupure au lâcher de pédale bien plus rapide (« très bien comme
+  comportement »), frein moteur amélioré, aucun voyant. À-coups en 1re en descente : pas encore testés.
 - Constaté : délai avant coupure d'injection au lâcher de pédale (nul si embrayage enfoncé), plus court sur la CA-DR.
 - La coupure (test 0x3D15A) attend, sauf embrayage, |couple `$E6606` − couple lissé `$126C`| < 0x5AA7A. Le lissage
   (fct 0x31FBE, filtre 1er ordre) prend son coefficient dans 0x5857C / 0x585FA (9 × 7 : régime axe 0x56402 ×
@@ -29,7 +30,7 @@ La base CA est gardée : avec la DR, le régulateur de vitesse et la climatisati
 - v5g = v5f + tables 0x5857C / 0x585FA de la CA-DR **ré-interpolées sur les axes CA** + 0x5AA7A = 50.
   Script : `coupure_rapide.py source_CADR.bin cible.bin sortie.bin`.
 
-### v5f — `roms/a2_ori_e85_v5f.bin` (✅ ROM DE TRAVAIL — rupteur franc à 7000 confirmé sur route)
+### v5f — `roms/a2_ori_e85_v5f.bin` (✅ validée — rupteur franc à 7000 confirmé sur route ; remplacée par la v5g)
 - **Cause** : deuxième rupteur dans l'injection (fct 0x46782). Quand le régime filtré `$1DA8` atteint le seuil de
   coupure, 100 % des injections sont coupées (`$62C` = 100, drapeau `$62B`) et l'injection ne reprend que sous
   **0x5B8EA**. CA d'origine : 5610 (DR : 6400). Avec la coupure à 7000, l'injection restait coupée de 7000 à 5610 :

@@ -212,6 +212,14 @@ Chaîne de fabrication reproductible à l'octet près : voir README.
   d'accélération du cliquetis (modifiée à tort dans la v5f, à remettre d'origine plus tard) ;
   0x55688 = conversion couple → charge ; 0x57E72 = facteur redémarrage à chaud.
 
+### Adaptation de richesse (LTFT)
+- Carte **8 × 8** en EEPROM 0xE43D8 (fct 0x532A8) : régime 0x5CE64 [680…5600] × MAP 0x5CE74 [150…1000 mbar],
+  interpolée ; butées 0x5CEA0 / 0x5CEA2 = 26000 / 54000 (±35 %) ; STFT ±25 % (0x596BC / 0x596BE).
+- Relevé du 27/10 (v5g, outil à préciser) : LTFT **+15 % ralenti, +40 % roulage faible charge, −10 % pleine
+  charge haut régime**. Hypothèse principale si « + » = ajout d'essence : gain injecteur 0x569A0 trop fort
+  (~10 %) **et** temps mort 0x57E74 trop court pour les 0 280 158 170 (erreur forte aux impulsions courtes).
+  Autre piste : MAP de l'observateur (modèle papillon non appris) à faible charge. Vérifier le signe selon l'outil.
+
 ## 9. À faire / en attente
 
 - v5g validée (ROM de travail). Attendre : test des à-coups en 1re en descente sur v5g, puis retour sur la v5h

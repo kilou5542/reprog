@@ -250,7 +250,12 @@ Chaîne de fabrication reproductible à l'octet près : voir README.
   publié ; VCDS n'a pas de LTFT en direct, le groupe 032 ne donne que des instantanés), température d'eau et
   d'air, temps d'injection. Vérifier le signe de l'outil (VCDS : LTFT inversé, STFT normal).
 - OBD générique (VCDS mode OBD-II, 27/10) : protocole **ISO 9141**, ~0,8 échantillon/s ; PID confirmés : 0C régime,
-  04 charge (6,7 % au ralenti), **34 λ large bande** (1,005 ; 0,023 mA), 0B MAP (49 kPa clim en route). À vérifier : 06 / 07.
+  04 charge (6,7 % au ralenti), **34 λ large bande** (1,005 ; 0,023 mA), 0B MAP (49 kPa clim en route), **06 STFT, 07 LTFT**.
+- **Signes (vérifiés dans le code, fct 0xC31A et enregistrement 0x66D0)** : brut 40000 = neutre, carburant × 40000 / brut.
+  OBD 06 / 07 et VCDS 032 = (brut − 40000) / 400 → **positif = le calculateur RETIRE de l'essence** (inverse du
+  standard OBD). VCDS groupe 001 « Lambda Controller » = (40000 − brut) / 400 → positif = il AJOUTE.
+  Facteur total appliqué = 1 / ((1 + STFT_obd) × (1 + LTFT_obd)) ; correction VE = VE / ((1 + STFT_obd)(1 + LTFT_obd)).
+- Relevé OBD 27/10, ralenti clim en route (49 kPa) : STFT −3,9 %, **LTFT +20,3 %** (le calculateur retire ~17 %).
 
 ### Adaptation de richesse (LTFT)
 - **Groupe VCDS 032** (fct 0x99E0 / 0x9A44) : ce ne sont pas un additif et un multiplicatif « Bosch » mais deux

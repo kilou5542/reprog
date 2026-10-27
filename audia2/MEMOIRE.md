@@ -42,7 +42,7 @@ Documents détaillés : [README](README.md) (format, checksum, reproduction des 
 | v5f | ✅ validée (rupteur franc à 7000), remplacée par la v5g |
 | **v5g** | ✅ **ROM de travail** (validée 27/10) : coupure au lâcher bien plus rapide, frein moteur amélioré, pas de voyant ; à-coups en 1re pas encore testés |
 | v5h | ❌ **ne démarre pas** (2 essais, 27/10) : v5g + 2 `nop` ; cause très probable : somme du code 0x7FF74 non recalculée |
-| **v5i** | à essayer : v5h + somme du code recalculée (test de la cause + apprentissage papillon) |
+| **v5i** | flashée le 27/10, le calculateur répond ; adaptation papillon VCDS 060 « ADP O.K. » (capteur 1 2,7 %, capteur 2 97,4 %, compteur 12) ; démarrage : à confirmer |
 | v6, v7, v10, v11 | ❌ ne démarrent pas (forcer `$DBA` = 0 recopie le capteur EGR débranché) |
 | v7b, v10b | ❌ démarrent une fois puis plus (apprentissage EGR réveillé, valeurs en EEPROM) |
 | v5b–v5e | ❌ rupteur oscillant (cause : reprise d'injection 0x5B8EA restée à 5610) |

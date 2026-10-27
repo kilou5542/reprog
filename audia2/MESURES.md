@@ -147,3 +147,22 @@ maintenant l'en-tête, `scripts/log_obd.py`). 349 points stables, surtout 800–
 
 - Médiane 0,93 (1er log : 0,92 ; les deux : **0,928**) → le gain × 0,93 est confirmé.
 - Toujours pas de paliers en mi / forte charge au-dessus de 3000 tr/min : la tendance VE y repose sur le 1er log.
+
+## 27/10/2026 (18 h 55) — 3e log OBD, **v5k** (~20 min)
+
+Fichier : `logs/2026-10-27c_v5k_obd_stft_ltft_map_rpm.csv`. 372 points stables. **Médiane du facteur : 0,989**
+(v5g : 0,928) → la richesse générale est corrigée.
+
+| MAP | f moyen (v5k) | f v5g (logs 1 + 2) |
+|---|---|---|
+| 200–299 mbar | 1,02 | 0,96–0,99 |
+| 300–399 mbar | 0,95 | 0,92–0,94 |
+| 400–499 mbar | 0,96 | 0,89–0,92 |
+| 500–599 mbar | 1,03 | 0,85–0,94 |
+| 600–999 mbar | ~0,97 | ~0,90 |
+
+- Reste à corriger : **2400 tr/min, 200–550 mbar : 1,04–1,14 (un peu pauvre)** ; **3300–3800 tr/min, 250–350 mbar :
+  0,78–0,90 (encore riche)** ; pleine charge 2000–4500 : 0,94–1,02 (bon) ; **5500–6000 tr/min : 1,06–1,09 (encore
+  pauvre, le calculateur ajoute)**.
+- Le LTFT garde en mémoire des valeurs apprises avec la v5g et se réapprend progressivement : refaire un log après
+  quelques trajets avant la 2e passe de VE.

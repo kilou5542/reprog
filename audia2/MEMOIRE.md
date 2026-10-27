@@ -41,7 +41,7 @@ Documents détaillés : [README](README.md) (format, checksum, reproduction des 
 |---|---|
 | v5f | ✅ validée (rupteur franc à 7000), remplacée par la v5g |
 | **v5g** | ✅ **ROM de travail** (validée 27/10) : coupure au lâcher bien plus rapide, frein moteur amélioré, pas de voyant ; à-coups en 1re pas encore testés |
-| **v5k** | à essayer (27/10) : **v5g** + gain × 0,93 (lancement / conso compensés) + tendance VE (2 logs) + modèle papillon 0x57986 (+1,6 % aux petits angles) + tolérances P0106 +50 mbar ; **tables seules** |
+| **v5k** | essayée (27/10, log 18 h 55) : **médiane 0,989** (v5g 0,928), démarre ; reste 2400 tr/min faible charge un peu pauvre, 3300–3800 tr/min faible charge riche, pleine charge > 5500 pauvre (+6–9 %) ; LTFT en cours de réapprentissage. Contenu : **v5g** + gain × 0,93 (lancement / conso compensés) + tendance VE (2 logs) + modèle papillon 0x57986 (+1,6 % aux petits angles) + tolérances P0106 +50 mbar ; **tables seules** |
 | v5j ⛔ | NE PAS FLASHER (basée sur v5i) : v5i + gain injecteur × 0,93 (lancement 0x59708 / 0x5B8B6 et conso 0x5BA22 ÷ 0,93) + **tendance VE** à 70 % du log (`ve_tendance.py`, ±12 % maxi) |
 | v5h | ❌ **ne démarre pas** (2 essais, 27/10) : v5g + 2 `nop` ; cause très probable : somme du code 0x7FF74 non recalculée |
 | v5i | ❌ a démarré le 27/10 puis **ne redémarre plus** (comme la v7b) ; piste : valeur apprise en EEPROM (pression atmosphérique `$E4044`). Retour v5g |

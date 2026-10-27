@@ -11,6 +11,16 @@ Chaque version a un checksum correct.
 
 La base CA est gardée : avec la DR, le régulateur de vitesse et la climatisation ne fonctionnent pas.
 
+### v5k — `roms/a2_ori_e85_v5k.bin` (à essayer : v5g + gain × 0,93 + tendance VE + modèle papillon / P0106, tables seules)
+- **Aucun octet modifié dans le programme** (tout ≥ 0x569A0) : compatible avec l'outil de flash (calibration seule).
+- Gain injecteur 0x569A0 × 0,93 (médiane des deux logs : 0,928), lancement 0x59708 / 0x5B8B6 et consommation
+  0x5BA22 ÷ 0,93 (`gain_injecteur.py`).
+- Tendance VE 0x57084 sur les deux logs du 27/10, 70 %, ±12 % (`ve_tendance.py`) : 3300–4200 tr/min mi-charge
+  −5…−8 %, 2100–3000 faible charge +2…+6 %, pleine charge 5600–6000 +7…+10 %.
+- P0106 / P1553 (`modele_p0106.py`) : correction d'angle du modèle 0x57986 +1,6 % (0 et 1,2 %), +0,2 % (4,2 %) sur
+  toutes les lignes (remplace l'apprentissage `$1740` impossible à débloquer) ; tolérances 0x5AF48 +50 mbar
+  (250 / 250 / 190).
+
 ### v5j — `roms/a2_ori_e85_v5j.bin` (⛔ NE PAS FLASHER : basée sur la v5i, qui ne redémarre plus)
 - Log OBD du 27/10 : base trop riche presque partout (médiane du facteur appliqué 0,92). Première étape demandée :
   **gain injecteur 0x569A0 × 0,93** (605…558 → 563…519).

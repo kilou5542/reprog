@@ -5,6 +5,7 @@ ROM de travail : **`roms/a2_ori_e85_v5f.bin`** (v5 + rupteur franc à 7000, vali
 ## Contenu
 | Dossier | Contenu |
 |---|---|
+| `MEMOIRE.md` | **à lire en premier** : tout ce qui a été appris (pour une nouvelle session) |
 | `roms/` | ROM de travail (v5f) ; v7c / v10c en alternative non retenue |
 | `roms/historique/` | toutes les versions intermédiaires |
 | `roms/originales/` | origine CA (`audiori`), ta ROM modifiée « audiEGRoff… », Golf 4 DR, BackupAudiSemiOK, projet WinOLS |

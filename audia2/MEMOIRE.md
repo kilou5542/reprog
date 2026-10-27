@@ -251,14 +251,15 @@ Chaîne de fabrication reproductible à l'octet près : voir README.
   d'air, temps d'injection. Vérifier le signe de l'outil (VCDS : LTFT inversé, STFT normal).
 - OBD générique (VCDS mode OBD-II, 27/10) : protocole **ISO 9141**, ~0,8 échantillon/s ; PID confirmés : 0C régime,
   04 charge (6,7 % au ralenti), **34 λ large bande** (1,005 ; 0,023 mA), 0B MAP (49 kPa clim en route), **06 STFT, 07 LTFT**.
-- **Signes (vérifiés dans le code, fct 0xC31A et enregistrement 0x66D0)** : brut 40000 = neutre, carburant × 40000 / brut.
-  OBD 06 / 07 et VCDS 032 = (brut − 40000) / 400 → **positif = le calculateur RETIRE de l'essence** (inverse du
-  standard OBD). VCDS groupe 001 « Lambda Controller » = (40000 − brut) / 400 → positif = il AJOUTE.
-  Facteur total appliqué = 1 / ((1 + STFT_obd) × (1 + LTFT_obd)) ; correction VE = VE / ((1 + STFT_obd)(1 + LTFT_obd)).
+- **Signes et échelles (vérifiés dans le code)** : brut 40000 = neutre, carburant × 40000 / brut ; positif = le
+  calculateur RETIRE de l'essence pour OBD 06 / 07 et VCDS 032. **Échelles : VCDS 001 / 032 = (brut − 40000)/400
+  (vraie valeur) ; OBD 06 STFT = (brut − 40000)/100 (×4, fct 0x4B642, ≥ 50000 → 99 %) ; OBD 07 LTFT =
+  (brut − 40000)/200 (×2, fct 0x4B694).** VCDS 001 « Lambda Controller » = (40000 − brut)/400 (signe inverse).
+  Facteur réel = 40000/(40000 + 100·STFT_obd) × 40000/(40000 + 200·LTFT_obd).
 - Relevé OBD 27/10, ralenti clim en route (49 kPa) : STFT −3,9 %, **LTFT +20,3 %** (le calculateur retire ~17 %).
-- **Log OBD du 27/10 (v5i)** : base trop riche partout (f 0,93 à 250 mbar → 0,73 à 550 mbar, 0,62–0,72 vers
-  3000–3800 tr/min mi-charge) ; pas un profil de temps mort → VE (+ richesse générale). À pleine charge l'OBD
-  donne LTFT 0 et STFT jusqu'à +55 % (au-delà de la butée ±25 : à comprendre). Détail : MESURES.md, script
+- **Log OBD du 27/10 (v5i)**, échelles corrigées : base trop riche (f 0,96 à 250 mbar → 0,85 à 550 mbar ; 0,80–0,85
+  à 3300–4200 tr/min mi-charge) ; pleine charge 0,89–0,93 jusqu'à 4500, **1,04–1,07 au-dessus de 5500 (trop pauvre)**.
+  Profil VE + richesse générale ; pas un profil de temps mort. Détail : MESURES.md, script
   `scripts/analyse_log_ve.py`, logs dans `logs/`.
 
 ### Adaptation de richesse (LTFT)

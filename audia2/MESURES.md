@@ -112,25 +112,22 @@ Ralenti clim en route : **stable et régulier** (retour de l'utilisateur).
 La v5i est validée si, après plusieurs jours, tous les critères sont remplis : elle remplace alors la v5g
 comme ROM de travail.
 
-## 27/10/2026 — log OBD v5i (régime, STFT, LTFT, MAP), 8 min de route
+## 27/10/2026 — log OBD v5i (régime, STFT, LTFT, MAP), 8 min de route (VCDS, fonction OBD-II)
 
 Fichier : `logs/2026-10-27_v5i_obd_rpm_stft_ltft_map.csv`, analyse : `scripts/analyse_log_ve.py`.
-942 lignes (~2 par seconde), 288 points stables exploitables. Facteur appliqué f (1,00 = rien ; < 1 = le
-calculateur retire de l'essence, base trop riche) :
+⚠️ Échelles OBD de ce calculateur (fct 0x4B642 / 0x4B694) : **STFT OBD = 4 × la vraie correction**, **LTFT OBD =
+2 × la vraie correction**, positif = le calculateur retire de l'essence. (Première analyse erronée corrigée.)
+Facteur réellement appliqué f (1,00 = rien ; < 1 = base trop riche), 397 points stables :
 
-| MAP | f moyen | STFT | LTFT | Points |
-|---|---|---|---|---|
-| 200–299 mbar | 0,93 | +0,4 | +8,6 | 100 |
-| 300–399 mbar | 0,91 | −0,1 | +12,9 | 59 |
-| 400–499 mbar | 0,81 | −0,6 | +26,2 | 52 |
-| 500–599 mbar | **0,73** | +5,6 | **+31,9** (proche de la butée +35) | 50 |
-| 600–699 mbar | 0,78 | +16,1 | +11,4 | 14 |
-| 700–999 mbar | ~0,85 | +9…18 | +4 | 13 |
+| MAP | f moyen | Points |
+|---|---|---|
+| 200–299 mbar | 0,96 | 118 |
+| 300–399 mbar | 0,92 | 81 |
+| 400–499 mbar | 0,89 | 96 |
+| 500–599 mbar | **0,85** | 61 |
+| 600–999 mbar | ~0,90 | 41 |
 
-- **Base trop riche partout**, surtout entre 400 et 600 mbar et vers 3000–3800 tr/min (f 0,62…0,72).
-- L'erreur n'augmente pas aux faibles charges : **ce n'est pas le profil d'une erreur de temps mort** (hypothèse
-  abandonnée). C'est un profil de **remplissage (VE)**, plus une part de richesse générale (gain / taux d'éthanol).
-- **Pleine charge (MAP ≈ 1000)** : l'OBD affiche LTFT = 0 (pas publiée / pas appliquée) et une STFT de +13 à
-  **+55 %**, au-delà de sa butée normale (±25 %) : variable à éclaircir, montées en régime non stabilisées.
-  Profil marqué : maxi vers 3800–4300 tr/min, retour vers 0 à 5300 tr/min.
-- Il manque des paliers stables en moyenne / forte charge pour conclure case par case.
+- Zone la plus riche : **3300–4200 tr/min, 450–650 mbar : f 0,80–0,85** ; ralenti 0,90–0,91 ; 2400–2800 tr/min ≈ 1,00.
+- Pleine charge (LTFT non appliquée, montées en régime) : f 0,93 (1500–3000), **0,89–0,91 (3500–4500)**, 0,97 (5000),
+  **1,04–1,07 (5500–6500 : base trop PAUVRE, le calculateur ajoute)**.
+- Profil de remplissage (VE) + richesse générale d'environ 5–10 % ; pas un profil de temps mort.

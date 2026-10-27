@@ -1,8 +1,11 @@
 #!/usr/bin/env python3
 """Analyse d'un log VCDS en mode OBD (PID 0C régime, 06 STFT, 07 LTFT, 0B MAP) pour la VE 0x57084.
 
-Signes de CE calculateur (vérifiés dans le code) : STFT / LTFT OBD positifs = il RETIRE de l'essence.
-Facteur appliqué f = 1 / ((1 + STFT/100) * (1 + LTFT/100)) : f < 1 = base trop riche -> VE trop haute.
+Formules de CE calculateur (mode 01, fct 0x4B642 / 0x4B694) : brut 40000 = neutre, carburant x 40000 / brut.
+  PID 06 STFT % = (brut - 40000) / 100   (4 fois l'échelle VCDS ; butée 50000 -> 99 %)
+  PID 07 LTFT % = (brut - 40000) / 200   (2 fois l'échelle VCDS)
+Positif = le calculateur RETIRE de l'essence. Facteur appliqué f = 40000/brut_STFT x 40000/brut_LTFT :
+f < 1 = base trop riche -> VE trop haute.
 Points gardés : stables (régime ±150 et MAP ±4 kPa entre voisins), LTFT publiée (≠ 0), |STFT| ≤ 25.
 
   python3 analyse_log_ve.py log.csv
@@ -17,9 +20,9 @@ keep=[]
 for i in range(1,len(R)-1):
     t,rpm,s,l,m=R[i]
     a,b=R[i-1],R[i+1]
-    if l==0.0 or abs(s)>25: continue
+    if l==0.0 or abs(s)>99: continue
     if abs(b[1]-a[1])>150 or abs(b[4]-a[4])>4: continue
-    f=1/((1+s/100)*(1+l/100))
+    f=40000/(40000+100*s)*40000/(40000+200*l)
     keep.append((rpm,m*10,s,l,f))
 print('points stables gardés',len(keep),'/',len(R))
 # bins VE

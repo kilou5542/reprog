@@ -226,6 +226,10 @@ Chaîne de fabrication reproductible à l'octet près : voir README.
   050 / 054–056 ralenti (056 régulateur en Nm, 055 adaptation stabilisation) ; 060–062 papillon / pédale ;
   070 purge ; **074 EGR (min, max, tension actuelle, état d'adaptation)** ; 075 test EGR ; 100 readiness ;
   120 / 122 ASR / boîte ; 125 CAN.
+- **Groupe 001 champ 4** (fct 0xC368) : l'ordre des bits du label est **inversé** pour ce calculateur. Lu de gauche
+  à droite : pas de défaut mémorisé · catalyseur > 300 °C (`$9E6` > 0x56646 = 340, et `$9E8` = 2) · clim coupée ·
+  toujours 1 · régulation λ active (`$1083`) · ralenti (`$D4C` = 4) · régime < 2000 · eau > 80 °C (`$1FD8` ≥ 120).
+  « 10111111 » au ralenti prolongé = **catalyseur modélisé sous 300 °C** (normal au ralenti).
 - Connexion (login) **11463 = activation du régulateur de vitesse**, 16167 = désactivation.
 - Codage : +1 ABS, +2 airbag, +4 clim ; dernier chiffre 1 = boîte manuelle, 3 = automatique.
 

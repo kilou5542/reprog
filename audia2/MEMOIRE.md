@@ -123,6 +123,8 @@ Chaîne de fabrication reproductible à l'octet près : voir README.
   calculateur), fréquence 50 Hz = 0 % → 150 Hz = 100 % (linéaire), 180–190 Hz = carburant contaminé ;
   largeur d'impulsion 1 ms = −40 °C → 5 ms = 125 °C. À vérifier à l'oscilloscope. Il faut un convertisseur
   fréquence → tension pour l'entrée AN8.
+  Consommation sur le 12 V : non publiée (à mesurer) ; rappel du signal 2,2–10 kΩ (doc AEM) ; fusible bas
+  calibre sur un + après contact.
 - Groupes de mesure : table en 0x54360… (mot = n° de groupe, puis 4 pointeurs vers les fonctions de champ).
 
 ## 7. Fonctions repérées

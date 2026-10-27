@@ -127,6 +127,12 @@ Chaîne de fabrication reproductible à l'octet près : voir README.
   calibre sur un + après contact.
 - Groupes de mesure : table en 0x54360… (mot = n° de groupe, puis 4 pointeurs vers les fonctions de champ).
 
+### Enregistrement (logs)
+- WiCAN Pro (firmware d'origine, émulation ELM327) : gère ISO 9141-2 / ISO 14230-4 (ligne K), donc les PID
+  OBD standard (mode 01) de l'EOBD. Les groupes de mesure VAG (KWP1281, ex. groupe 074) ne sont a priori
+  **pas** lisibles par un ELM327. Piste non vérifiée : la liste interne de 0x5C variables (fct 0x4C96) si
+  elle répond à un service KWP2000 « local identifier ».
+
 ## 7. Fonctions repérées
 
 | Adresse | Rôle |

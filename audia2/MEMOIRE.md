@@ -109,6 +109,9 @@ Chaîne de fabrication reproductible à l'octet près : voir README.
   entrée TOR sans réveiller l'EGR, les deux états doivent rester **hors** de 0,30…4,80 V (≈0 V et ≈5 V),
   et un patch doit lire `$DB8` (aucun code n'en fait un interrupteur aujourd'hui). Brochage à vérifier
   sur un schéma (non connu ici).
+- **Lisible dans VCDS : groupe de mesure 074, champ 3** (tension du capteur EGR en volts,
+  `$DB8` × 5000 / 1024 mV, fct 0xB7FC). Champs 1 et 2 : `$590` / `$58E` en % ; champ 4 : état `$587` (texte).
+- Groupes de mesure : table en 0x54360… (mot = n° de groupe, puis 4 pointeurs vers les fonctions de champ).
 
 ## 7. Fonctions repérées
 

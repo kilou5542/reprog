@@ -249,6 +249,8 @@ Chaîne de fabrication reproductible à l'octet près : voir README.
   À logger : régime, **MAP** (axe de la VE, pas la charge), STFT, LTFT (en direct : PID OBD 07 via WiCAN si
   publié ; VCDS n'a pas de LTFT en direct, le groupe 032 ne donne que des instantanés), température d'eau et
   d'air, temps d'injection. Vérifier le signe de l'outil (VCDS : LTFT inversé, STFT normal).
+- OBD générique (VCDS mode OBD-II, 27/10) : protocole **ISO 9141**, ~0,8 échantillon/s ; PID confirmés : 0C régime,
+  04 charge (6,7 % au ralenti), **34 λ large bande** (1,005 ; 0,023 mA), 0B MAP (49 kPa clim en route). À vérifier : 06 / 07.
 
 ### Adaptation de richesse (LTFT)
 - **Groupe VCDS 032** (fct 0x99E0 / 0x9A44) : ce ne sont pas un additif et un multiplicatif « Bosch » mais deux

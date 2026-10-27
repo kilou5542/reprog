@@ -11,13 +11,17 @@ Chaque version a un checksum correct.
 
 La base CA est gardée : avec la DR, le régulateur de vitesse et la climatisation ne fonctionnent pas.
 
-### v5j — `roms/a2_ori_e85_v5j.bin` (à essayer : v5i + gain injecteur × 0,93)
+### v5j — `roms/a2_ori_e85_v5j.bin` (à essayer : v5i + gain injecteur × 0,93 + tendance VE)
 - Log OBD du 27/10 : base trop riche presque partout (médiane du facteur appliqué 0,92). Première étape demandée :
   **gain injecteur 0x569A0 × 0,93** (605…558 → 563…519).
 - Compensations pour ne rien changer d'autre : lancement 0x59708 et budget 0x5B8B6 ÷ 0,93 (masses avant le gain),
   consommation affichée 0x5BA22 740 → 796 (÷ 0,93).
 - Script : `gain_injecteur.py v5i.bin v5j.bin 0.93`. Somme du code inchangée (calibration seule).
-- Attendu : trims (LTFT / STFT) plus proches de 0 ; démarrage inchangé. Étape suivante : VE case par case (2e log).
+- **Tendance VE** (demandée pour anticiper) : VE 0x57084 corrigée en douceur à partir du log, après le gain
+  (lissage à noyau, 70 % de la correction mesurée, bornée à ±12 %, effacée loin des mesures). Principaux effets :
+  3300–4200 tr/min / 350–650 mbar **−5 à −8 %** ; 2400–3000 tr/min faible charge +3 à +6 % ; pleine charge
+  5600–6000 tr/min **+6 à +10 %** (zone pauvre) ; ailleurs ±2 %. Script : `ve_tendance.py`.
+- Attendu : trims (LTFT / STFT) plus proches de 0 ; démarrage inchangé. Étape suivante : affiner la VE (2e log).
 
 ### v5i — `roms/a2_ori_e85_v5i.bin` (✅ démarre — cause des non-démarrages confirmée ; apprentissage en cours)
 - **27/10/2026** : la voiture démarre. Adaptation papillon VCDS 060 « ADP O.K. ». Ralenti 850 tr/min,

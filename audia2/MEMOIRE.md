@@ -67,6 +67,7 @@ Chaîne de fabrication reproductible à l'octet près : voir README.
   v7, v7b, v10, v10b, v11, v5i. Retour à une ROM sans patch de code → somme juste → le défaut se lève → redémarre.
   **Conséquence : pas de patch de code tant que l'outil de flash n'écrit pas tout le programme** (à vérifier :
   relire le calculateur complet et comparer au fichier).
+  **Confirmation 27/10 : v5g reflashée → démarre au quart de tour** (comme v5/v5g après v7b).
 - **P0605 (ROM Error, chemin 0x3F)** : levé par la fct 0x50678 (somme principale, plus la somme boot si 0x5C863 ≠ 0 ;
   0x5C863 = 0) et par la fct 0x50788 (somme des octets 0x18584–0x1C4FF = 0x7FFEC, active car 0x5C862 = 1). Dans ce
   2e cas seulement : `$1AF` = 1, fct 0x1F23C et `ori.b #8, $FFFA19` (coupure d'un étage de sortie, probable).

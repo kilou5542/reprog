@@ -28,6 +28,7 @@ La base CA est gardée : avec la DR, le régulateur de vitesse et la climatisati
   calculateur refait la somme au démarrage et, si elle échoue, laisse l'étage d'allumage coupé (fct 0x0FC2A,
   0x1F23C, 0x1F244). Le contenu flashé ≠ fichier : très probablement, l'outil de flash n'écrit que la calibration,
   pas les patchs de code. Voir MEMOIRE.md.
+- Retour à la v5g : **démarrage au quart de tour** (27/10).
 - 27/10, plus tard : la voiture ne redémarre plus. Aucun code de l'application ne lit la somme 0x7FF74 (seulement
   le diagnostic) : la corrélation « somme fausse = pas de démarrage » est à relativiser (vérif. possible par l'outil
   de flash / le chargeur). Piste principale : une **valeur apprise et stockée en EEPROM à l'arrêt**, comme la v7b :

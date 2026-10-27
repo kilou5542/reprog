@@ -233,6 +233,18 @@ Chaîne de fabrication reproductible à l'octet près : voir README.
 - Connexion (login) **11463 = activation du régulateur de vitesse**, 16167 = désactivation.
 - Codage : +1 ABS, +2 airbag, +4 clim ; dernier chiffre 1 = boîte manuelle, 3 = automatique.
 
+### Tables de remplissage (VE) dans les ROM (comparées à l'origine CA, 27/10)
+- v5g / v5i : **VE 0x57084 d'origine**, 0x572C4 d'origine, 0x57504 modifiée (0,94…1,20), modèle papillon
+  0x57786 recalé ; E85 + injecteurs portés par le gain 0x569A0 (×0,90…0,93), temps mort 0x57E74 d'origine.
+- ROM « nom long » : VE 0x57084 modifiée partout (×0,68…1,41), 0x57504 idem v5g.
+- CA-DR : VE ×0,41…1,09, dynamique 0x572C4 ×0,31…4,0, correction d'angle 0x57986, **0x57058 = −1** (gaz
+  résiduels ≈ 0) et **0x5705A = 9870** (+16 % de pression utile), gain 0x569A0 = table Golf DR (415…335),
+  **temps mort 0x57E74 très relevé** (13 → 306 à 14 V). Ses modifications de VE compensaient donc d'autres
+  réglages : ne pas les recopier.
+- Méthode retenue (proposée) : d'abord injecteurs (temps mort, gain), puis VE à partir de logs moteur chaud,
+  adaptation LTFT neutralisée (0x5CDD2 = 0) pour que la STFT porte toute l'erreur ; VE × (1 + STFT VCDS).
+  La VE fixe la charge `$16C6` utilisée partout (axes d'avance, λ, couple, papillon) : elle doit rester physique.
+
 ### Adaptation de richesse (LTFT)
 - **Groupe VCDS 032** (fct 0x99E0 / 0x9A44) : ce ne sont pas un additif et un multiplicatif « Bosch » mais deux
   **instantanés de la LTFT** (`$28`, valeur de la carte au point courant) pris une fois par cycle (fct 0x3F0E8) :

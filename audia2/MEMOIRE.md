@@ -14,7 +14,7 @@ Documents détaillés : [README](README.md) (format, checksum, reproduction des 
 ## 1. Le propriétaire et ses règles
 
 - Parle **français** : toujours répondre en français.
-- **Ne pas fabriquer de nouvelle ROM tant qu'il n'a pas validé la v5h** (v5g validée le 27/10) (« Je ne veux pas qu'on
+- **Ne pas fabriquer de nouvelle ROM sans sa demande** (v5g validée le 27/10, v5h ne démarre pas) (« Je ne veux pas qu'on
   s'en occupe maintenant. D'abord, je ferai la vérification de la dernière ROM »). L'analyse est permise.
 - **Régulateur de vitesse abandonné pour l'instant** ; on travaille à partir de la v5g (ROM de travail).
 - **Ne rien toucher qui ressemble à l'EGR** (v6/v7/v7b ont empêché le démarrage ou le redémarrage).
@@ -41,7 +41,7 @@ Documents détaillés : [README](README.md) (format, checksum, reproduction des 
 |---|---|
 | v5f | ✅ validée (rupteur franc à 7000), remplacée par la v5g |
 | **v5g** | ✅ **ROM de travail** (validée 27/10) : coupure au lâcher bien plus rapide, frein moteur amélioré, pas de voyant ; à-coups en 1re pas encore testés |
-| **v5h** | à essayer : v5g + apprentissage du modèle papillon débloqué (2 `nop`, EGR intacte) ; protocole dans MESURES.md |
+| v5h | ❌ **ne démarre pas** (1er essai 27/10, cause non expliquée par le code) : v5g + 2 `nop` (0x226C2, 0x23A62) |
 | v6, v7, v10, v11 | ❌ ne démarrent pas (forcer `$DBA` = 0 recopie le capteur EGR débranché) |
 | v7b, v10b | ❌ démarrent une fois puis plus (apprentissage EGR réveillé, valeurs en EEPROM) |
 | v5b–v5e | ❌ rupteur oscillant (cause : reprise d'injection 0x5B8EA restée à 5610) |
@@ -137,6 +137,15 @@ Chaîne de fabrication reproductible à l'octet près : voir README.
   carte SD FAT32 ≤ 32 Go, fichiers /sd/logs). ⚠️ La doc AutoPID ne cite que des protocoles CAN alors que le
   moteur de l'A2 répond en ligne K : à tester (protocole Automatic ou commande d'init ATSP4 / ATSP5).
   Une appli téléphone connectée met AutoPID en pause. Préférer logger λ plutôt que l'AFR (E85).
+
+### Pression atmosphérique et observateur de pression (vu en analysant l'échec de la v5h)
+- `$16D4` pression atmosphérique : au démarrage (fct 0x22C68) = EEPROM `$E4044` si somme `$E4048` bonne et
+  drapeau `$E4046`, sinon 0x57AE2 = 1000. Apprise moteur tournant (fct 0x23962, bloquée par `$DBA` en 0x23A62)
+  à partir du modèle papillon, bornes 0x57ACC = 550 / 0x57ACE = 1050.
+- `$1686` (MAP utilisée partout) = **observateur** (fct 0x23CE2) qui mélange le modèle papillon `$16BA` et la
+  mesure `$16B4`, gains 0x57B7E / 0x57B5E / 0x57B3E / 0x57BA8 selon le régime ; inactif au lancement
+  (`$D4E` = 0 ou 1) et si 0x57B32 = 0.
+- `$1740` : relu en EEPROM `$E4574` à l'init (fct 0x22570, somme `$E4576`, défaut 0x54E0E), sauvé fct 0x22BF2.
 
 ## 7. Fonctions repérées
 

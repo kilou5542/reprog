@@ -57,6 +57,16 @@ Chaîne de fabrication reproductible à l'octet près : voir README.
 - RAM : `a5 = 0xE5770` ; `$xxx(a5)` = adresse absolue 0xE5770 + xxx (le code utilise les deux formes).
   EEPROM recopiée vers 0xE4000–0xE4600 (ex. `$E4574` = adaptation papillon).
 - Calibration 0x55000–0x5D000 ; il y a aussi du code dans 0x50000–0x54FFF.
+- ⚠️ **MÉCANISME DU « DÉMARRE UNE FOIS PUIS PLUS JAMAIS » (trouvé le 27/10)** : à l'init (fct 0x0FC2A), si le
+  défaut 0x3F (P0605) est mémorisé, le calculateur refait la somme principale (fct 0x50678) ; si elle échoue encore,
+  fct 0x1F23C met `$1886` = 1, et la fct 0x1F244 ne remet plus à 0 le bit 3 de 0xFFFA19 (étage de sortie, coupé par
+  `ori.b #8`) → **plus d'allumage** (P1357/1360/1363/1366 « court-circuit à la masse »). P0605 revient en v5i alors
+  que le FICHIER v5i a des sommes justes → **le contenu du calculateur ≠ fichier**. Hypothèse forte : l'outil de flash
+  n'écrit que la zone de calibration ; les patchs de CODE (0x226C2, 0x23A62, 0x3C2B4, 0x24B5A…) ne sont pas écrits,
+  mais la compensation 0x7FFEA (calculée avec le patch) l'est → somme fausse dans le calculateur. Explique v5h, v6,
+  v7, v7b, v10, v10b, v11, v5i. Retour à une ROM sans patch de code → somme juste → le défaut se lève → redémarre.
+  **Conséquence : pas de patch de code tant que l'outil de flash n'écrit pas tout le programme** (à vérifier :
+  relire le calculateur complet et comparer au fichier).
 - **P0605 (ROM Error, chemin 0x3F)** : levé par la fct 0x50678 (somme principale, plus la somme boot si 0x5C863 ≠ 0 ;
   0x5C863 = 0) et par la fct 0x50788 (somme des octets 0x18584–0x1C4FF = 0x7FFEC, active car 0x5C862 = 1). Dans ce
   2e cas seulement : `$1AF` = 1, fct 0x1F23C et `ori.b #8, $FFFA19` (coupure d'un étage de sortie, probable).

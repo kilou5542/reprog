@@ -24,6 +24,10 @@ La base CA est gardée : avec la DR, le régulateur de vitesse et la climatisati
 - Attendu : trims (LTFT / STFT) plus proches de 0 ; démarrage inchangé. Étape suivante : affiner la VE (2e log).
 
 ### v5i — `roms/a2_ori_e85_v5i.bin` (❌ a démarré le 27/10, puis **ne redémarre plus** — même schéma que la v7b)
+- **Cause trouvée** : P0605 revient avec la v5i alors que le fichier a des sommes justes. Avec un P0605 mémorisé, le
+  calculateur refait la somme au démarrage et, si elle échoue, laisse l'étage d'allumage coupé (fct 0x0FC2A,
+  0x1F23C, 0x1F244). Le contenu flashé ≠ fichier : très probablement, l'outil de flash n'écrit que la calibration,
+  pas les patchs de code. Voir MEMOIRE.md.
 - 27/10, plus tard : la voiture ne redémarre plus. Aucun code de l'application ne lit la somme 0x7FF74 (seulement
   le diagnostic) : la corrélation « somme fausse = pas de démarrage » est à relativiser (vérif. possible par l'outil
   de flash / le chargeur). Piste principale : une **valeur apprise et stockée en EEPROM à l'arrêt**, comme la v7b :

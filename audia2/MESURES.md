@@ -166,3 +166,20 @@ Fichier : `logs/2026-10-27c_v5k_obd_stft_ltft_map_rpm.csv`. 372 points stables. 
   pauvre, le calculateur ajoute)**.
 - Le LTFT garde en mémoire des valeurs apprises avec la v5g et se réapprend progressivement : refaire un log après
   quelques trajets avant la 2e passe de VE.
+
+## 27/10/2026 (22 h 26) — 4e log OBD, **v5l** (~9 min)
+
+Fichier : `logs/2026-10-27d_v5l_obd_stft_ltft_map_rpm.csv` (VCDS l'avait ajouté à la suite du log de 17 h 23 dans
+le même fichier : séparé ici). 573 points stables. **Médiane du facteur 1,008, quartiles 0,985–1,024.**
+
+| MAP | f moyen |
+|---|---|
+| 200–299 mbar | 0,98 |
+| 300–399 mbar | 1,00 |
+| 400–599 mbar | 1,02 |
+| 600–699 mbar | 1,00 |
+| 700–799 mbar | 0,93 (3600–3800 tr/min : 0,91–0,92) |
+
+- Pleine charge (toutes mesures) : 0,98–1,02 de 1500 à 5000 tr/min ; **1,04–1,05 à 5500–6000** ; 1,02 à 6500.
+- Restes : 3600–3800 tr/min vers 800 mbar un peu riche (−8 %), 3000 tr/min / 250 mbar riche (−11 %, 5 points),
+  haut des tours en pleine charge un peu pauvre (+4–5 %).

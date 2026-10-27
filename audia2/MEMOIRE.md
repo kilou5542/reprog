@@ -250,7 +250,8 @@ Chaîne de fabrication reproductible à l'octet près : voir README.
   À logger : régime, **MAP** (axe de la VE, pas la charge), STFT, LTFT (en direct : PID OBD 07 via WiCAN si
   publié ; VCDS n'a pas de LTFT en direct, le groupe 032 ne donne que des instantanés), température d'eau et
   d'air, temps d'injection. Vérifier le signe de l'outil (VCDS : LTFT inversé, STFT normal).
-- OBD générique (VCDS mode OBD-II, 27/10) : protocole **ISO 9141**, ~0,8 échantillon/s ; PID confirmés : 0C régime,
+- OBD générique (VCDS mode OBD-II, 27/10) : protocole **ISO 9141-2** (ligne K broche 7, 10,4 kbit/s, init 5 bauds
+  adresse 0x33 ; ELM327 : ATSP3), ~0,8 échantillon/s ; PID confirmés : 0C régime,
   04 charge (6,7 % au ralenti), **34 λ large bande** (1,005 ; 0,023 mA), 0B MAP (49 kPa clim en route), **06 STFT, 07 LTFT**.
 - **Signes et échelles (vérifiés dans le code)** : brut 40000 = neutre, carburant × 40000 / brut ; positif = le
   calculateur RETIRE de l'essence pour OBD 06 / 07 et VCDS 032. **Échelles : VCDS 001 / 032 = (brut − 40000)/400

@@ -132,6 +132,11 @@ Chaîne de fabrication reproductible à l'octet près : voir README.
   OBD standard (mode 01) de l'EOBD. Les groupes de mesure VAG (KWP1281, ex. groupe 074) ne sont a priori
   **pas** lisibles par un ELM327. Piste non vérifiée : la liste interne de 0x5C variables (fct 0x4C96) si
   elle répond à un service KWP2000 « local identifier ».
+- Log automatique WiCAN Pro : Automate › Parameters (Standard PIDs : régime 0C, charge 04, papillon 11, λ
+  sonde 24 ou λ commandé 44 si publiés) + Automate › Settings (Enabled) + Logger (Record parameters, CSV,
+  carte SD FAT32 ≤ 32 Go, fichiers /sd/logs). ⚠️ La doc AutoPID ne cite que des protocoles CAN alors que le
+  moteur de l'A2 répond en ligne K : à tester (protocole Automatic ou commande d'init ATSP4 / ATSP5).
+  Une appli téléphone connectée met AutoPID en pause. Préférer logger λ plutôt que l'AFR (E85).
 
 ## 7. Fonctions repérées
 

@@ -244,6 +244,11 @@ Chaîne de fabrication reproductible à l'octet près : voir README.
 - Méthode retenue (proposée) : d'abord injecteurs (temps mort, gain), puis VE à partir de logs moteur chaud,
   adaptation LTFT neutralisée (0x5CDD2 = 0) pour que la STFT porte toute l'erreur ; VE × (1 + STFT VCDS).
   La VE fixe la charge `$16C6` utilisée partout (axes d'avance, λ, couple, papillon) : elle doit rester physique.
+- **27/10 : l'utilisateur ne veut PAS de ROM spécifique pour les relevés ; il garde la v5i.** Donc relevés avec
+  LTFT actif : erreur totale = STFT et LTFT combinées (le carburant est multiplié par (1 + STFT) × 40000 / LTFT).
+  À logger : régime, **MAP** (axe de la VE, pas la charge), STFT, LTFT (en direct : PID OBD 07 via WiCAN si
+  publié ; VCDS n'a pas de LTFT en direct, le groupe 032 ne donne que des instantanés), température d'eau et
+  d'air, temps d'injection. Vérifier le signe de l'outil (VCDS : LTFT inversé, STFT normal).
 
 ### Adaptation de richesse (LTFT)
 - **Groupe VCDS 032** (fct 0x99E0 / 0x9A44) : ce ne sont pas un additif et un multiplicatif « Bosch » mais deux

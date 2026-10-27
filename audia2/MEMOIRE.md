@@ -101,6 +101,15 @@ Chaîne de fabrication reproductible à l'octet près : voir README.
 | `$671` | embrayage enfoncé ; `$20D4` rapport |
 | `$62C` | coupure d'injection (100 % = toutes) ; `$62E` cumul carburant (consommation) |
 
+### Entrée du capteur EGR (pour une éventuelle entrée TOR)
+- Fct 0x3C272 : `$DB8` = conversion QADC canal **AN8** (`jsr 0x282D0` avec 0xC8 ; résultat 10 bits,
+  0…1023 = 0…5 V). Diagnostic 0x28218 : plage valide **0x5A846 = 61 (0,30 V) … 0x5A848 = 983 (4,80 V)**,
+  chemin de défaut 0x26 → `$DBA` (0 = OK et `$DB6` = `$DB8` ; 1…4 = défauts).
+- Lecteurs de `$DB8` : seulement 0x3C272 et une liste de diagnostic (0xB7FC). Pour l'utiliser comme
+  entrée TOR sans réveiller l'EGR, les deux états doivent rester **hors** de 0,30…4,80 V (≈0 V et ≈5 V),
+  et un patch doit lire `$DB8` (aucun code n'en fait un interrupteur aujourd'hui). Brochage à vérifier
+  sur un schéma (non connu ici).
+
 ## 7. Fonctions repérées
 
 | Adresse | Rôle |

@@ -57,6 +57,12 @@ Chaîne de fabrication reproductible à l'octet près : voir README.
 - RAM : `a5 = 0xE5770` ; `$xxx(a5)` = adresse absolue 0xE5770 + xxx (le code utilise les deux formes).
   EEPROM recopiée vers 0xE4000–0xE4600 (ex. `$E4574` = adaptation papillon).
 - Calibration 0x55000–0x5D000 ; il y a aussi du code dans 0x50000–0x54FFF.
+- **P0605 (ROM Error, chemin 0x3F)** : levé par la fct 0x50678 (somme principale, plus la somme boot si 0x5C863 ≠ 0 ;
+  0x5C863 = 0) et par la fct 0x50788 (somme des octets 0x18584–0x1C4FF = 0x7FFEC, active car 0x5C862 = 1). Dans ce
+  2e cas seulement : `$1AF` = 1, fct 0x1F23C et `ori.b #8, $FFFA19` (coupure d'un étage de sortie, probable).
+  La v5i passe ces deux contrôles (vérifié). Relevé du 27/10 après non-redémarrage de la v5i : P0605, P1404 / P1439
+  (réglage de base EGR non fait / erreur G212), **P1357 / P1360 / P1363 / P1366 (circuits d'allumage 1–4, court-
+  circuit à la masse)** ; groupe 006 : correction d'altitude −2 % (normale → piste pression atmosphérique écartée).
 - ⚠️ **Somme du code** : mot long **0x7FF74** = somme 32 bits des OCTETS de 0x4000 à 0x537F3 (début en
   0x7FF78, longueur en 0x7FF7C). **Toutes les ROM au code modifié sans la recalculer n'ont pas démarré**
   (v6, v7, v7b une fois seulement, v10, v10b, v11, v5h) ; toutes celles où elle est juste ont démarré.

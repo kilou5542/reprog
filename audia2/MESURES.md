@@ -80,6 +80,8 @@ Clim en route (même jour, v5i) :
 | Papillon | 3,8° | 4,5 % |
 | Avance | **0,0°** | — |
 
+Ralenti clim en route : **stable et régulier** (retour de l'utilisateur).
+
 ## Protocole de validation de la v5i (ex-v5h) (apprentissage du modèle papillon débloqué)
 
 ### Préparation

@@ -216,6 +216,19 @@ Chaîne de fabrication reproductible à l'octet près : voir README.
   d'accélération du cliquetis (modifiée à tort dans la v5f, à remettre d'origine plus tard) ;
   0x55688 = conversion couple → charge ; 0x57E72 = facteur redémarrage à chaud.
 
+### Groupes de mesure VCDS utiles (fichier label Ross-Tech 036-906-034-APE.LBL, fourni le 27/10)
+- 001 régime / eau / STFT / conditions réglage de base (bits : eau > 80 °C, régime < 2000, papillon fermé,
+  régulation λ correcte, ralenti, clim coupée, catalyseur > 300 °C, pas de défaut) ; 002 régime / charge /
+  **temps d'injection** / MAP ; 003 régime / MAP / papillon / avance ; 004 tension / eau / air ;
+  005 état de charge ; **006 champ 4 = correction d'altitude** (pression atmosphérique apprise, −30…+5 %) ;
+  010 avance ; 014–016 ratés ; **022 / 023 retard de cliquetis par cylindre** ; 028 test capteur cliquetis ;
+  030 état sondes ; 032 LTFT ralenti / charge partielle (voir ci-dessous) ; 033 / 099 régulation λ ;
+  050 / 054–056 ralenti (056 régulateur en Nm, 055 adaptation stabilisation) ; 060–062 papillon / pédale ;
+  070 purge ; **074 EGR (min, max, tension actuelle, état d'adaptation)** ; 075 test EGR ; 100 readiness ;
+  120 / 122 ASR / boîte ; 125 CAN.
+- Connexion (login) **11463 = activation du régulateur de vitesse**, 16167 = désactivation.
+- Codage : +1 ABS, +2 airbag, +4 clim ; dernier chiffre 1 = boîte manuelle, 3 = automatique.
+
 ### Adaptation de richesse (LTFT)
 - **Groupe VCDS 032** (fct 0x99E0 / 0x9A44) : ce ne sont pas un additif et un multiplicatif « Bosch » mais deux
   **instantanés de la LTFT** (`$28`, valeur de la carte au point courant) pris une fois par cycle (fct 0x3F0E8) :

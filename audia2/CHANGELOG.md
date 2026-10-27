@@ -11,6 +11,16 @@ Chaque version a un checksum correct.
 
 La base CA est gardée : avec la DR, le régulateur de vitesse et la climatisation ne fonctionnent pas.
 
+### v5l — `roms/a2_ori_e85_v5l.bin` (à essayer : v5k + 2e passe VE + VE × 0,95 / gain ÷ 0,95)
+- 2e passe de VE avec le log v5k du 27/10 18 h 55 (`ve_tendance.py`, 70 %, ±12 %, pleine charge avec toutes les
+  mesures) : 3300–4200 tr/min faible charge −5 à −11 %, 2100–2400 faible charge +3 à +6 %, pleine charge
+  4600–6000 +2 à +5 %. Les logs v5g / v5i sont déjà intégrés dans la v5k.
+- **Demande de l'utilisateur : VE plus proche de 1** → VE × 0,95 et gain injecteur ÷ 0,95 (563…519 → 593…546),
+  essence injectée identique. **Seules ces deux tables changent** (choix de l'utilisateur) : charge calculée −5 %
+  (avance / λ lus à une charge plus basse, papillon un peu plus ouvert pour une même demande, frein moteur un peu
+  plus faible), lancement +5 % d'essence, consommation affichée −5 %.
+- Scripts : `ve_tendance.py`, `echelle_ve_gain.py`. Tables seules (somme du code inchangée).
+
 ### v5k — `roms/a2_ori_e85_v5k.bin` (à essayer : v5g + gain × 0,93 + tendance VE + modèle papillon / P0106, tables seules)
 - **Aucun octet modifié dans le programme** (tout ≥ 0x569A0) : compatible avec l'outil de flash (calibration seule).
 - Gain injecteur 0x569A0 × 0,93 (médiane des deux logs : 0,928), lancement 0x59708 / 0x5B8B6 et consommation

@@ -63,7 +63,9 @@ python3 coupure_rapide.py ../roms/originales/A2_CA-DR_7000_afterlogNG4_cranking_
 python3 adaptation_papillon.py v5g.bin v5i.bin      # (v5h = même chose sans somme du code : historique)
 python3 gain_injecteur.py v5g.bin v5k_1.bin 0.93
 python3 ve_tendance.py v5k_1.bin v5k_2.bin 0.93 ../logs/2026-10-27_v5i_obd_rpm_stft_ltft_map.csv ../logs/2026-10-27b_v5g_obd_stft_ltft_map_rpm.csv
-python3 modele_p0106.py v5k_2.bin v5k.bin                # à essayer (tables seules)
+python3 modele_p0106.py v5k_2.bin v5k.bin
+python3 ve_tendance.py v5k.bin v5l_1.bin 1.0 ../logs/2026-10-27c_v5k_obd_stft_ltft_map_rpm.csv
+python3 echelle_ve_gain.py v5l_1.bin v5l.bin 0.95          # à essayer (tables seules)
 python3 generer_xdf.py A2.xdf
 ```
 La chaîne a été vérifiée : elle redonne les ROM du dépôt à l'octet près.

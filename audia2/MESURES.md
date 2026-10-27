@@ -66,6 +66,20 @@ Après quelques minutes : STFT +3,0 %, pression 288,8 mbar, papillon 2,0°, avan
 Groupe 032 : « add. » **+8,0 %** (= LTFT au ralenti : le calculateur retire ~7 % d'essence), « mult. » 0,0 % (pas
 encore relevé dans ce cycle : il faut rouler en charge partielle).
 
+Clim en route (même jour, v5i) :
+
+| Grandeur | Valeur | v5g (26/10) |
+|---|---|---|
+| Régime | 850 tr/min | 930 |
+| Eau / air admission | 90 °C / 64 °C | — |
+| STFT | +3,0 % | — |
+| Conditions (groupe 001) | 10011111 (clim en route, catalyseur < 300 °C) | — |
+| Charge | 28,4 % | — |
+| Correction d'altitude (groupe 006) | **−2,0 %** (pression atmosphérique apprise, plausible) | — |
+| Pression collecteur | **487,7 mbar** | 410 |
+| Papillon | 3,8° | 4,5 % |
+| Avance | **0,0°** | — |
+
 ## Protocole de validation de la v5i (ex-v5h) (apprentissage du modèle papillon débloqué)
 
 ### Préparation

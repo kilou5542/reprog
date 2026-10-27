@@ -134,6 +134,9 @@ Chaîne de fabrication reproductible à l'octet près : voir README.
   Le modèle 0x57786 est corrigé par l'apprentissage `$1740` (bornes +13 / −15, en 0,1 %), bloqué par
   `$DBA` en 0x226C2 et 0x23A62 → v5h les remplace par `nop`. Apprentissage : ralenti stable, chaud,
   STFT dans ±20 % (LTFT non testé).
+  `$1740` n'est **pas** dans les groupes de mesure VCDS (seulement dans une liste interne Marelli de
+  0x5C variables, fct 0x4C96, identifiant → adresse) ; le groupe VCDS 060 « ADP OK » est l'étalonnage des
+  butées du papillon, une autre chose. Vérification de la v5h : indirecte (P1553 absent, écart MAP / modèle).
 - **Coupure en décélération** : seuils 0x5A904 (entrée) / 0x5A9E0 (reprise) 5 lignes × 9 températures,
   ligne = rapport (0x53B30) ; embrayage → coupure immédiate ; filtre `$126C` (0x5857C / 0x585FA) cause du
   délai au lâcher → v5g.

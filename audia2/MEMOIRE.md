@@ -14,9 +14,9 @@ Documents détaillés : [README](README.md) (format, checksum, reproduction des 
 ## 1. Le propriétaire et ses règles
 
 - Parle **français** : toujours répondre en français.
-- **Ne pas fabriquer de nouvelle ROM tant qu'il n'a pas validé la v5g et la v5h** (« Je ne veux pas qu'on
+- **Ne pas fabriquer de nouvelle ROM tant qu'il n'a pas validé la v5h** (v5g validée le 27/10) (« Je ne veux pas qu'on
   s'en occupe maintenant. D'abord, je ferai la vérification de la dernière ROM »). L'analyse est permise.
-- **Régulateur de vitesse abandonné pour l'instant** ; on travaille à partir de la v5 / v5f.
+- **Régulateur de vitesse abandonné pour l'instant** ; on travaille à partir de la v5g (ROM de travail).
 - **Ne rien toucher qui ressemble à l'EGR** (v6/v7/v7b ont empêché le démarrage ou le redémarrage).
 - **XDF sans accents** (ASCII pur, fins de ligne CRLF) : `generer_xdf.py` s'en charge.
 - Préfère **reconstruire les tables intelligemment d'après le matériel** plutôt que de recopier une ROM.

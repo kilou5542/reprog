@@ -11,12 +11,16 @@ Chaque version a un checksum correct.
 
 La base CA est gardée : avec la DR, le régulateur de vitesse et la climatisation ne fonctionnent pas.
 
-### v5h — `roms/a2_ori_e85_v5h.bin` (❌ ne démarre pas au 1er essai, 27/10/2026 — cause non expliquée)
+### v5h — `roms/a2_ori_e85_v5h.bin` (❌ ne démarre pas, 27/10/2026 — somme du code 0x7FF74 non recalculée)
 - **Essai du 27/10/2026** : la voiture ne démarre pas. Analyse du code : les deux `nop` ne devraient pas agir
   pendant le lancement (0x226C2 est dans la fct 0x22640, active seulement si `$190D` = 8 ; 0x23A62 dans la fct
   0x23962, active seulement moteur tournant `$D4E` = 8 et régime ≥ 1200). `$1740` relu en EEPROM vaut 0
   (sauvé à 0 par la v5g). Le 2e `nop` débloque aussi l'apprentissage de la **pression atmosphérique** `$16D4`
   (EEPROM `$E4044`, drapeau `$E4046`). Pistes : flash raté, batterie, ou effet non trouvé. Retour à la v5g.
+- 2e essai : même résultat (le démarreur tourne, aucun démarrage).
+- **Cause très probable trouvée** : somme des octets du code (0x4000–0x537F3) stockée en **0x7FF74**, non
+  recalculée par nos scripts. Elle est fausse dans toutes les ROM qui n'ont pas démarré (v6, v7, v7b, v10, v10b,
+  v11, v5h) et juste dans toutes les autres. `marelli4mv.py` la vérifie désormais (`fix_code`).
 - Mesures au ralenti (90 °C) : 870 tr/min, papillon 2,35–2,75 %, 320 mbar ; clim : 930 tr/min, 4,31–4,71 %, 410 mbar.
   Le modèle (même la table CA d'origine) attend ~244 mbar à 2,55 % : écart ~ +80 mbar, probable cause du P1553.
 - L'angle du modèle est corrigé par une valeur apprise en roulant (`$1740`, `$1742`, fct 0x22DDE) qui absorbe ce

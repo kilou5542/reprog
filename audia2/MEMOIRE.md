@@ -41,7 +41,7 @@ Documents détaillés : [README](README.md) (format, checksum, reproduction des 
 |---|---|
 | v5f | ✅ validée (rupteur franc à 7000), remplacée par la v5g |
 | **v5g** | ✅ **ROM de travail** (validée 27/10) : coupure au lâcher bien plus rapide, frein moteur amélioré, pas de voyant ; à-coups en 1re pas encore testés |
-| v5h | ❌ **ne démarre pas** (1er essai 27/10, cause non expliquée par le code) : v5g + 2 `nop` (0x226C2, 0x23A62) |
+| v5h | ❌ **ne démarre pas** (2 essais, 27/10) : v5g + 2 `nop` ; cause très probable : somme du code 0x7FF74 non recalculée |
 | v6, v7, v10, v11 | ❌ ne démarrent pas (forcer `$DBA` = 0 recopie le capteur EGR débranché) |
 | v7b, v10b | ❌ démarrent une fois puis plus (apprentissage EGR réveillé, valeurs en EEPROM) |
 | v5b–v5e | ❌ rupteur oscillant (cause : reprise d'injection 0x5B8EA restée à 5610) |
@@ -55,6 +55,11 @@ Chaîne de fabrication reproductible à l'octet près : voir README.
 - RAM : `a5 = 0xE5770` ; `$xxx(a5)` = adresse absolue 0xE5770 + xxx (le code utilise les deux formes).
   EEPROM recopiée vers 0xE4000–0xE4600 (ex. `$E4574` = adaptation papillon).
 - Calibration 0x55000–0x5D000 ; il y a aussi du code dans 0x50000–0x54FFF.
+- ⚠️ **Somme du code** : mot long **0x7FF74** = somme 32 bits des OCTETS de 0x4000 à 0x537F3 (début en
+  0x7FF78, longueur en 0x7FF7C). **Toutes les ROM au code modifié sans la recalculer n'ont pas démarré**
+  (v6, v7, v7b une fois seulement, v10, v10b, v11, v5h) ; toutes celles où elle est juste ont démarré.
+  Le vérificateur n'a pas été trouvé dans l'application (probablement le démarrage / chargeur). Outil :
+  `marelli4mv.py` (vérifie) et `fix_code()` à appeler avant `fix()`. 0x7FF70 = 0x04563628 : sens inconnu.
 - Checksum : somme des mots 0x4000–0x7FFFF = mot 0x7FFE8, compensation 0x7FFEA ; zone code
   0x18584–0x1C4FF contrôlée à part (mot 0x7FFEC). `scripts/marelli4mv.py fix`.
 - Interpolations :

@@ -41,6 +41,7 @@ Documents détaillés : [README](README.md) (format, checksum, reproduction des 
 |---|---|
 | v5f | ✅ validée (rupteur franc à 7000), remplacée par la v5g |
 | **v5g** | ✅ **ROM de travail** (validée 27/10) : coupure au lâcher bien plus rapide, frein moteur amélioré, pas de voyant ; à-coups en 1re pas encore testés |
+| **v5j** | à essayer (27/10) : v5i + gain injecteur × 0,93, lancement 0x59708 / 0x5B8B6 et conso 0x5BA22 ÷ 0,93 |
 | v5h | ❌ **ne démarre pas** (2 essais, 27/10) : v5g + 2 `nop` ; cause très probable : somme du code 0x7FF74 non recalculée |
 | **v5i** | ✅ **démarre** (27/10) → **cause des non-démarrages confirmée : somme du code 0x7FF74**. Adaptation 060 « ADP O.K. » ; ralenti 850 tr/min, 97 °C : **289 mbar** (320 en v5g), STFT +4 %, charge 16,3 %, injection 3,0 ms, papillon 2,0°, avance 2,0°. Clim : 850 tr/min, 488 mbar, papillon 3,8°, avance 0°, altitude −2 %, **ralenti stable et régulier**. Protocole d'apprentissage en cours |
 | v6, v7, v10, v11 | ❌ ne démarrent pas (forcer `$DBA` = 0 recopie le capteur EGR débranché) |

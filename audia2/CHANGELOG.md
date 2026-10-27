@@ -11,6 +11,14 @@ Chaque version a un checksum correct.
 
 La base CA est gardée : avec la DR, le régulateur de vitesse et la climatisation ne fonctionnent pas.
 
+### v5j — `roms/a2_ori_e85_v5j.bin` (à essayer : v5i + gain injecteur × 0,93)
+- Log OBD du 27/10 : base trop riche presque partout (médiane du facteur appliqué 0,92). Première étape demandée :
+  **gain injecteur 0x569A0 × 0,93** (605…558 → 563…519).
+- Compensations pour ne rien changer d'autre : lancement 0x59708 et budget 0x5B8B6 ÷ 0,93 (masses avant le gain),
+  consommation affichée 0x5BA22 740 → 796 (÷ 0,93).
+- Script : `gain_injecteur.py v5i.bin v5j.bin 0.93`. Somme du code inchangée (calibration seule).
+- Attendu : trims (LTFT / STFT) plus proches de 0 ; démarrage inchangé. Étape suivante : VE case par case (2e log).
+
 ### v5i — `roms/a2_ori_e85_v5i.bin` (✅ démarre — cause des non-démarrages confirmée ; apprentissage en cours)
 - **27/10/2026** : la voiture démarre. Adaptation papillon VCDS 060 « ADP O.K. ». Ralenti 850 tr/min,
   29 kPa clim éteinte (v5g : 870 tr/min, 32 kPa).

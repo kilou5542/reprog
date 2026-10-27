@@ -61,6 +61,7 @@ python3 conso_e85.py v5r.bin v5_regul_conso.bin
 python3 rupteur.py v5.bin v5f.bin 7000
 python3 coupure_rapide.py ../roms/originales/A2_CA-DR_7000_afterlogNG4_cranking_idle_VEbyT3_maxairfiling_2torqueori15.bin v5f.bin v5g.bin   # ROM de travail
 python3 adaptation_papillon.py v5g.bin v5i.bin      # (v5h = même chose sans somme du code : historique)
+python3 gain_injecteur.py v5i.bin v5j.bin 0.93
 python3 generer_xdf.py A2.xdf
 ```
 La chaîne a été vérifiée : elle redonne les ROM du dépôt à l'octet près.

@@ -33,12 +33,12 @@ capteur EGR débranché met `$DBA` en défaut. Correction nécessaire ≈ −1,0
 - Écart permanent constaté ≈ +80 mbar → marge réduite à 60–90 mbar : P1553 probable dans les transitions
   à bas régime.
 
-### Apprentissage `$1740` (débloqué en v5h)
+### Apprentissage `$1740` (débloqué en v5i)
 - Bornes : 0x57028 = +13, 0x5702A = −15 (en 0,1 % d'angle) → besoin −10 dans les bornes.
 - Uniquement au ralenti stable : pédale relâchée, moteur chaud, régime à moins de 80 tr/min de la consigne,
   STFT (`$107E`) dans ±20 % ; le LTFT n'est pas testé (sauf s'il est en butée, le STFT dérive alors).
 
-### À refaire après la v5h
+### À refaire après la v5i
 Après 5–10 min de ralenti chaud : mêmes relevés (régime, angle, pression, clim éteinte / en route).
 L'écart modèle / mesure doit tomber vers 0, l'angle au ralenti peut légèrement changer.
 
@@ -69,5 +69,5 @@ L'écart modèle / mesure doit tomber vers 0, l'angle au ralenti peut légèreme
 | STFT au ralenti | oscille dans ±5 % (condition d'apprentissage : ±20 %) | régler le mélange d'abord |
 | P1553 | n'apparaît plus, y compris en transitions à bas régime | noter les conditions (régime, pédale, chaud / froid) |
 
-La v5i est validée si, après plusieurs jours, tous les critères sont remplis : elle remplace alors la v5f
+La v5i est validée si, après plusieurs jours, tous les critères sont remplis : elle remplace alors la v5g
 comme ROM de travail.

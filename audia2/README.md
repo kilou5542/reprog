@@ -1,6 +1,6 @@
 # Audi A2 1.4 BBY — Marelli 4MV 036906034CA (E85)
 
-ROM de travail : **`roms/a2_ori_e85_v5f.bin`** (v5 + rupteur franc à 7000, validée sur route) — base de toutes les prochaines modifications ; à essayer : **`roms/a2_ori_e85_v5g.bin`** (v5f + coupure plus rapide au lâcher de pédale), puis **`roms/a2_ori_e85_v5h.bin`** (v5g + apprentissage du modèle papillon débloqué, EGR intacte). L'historique des versions est dans [CHANGELOG.md](CHANGELOG.md).
+ROM de travail : **`roms/a2_ori_e85_v5f.bin`** (v5 + rupteur franc à 7000, validée sur route) — base de toutes les prochaines modifications ; essayée : **`roms/a2_ori_e85_v5g.bin`** (v5f + coupure plus rapide au lâcher de pédale : frein moteur amélioré) ; à essayer ensuite : **`roms/a2_ori_e85_v5h.bin`** (v5g + apprentissage du modèle papillon débloqué, EGR intacte). L'historique des versions est dans [CHANGELOG.md](CHANGELOG.md).
 
 ## Contenu
 | Dossier | Contenu |

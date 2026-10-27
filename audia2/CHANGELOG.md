@@ -20,7 +20,8 @@ La base CA est gardée : avec la DR, le régulateur de vitesse et la climatisati
   endormie comme en v5 (contrairement à v6/v7/v7b). Script : `adaptation_papillon.py`.
 - À valider : plusieurs redémarrages après avoir roulé, absence de voyant, P1553.
 
-### v5g — `roms/a2_ori_e85_v5g.bin` (à essayer : coupure plus rapide au lâcher de pédale)
+### v5g — `roms/a2_ori_e85_v5g.bin` (essayée sur route : frein moteur amélioré)
+- **Essai sur route (retour du 27/10/2026)** : le frein moteur est amélioré par rapport à la v5f.
 - Constaté : délai avant coupure d'injection au lâcher de pédale (nul si embrayage enfoncé), plus court sur la CA-DR.
 - La coupure (test 0x3D15A) attend, sauf embrayage, |couple `$E6606` − couple lissé `$126C`| < 0x5AA7A. Le lissage
   (fct 0x31FBE, filtre 1er ordre) prend son coefficient dans 0x5857C / 0x585FA (9 × 7 : régime axe 0x56402 ×

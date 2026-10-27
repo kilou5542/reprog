@@ -42,6 +42,12 @@ capteur EGR débranché met `$DBA` en défaut. Correction nécessaire ≈ −1,0
 Après 5–10 min de ralenti chaud : mêmes relevés (régime, angle, pression, clim éteinte / en route).
 L'écart modèle / mesure doit tomber vers 0, l'angle au ralenti peut légèrement changer.
 
+## 27/10/2026 — v5i, premier démarrage
+
+| Situation | Régime | Angle papillon | Pression collecteur |
+|---|---|---|---|
+| Ralenti, clim éteinte (juste après démarrage, apprentissage en cours) | 850 tr/min | — | **29 kPa** |
+
 ## Protocole de validation de la v5i (ex-v5h) (apprentissage du modèle papillon débloqué)
 
 ### Préparation

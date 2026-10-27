@@ -11,7 +11,9 @@ Chaque version a un checksum correct.
 
 La base CA est gardée : avec la DR, le régulateur de vitesse et la climatisation ne fonctionnent pas.
 
-### v5i — `roms/a2_ori_e85_v5i.bin` (à essayer : v5h + somme du code recalculée)
+### v5i — `roms/a2_ori_e85_v5i.bin` (✅ démarre — cause des non-démarrages confirmée ; apprentissage en cours)
+- **27/10/2026** : la voiture démarre. Adaptation papillon VCDS 060 « ADP O.K. ». Ralenti 850 tr/min,
+  29 kPa clim éteinte (v5g : 870 tr/min, 32 kPa).
 - Identique à la v5h (2 `nop` en 0x226C2 et 0x23A62 : apprentissages du modèle papillon `$1740` et de la pression
   atmosphérique débloqués, EGR intacte), avec la **somme du code 0x7FF74 recalculée** (0x015B8161 → 0x015B8264)
   et le checksum principal corrigé. Différences avec la v5g : 0x226C2–5, 0x23A62–5, 0x7FF76–7, 0x7FFEA–B.

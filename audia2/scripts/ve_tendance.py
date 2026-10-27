@@ -9,10 +9,10 @@ publiée) : prise en compte avec un poids réduit (montées en régime, retard d
 
   python3 ve_tendance.py entree.bin sortie.bin gain_deja_applique log1.csv [log2.csv ...]
 """
-import csv
 import math
 import sys
 
+import log_obd
 import marelli4mv as m
 
 VE, NR, NC = 0x57084, 24, 12
@@ -22,12 +22,7 @@ SR, SM = 400.0, 80.0
 
 
 def mesures(path, gain):
-    R = []
-    for row in list(csv.reader(open(path, encoding='latin-1')))[4:]:
-        try:
-            R.append(tuple(float(row[i]) for i in (1, 2, 4, 6, 8)))
-        except (ValueError, IndexError):
-            pass
+    R = log_obd.lire(path)
     out = []
     for i in range(1, len(R) - 1):
         t, rpm, s, l, kpa = R[i]

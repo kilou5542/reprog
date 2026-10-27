@@ -131,3 +131,19 @@ Facteur réellement appliqué f (1,00 = rien ; < 1 = base trop riche), 397 point
 - Pleine charge (LTFT non appliquée, montées en régime) : f 0,93 (1500–3000), **0,89–0,91 (3500–4500)**, 0,97 (5000),
   **1,04–1,07 (5500–6500 : base trop PAUVRE, le calculateur ajoute)**.
 - Profil de remplissage (VE) + richesse générale d'environ 5–10 % ; pas un profil de temps mort.
+
+## 27/10/2026 (17 h 23) — 2e log OBD, v5g, ~20 min (circulation, bouchons)
+
+Fichier : `logs/2026-10-27b_v5g_obd_stft_ltft_map_rpm.csv` (PID dans l'ordre 06, 07, 0B, 0C : les scripts lisent
+maintenant l'en-tête, `scripts/log_obd.py`). 349 points stables, surtout 800–3000 tr/min et 300–500 mbar.
+
+| MAP | f moyen | Points |
+|---|---|---|
+| 200–299 mbar | 0,99 | 49 |
+| 300–399 mbar | 0,94 | 141 |
+| 400–499 mbar | 0,92 | 116 |
+| 500–699 mbar | ~0,95 | 35 |
+| 900–999 mbar | 0,91 | 6 |
+
+- Médiane 0,93 (1er log : 0,92 ; les deux : **0,928**) → le gain × 0,93 est confirmé.
+- Toujours pas de paliers en mi / forte charge au-dessus de 3000 tr/min : la tendance VE y repose sur le 1er log.

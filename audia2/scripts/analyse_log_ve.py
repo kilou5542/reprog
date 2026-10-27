@@ -10,12 +10,9 @@ Points gardés : stables (régime ±150 et MAP ±4 kPa entre voisins), LTFT publ
 
   python3 analyse_log_ve.py log.csv
 """
-import csv,statistics as st,collections,sys
-F=sys.argv[1]
-R=[]
-for row in list(csv.reader(open(F,encoding='latin-1')))[4:]:
-    try: R.append(tuple(float(row[i]) for i in (1,2,4,6,8)))
-    except: pass
+import statistics as st,collections,sys
+import log_obd
+R=log_obd.lire(sys.argv[1])
 keep=[]
 for i in range(1,len(R)-1):
     t,rpm,s,l,m=R[i]

@@ -14,7 +14,7 @@ Documents détaillés : [README](README.md) (format, checksum, reproduction des 
 ## 1. Le propriétaire et ses règles
 
 - Parle **français** : toujours répondre en français.
-- **Ne pas fabriquer de nouvelle ROM sans sa demande** (v5g validée le 27/10, v5h ne démarre pas) (« Je ne veux pas qu'on
+- **Ne pas fabriquer de nouvelle ROM sans sa demande** (v5g validée le 27/10, v5h ne démarre pas, v5i demandée et fabriquée le 27/10) (« Je ne veux pas qu'on
   s'en occupe maintenant. D'abord, je ferai la vérification de la dernière ROM »). L'analyse est permise.
 - **Régulateur de vitesse abandonné pour l'instant** ; on travaille à partir de la v5g (ROM de travail).
 - **Ne rien toucher qui ressemble à l'EGR** (v6/v7/v7b ont empêché le démarrage ou le redémarrage).
@@ -42,6 +42,7 @@ Documents détaillés : [README](README.md) (format, checksum, reproduction des 
 | v5f | ✅ validée (rupteur franc à 7000), remplacée par la v5g |
 | **v5g** | ✅ **ROM de travail** (validée 27/10) : coupure au lâcher bien plus rapide, frein moteur amélioré, pas de voyant ; à-coups en 1re pas encore testés |
 | v5h | ❌ **ne démarre pas** (2 essais, 27/10) : v5g + 2 `nop` ; cause très probable : somme du code 0x7FF74 non recalculée |
+| **v5i** | à essayer : v5h + somme du code recalculée (test de la cause + apprentissage papillon) |
 | v6, v7, v10, v11 | ❌ ne démarrent pas (forcer `$DBA` = 0 recopie le capteur EGR débranché) |
 | v7b, v10b | ❌ démarrent une fois puis plus (apprentissage EGR réveillé, valeurs en EEPROM) |
 | v5b–v5e | ❌ rupteur oscillant (cause : reprise d'injection 0x5B8EA restée à 5610) |
@@ -59,7 +60,8 @@ Chaîne de fabrication reproductible à l'octet près : voir README.
   0x7FF78, longueur en 0x7FF7C). **Toutes les ROM au code modifié sans la recalculer n'ont pas démarré**
   (v6, v7, v7b une fois seulement, v10, v10b, v11, v5h) ; toutes celles où elle est juste ont démarré.
   Le vérificateur n'a pas été trouvé dans l'application (probablement le démarrage / chargeur). Outil :
-  `marelli4mv.py` (vérifie) et `fix_code()` à appeler avant `fix()`. 0x7FF70 = 0x04563628 : sens inconnu.
+  `marelli4mv.py` (vérifie) et `fix_code()` à appeler avant `fix()` (fait dans `adaptation_papillon.py` ; les
+  anciens scripts de code — etapes_v3_a_v7, regulateur_coupure — ne le font pas encore). 0x7FF70 = 0x04563628 : sens inconnu.
 - Checksum : somme des mots 0x4000–0x7FFFF = mot 0x7FFE8, compensation 0x7FFEA ; zone code
   0x18584–0x1C4FF contrôlée à part (mot 0x7FFEC). `scripts/marelli4mv.py fix`.
 - Interpolations :

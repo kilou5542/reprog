@@ -42,10 +42,10 @@ capteur EGR débranché met `$DBA` en défaut. Correction nécessaire ≈ −1,0
 Après 5–10 min de ralenti chaud : mêmes relevés (régime, angle, pression, clim éteinte / en route).
 L'écart modèle / mesure doit tomber vers 0, l'angle au ralenti peut légèrement changer.
 
-## Protocole de validation de la v5h (apprentissage du modèle papillon débloqué)
+## Protocole de validation de la v5i (ex-v5h) (apprentissage du modèle papillon débloqué)
 
 ### Préparation
-1. Flasher `roms/a2_ori_e85_v5h.bin`, effacer les codes défaut.
+1. Flasher `roms/a2_ori_e85_v5i.bin`, effacer les codes défaut.
 2. Apprentissage du papillon VCDS (01 → 04 → groupe 060, « ADP OK »), couper le contact 10 s.
 3. Démarrer, laisser chauffer jusqu'à 80–90 °C, puis **10 min de ralenti** sans toucher à rien
    (clim éteinte, pas de consommateur) : c'est là que `$1740` s'apprend.
@@ -69,5 +69,5 @@ L'écart modèle / mesure doit tomber vers 0, l'angle au ralenti peut légèreme
 | STFT au ralenti | oscille dans ±5 % (condition d'apprentissage : ±20 %) | régler le mélange d'abord |
 | P1553 | n'apparaît plus, y compris en transitions à bas régime | noter les conditions (régime, pédale, chaud / froid) |
 
-La v5h est validée si, après plusieurs jours, tous les critères sont remplis : elle remplace alors la v5f
-comme ROM de travail (avec la v5g si la coupure rapide au lâcher de pédale est aussi validée).
+La v5i est validée si, après plusieurs jours, tous les critères sont remplis : elle remplace alors la v5f
+comme ROM de travail.

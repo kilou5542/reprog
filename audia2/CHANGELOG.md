@@ -11,7 +11,14 @@ Chaque version a un checksum correct.
 
 La base CA est gardée : avec la DR, le régulateur de vitesse et la climatisation ne fonctionnent pas.
 
-### v5h — `roms/a2_ori_e85_v5h.bin` (❌ ne démarre pas, 27/10/2026 — somme du code 0x7FF74 non recalculée)
+### v5i — `roms/a2_ori_e85_v5i.bin` (à essayer : v5h + somme du code recalculée)
+- Identique à la v5h (2 `nop` en 0x226C2 et 0x23A62 : apprentissages du modèle papillon `$1740` et de la pression
+  atmosphérique débloqués, EGR intacte), avec la **somme du code 0x7FF74 recalculée** (0x015B8161 → 0x015B8264)
+  et le checksum principal corrigé. Différences avec la v5g : 0x226C2–5, 0x23A62–5, 0x7FF76–7, 0x7FFEA–B.
+- But : confirmer que la somme du code était la cause des non-démarrages, puis faire le protocole de MESURES.md.
+- Script : `adaptation_papillon.py` (appelle maintenant `fix_code`).
+
+### v5h — `roms/historique/a2_ori_e85_v5h_NE_DEMARRE_PAS.bin` (❌ ne démarre pas, 27/10/2026 — somme du code 0x7FF74 non recalculée)
 - **Essai du 27/10/2026** : la voiture ne démarre pas. Analyse du code : les deux `nop` ne devraient pas agir
   pendant le lancement (0x226C2 est dans la fct 0x22640, active seulement si `$190D` = 8 ; 0x23A62 dans la fct
   0x23962, active seulement moteur tournant `$D4E` = 8 et régime ≥ 1200). `$1740` relu en EEPROM vaut 0

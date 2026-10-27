@@ -256,6 +256,10 @@ Chaîne de fabrication reproductible à l'octet près : voir README.
   standard OBD). VCDS groupe 001 « Lambda Controller » = (40000 − brut) / 400 → positif = il AJOUTE.
   Facteur total appliqué = 1 / ((1 + STFT_obd) × (1 + LTFT_obd)) ; correction VE = VE / ((1 + STFT_obd)(1 + LTFT_obd)).
 - Relevé OBD 27/10, ralenti clim en route (49 kPa) : STFT −3,9 %, **LTFT +20,3 %** (le calculateur retire ~17 %).
+- **Log OBD du 27/10 (v5i)** : base trop riche partout (f 0,93 à 250 mbar → 0,73 à 550 mbar, 0,62–0,72 vers
+  3000–3800 tr/min mi-charge) ; pas un profil de temps mort → VE (+ richesse générale). À pleine charge l'OBD
+  donne LTFT 0 et STFT jusqu'à +55 % (au-delà de la butée ±25 : à comprendre). Détail : MESURES.md, script
+  `scripts/analyse_log_ve.py`, logs dans `logs/`.
 
 ### Adaptation de richesse (LTFT)
 - **Groupe VCDS 032** (fct 0x99E0 / 0x9A44) : ce ne sont pas un additif et un multiplicatif « Bosch » mais deux
